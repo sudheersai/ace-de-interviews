@@ -34,7 +34,7 @@ const QuestionDetailPage = () => {
 
     // Simulate loading
     setIsLoading(true);
-    const loadingTime = readQuestions.includes(id) ? 3000 : 7000; // 3-5s for read, 5-10s for new
+    const loadingTime = 1000; // 1 second loading
 
     const timer = setTimeout(() => {
       setCurrentQuestion(question);

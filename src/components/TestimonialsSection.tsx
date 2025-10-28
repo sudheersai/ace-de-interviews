@@ -30,29 +30,29 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted rounded-lg">
-      <h2 className="text-4xl font-bold text-center text-foreground">From Our Users</h2>
-      <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-muted rounded-lg my-8">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-foreground px-4">From Our Users</h2>
+      <div className="mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
         {testimonials.map((testimonial, index) => (
-          <Card key={index} className="p-6">
+          <Card key={index} className="p-4 sm:p-6">
             <div className="flex items-center">
               <img
                 alt={`${testimonial.name} profile picture`}
-                className="w-12 h-12 rounded-full object-cover"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover flex-shrink-0"
                 src={testimonial.image}
               />
-              <div className="ml-4">
-                <p className="font-semibold text-foreground">{testimonial.name}</p>
-                <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+              <div className="ml-3 sm:ml-4 min-w-0">
+                <p className="font-semibold text-foreground text-sm sm:text-base truncate">{testimonial.name}</p>
+                <p className="text-xs sm:text-sm text-muted-foreground truncate">{testimonial.role}</p>
               </div>
             </div>
-            <p className="mt-4 text-card-foreground">{testimonial.quote}</p>
-            <div className="mt-4 flex text-yellow-500">
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base text-card-foreground">{testimonial.quote}</p>
+            <div className="mt-3 sm:mt-4 flex text-yellow-500">
               {[...Array(5)].map((_, i) => (
                 i < testimonial.rating ? (
-                  <Star key={i} className="w-4 h-4 fill-current" />
+                  <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 fill-current" />
                 ) : (
-                  <StarOff key={i} className="w-4 h-4" />
+                  <StarOff key={i} className="w-3 h-3 sm:w-4 sm:h-4" />
                 )
               ))}
             </div>

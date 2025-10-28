@@ -15,26 +15,26 @@ const QuestionSection = () => {
 
   return (
     <section className="px-4">
-      <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
         {displayedQuestions.map((question) => (
           <Card 
             key={question.id} 
-            className="p-6 text-left hover:shadow-lg transition-all cursor-pointer hover:border-primary"
+            className="p-4 sm:p-6 text-left hover:shadow-lg transition-all cursor-pointer hover:border-primary"
             onClick={() => handleQuestionClick(question.id)}
           >
             <div className="text-xs text-muted-foreground mb-2 font-medium">
               {question.category}
             </div>
-            <p className="text-card-foreground">{question.question}</p>
+            <p className="text-sm sm:text-base text-card-foreground">{question.question}</p>
           </Card>
         ))}
       </div>
-      <div className="mt-12 text-center">
+      <div className="mt-8 sm:mt-12 text-center">
         {!showAll ? (
           <Button 
             variant="outline" 
             size="lg" 
-            className="font-semibold"
+            className="font-semibold text-sm sm:text-base"
             onClick={() => setShowAll(true)}
           >
             See More Questions ({sqlQuestions.length - 8} more)
@@ -43,7 +43,7 @@ const QuestionSection = () => {
           <Button 
             variant="outline" 
             size="lg" 
-            className="font-semibold"
+            className="font-semibold text-sm sm:text-base"
             onClick={() => {
               setShowAll(false);
               window.scrollTo({ top: 0, behavior: 'smooth' });

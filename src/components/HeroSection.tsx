@@ -25,23 +25,24 @@ const HeroSection = () => {
   const [selectedSkill, setSelectedSkill] = useState("SQL");
 
   return (
-    <section className="text-center py-20 px-4">
-      <h1 className="text-5xl md:text-6xl font-bold text-foreground leading-tight">
+    <section id="skills" className="text-center py-12 sm:py-16 md:py-20 px-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
         Data Engineering Hub
       </h1>
-      <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+      <p className="mt-4 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
         Select a skill to practice with real interview questions. Prepare and excel in your next data engineering interview.
       </p>
-      <div className="mt-10 flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
+      <div className="mt-8 sm:mt-10 flex flex-wrap justify-center gap-2 sm:gap-3 max-w-5xl mx-auto">
         {skills.map((skill) => (
           <Button
             key={skill}
             variant={selectedSkill === skill ? "default" : "outline"}
             onClick={() => setSelectedSkill(skill)}
+            size="sm"
             className={
               selectedSkill === skill
-                ? "bg-accent text-accent-foreground hover:bg-accent/90"
-                : "bg-muted text-muted-foreground hover:bg-muted/80"
+                ? "bg-accent text-accent-foreground hover:bg-accent/90 text-xs sm:text-sm"
+                : "bg-muted text-muted-foreground hover:bg-muted/80 text-xs sm:text-sm"
             }
           >
             {skill}

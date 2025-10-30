@@ -4,7 +4,7 @@ import { FileText, File, PlayCircle } from "lucide-react";
 const resources = [
   {
     icon: FileText,
-    title: "Blog Posts",
+    title: "AWS Cheat Sheet",
     description: "In-depth articles on data engineering concepts and trends.",
   },
   {
@@ -14,7 +14,7 @@ const resources = [
   },
   {
     icon: PlayCircle,
-    title: "Webinars",
+    title: "Latest AI tools",
     description: "Expert-led sessions on acing interviews and career growth.",
   },
 ];

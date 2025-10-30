@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { ArrowLeft, Loader2, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { getQuestionById, getRelatedQuestions, sqlQuestions } from "@/data/sqlQuestions";
 import Header from "@/components/Header";
+import { toast } from "@/hooks/use-toast";
 
 const QuestionDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -57,6 +58,15 @@ const QuestionDetailPage = () => {
   const handleQuestionClick = (questionId: string) => {
     navigate(`/question/${questionId}`);
     window.scrollTo(0, 0);
+  };
+
+  const handleClearHistory = () => {
+    sessionStorage.removeItem("readQuestions");
+    setReadQuestions([]);
+    toast({
+      title: "History Cleared",
+      description: "Your reading history has been cleared successfully.",
+    });
   };
 
   const readQuestionsData = sqlQuestions.filter(q => 
@@ -117,7 +127,18 @@ const QuestionDetailPage = () => {
           {/* Previously Read Questions */}
           {readQuestionsData.length > 0 && (
             <div className="mb-6 sm:mb-8">
-              <h2 className="text-lg sm:text-xl font-bold text-foreground mb-3 sm:mb-4">Previously Read</h2>
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <h2 className="text-lg sm:text-xl font-bold text-foreground">Previously Read</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleClearHistory}
+                  className="text-muted-foreground hover:text-destructive"
+                >
+                  <Trash2 className="h-4 w-4 mr-2" />
+                  Clear History
+                </Button>
+              </div>
               <div className="space-y-2 sm:space-y-3">
                 {readQuestionsData.map((q) => (
                   <Card

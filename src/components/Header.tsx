@@ -12,10 +12,12 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="flex justify-between items-center py-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="flex items-center space-x-2 sm:space-x-3">
-          <Database className="text-primary w-6 h-6 sm:w-8 sm:h-8" />
-          <span className="text-lg sm:text-xl font-bold text-foreground">DataEngineerPro</span>
+      <div className="flex justify-between items-center py-3 sm:py-4 px-3 sm:px-4 lg:px-8 max-w-7xl mx-auto">
+        <div className="flex items-center space-x-1.5 sm:space-x-2 md:space-x-3 min-w-0">
+          <Database className="text-primary w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 flex-shrink-0" />
+          <span className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-foreground truncate">
+            DataEngineerPro
+          </span>
         </div>
       
         {/* Desktop Navigation */}
@@ -31,16 +33,16 @@ const Header = () => {
           </a>
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3">
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-xs sm:text-sm px-3 sm:px-4 py-2 h-9 sm:h-10">
+        <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 flex-shrink-0">
+          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-[10px] xs:text-xs sm:text-sm px-2 xs:px-2.5 sm:px-3 md:px-4 py-1.5 xs:py-2 h-7 xs:h-8 sm:h-9 md:h-10 whitespace-nowrap">
             Get Started
           </Button>
 
           {/* Mobile Menu */}
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon" className="h-9 w-9">
-                <Menu className="h-5 w-5" />
+              <Button variant="ghost" size="icon" className="h-7 w-7 xs:h-8 xs:w-8 sm:h-9 sm:w-9 flex-shrink-0">
+                <Menu className="h-4 w-4 xs:h-5 xs:w-5" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-64">

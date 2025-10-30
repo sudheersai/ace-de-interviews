@@ -6,21 +6,21 @@ import jessicaImage from "@/assets/testimonial-jessica.jpg";
 
 const testimonials = [
   {
-    name: "Sarah L.",
+    name: "Priya S.",
     role: "Data Engineer at TechCorp",
     image: sarahImage,
     quote: "The interactive question bank was a game-changer. It gave me a clear path and the confidence to land my first data engineering role.",
     rating: 4,
   },
   {
-    name: "Michael B.",
+    name: "Rahul K.",
     role: "Senior Data Engineer",
     image: michaelImage,
     quote: "I've recommended DataEngineerPro to all my mentees. The skill-based interview prep is pure gold.",
     rating: 5,
   },
   {
-    name: "Jessica W.",
+    name: "Anjali M.",
     role: "Analytics Engineer",
     image: jessicaImage,
     quote: "The AI assistant helped me overcome my interview anxiety. I felt so prepared and confident.",

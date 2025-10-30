@@ -24,7 +24,7 @@ const Header = () => {
             Skills
           </a>
           <a className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors" href="#ai-assistant">
-            AI Assistant
+            Talk with our Expert
           </a>
           <a className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors" href="#resources">
             Resources
@@ -57,7 +57,7 @@ const Header = () => {
                   href="#ai-assistant"
                   onClick={() => setOpen(false)}
                 >
-                  AI Assistant
+                  Talk with our Expert
                 </a>
                 <a 
                   className="text-lg text-muted-foreground hover:text-primary transition-colors" 

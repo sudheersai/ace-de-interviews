@@ -12,7 +12,7 @@ const CourseEnrollmentSection = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 animate-fade-in">
+    <section id="course" className="py-12 sm:py-16 lg:py-20 animate-fade-in scroll-mt-20">
       <div className="bg-gradient-to-br from-primary/5 via-background to-secondary/5 rounded-2xl overflow-hidden border border-primary/10">
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8 p-6 sm:p-8 lg:p-12">
           {/* Left side - Content */}

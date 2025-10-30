@@ -25,6 +25,9 @@ const Header = () => {
           <a className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors" href="#skills">
             Skills
           </a>
+          <a className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors" href="#course">
+            Course
+          </a>
           <a className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors" href="#expert-consultation">
             Talk with our Expert
           </a>
@@ -53,6 +56,13 @@ const Header = () => {
                   onClick={() => setOpen(false)}
                 >
                   Skills
+                </a>
+                <a 
+                  className="text-lg text-muted-foreground hover:text-primary transition-colors" 
+                  href="#course"
+                  onClick={() => setOpen(false)}
+                >
+                  Course
                 </a>
                 <a 
                   className="text-lg text-muted-foreground hover:text-primary transition-colors" 

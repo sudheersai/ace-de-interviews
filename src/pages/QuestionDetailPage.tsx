@@ -60,11 +60,11 @@ const QuestionDetailPage = () => {
   };
 
   const readQuestionsData = sqlQuestions.filter(q => 
-    readQuestions.includes(q.id) && q.id !== id
+    readQuestions.includes(q.id) && q.id !== id && q.skill === currentQuestion?.skill
   );
 
   const unreadQuestions = sqlQuestions.filter(q => 
-    !readQuestions.includes(q.id) && q.id !== id
+    !readQuestions.includes(q.id) && q.id !== id && q.skill === currentQuestion?.skill
   );
 
   if (isLoading) {

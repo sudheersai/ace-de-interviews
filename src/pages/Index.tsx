@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import QuestionSection from "@/components/QuestionSection";
@@ -7,13 +8,15 @@ import ResourcesSection from "@/components/ResourcesSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
+  const [selectedSkill, setSelectedSkill] = useState("SQL");
+
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4">
         <Header />
         <main>
-          <HeroSection />
-          <QuestionSection />
+          <HeroSection selectedSkill={selectedSkill} onSkillChange={setSelectedSkill} />
+          <QuestionSection selectedSkill={selectedSkill} />
           <AIAssistantSection />
           <TestimonialsSection />
           <ResourcesSection />

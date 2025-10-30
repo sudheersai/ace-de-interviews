@@ -1,5 +1,9 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
+
+interface HeroSectionProps {
+  selectedSkill: string;
+  onSkillChange: (skill: string) => void;
+}
 
 const skills = [
   "SQL",
@@ -21,9 +25,7 @@ const skills = [
   "AWS Certified Data Engineer",
 ];
 
-const HeroSection = () => {
-  const [selectedSkill, setSelectedSkill] = useState("SQL");
-
+const HeroSection = ({ selectedSkill, onSkillChange }: HeroSectionProps) => {
   return (
     <section id="skills" className="text-center py-12 sm:py-16 md:py-20 px-4 bg-gradient-hero">
       <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-in">
@@ -39,7 +41,7 @@ const HeroSection = () => {
           <Button
             key={skill}
             variant={selectedSkill === skill ? "default" : "outline"}
-            onClick={() => setSelectedSkill(skill)}
+            onClick={() => onSkillChange(skill)}
             size="sm"
             className={
               selectedSkill === skill

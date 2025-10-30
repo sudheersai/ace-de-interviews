@@ -2,12 +2,26 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { sqlQuestions } from "@/data/sqlQuestions";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 
-const QuestionSection = () => {
+interface QuestionSectionProps {
+  selectedSkill: string;
+}
+
+const QuestionSection = ({ selectedSkill }: QuestionSectionProps) => {
   const navigate = useNavigate();
   const [showAll, setShowAll] = useState(false);
-  const displayedQuestions = showAll ? sqlQuestions : sqlQuestions.slice(0, 8);
+  
+  const filteredQuestions = useMemo(() => {
+    return sqlQuestions.filter(q => q.skill === selectedSkill);
+  }, [selectedSkill]);
+  
+  const displayedQuestions = showAll ? filteredQuestions : filteredQuestions.slice(0, 8);
+
+  // Reset showAll when skill changes
+  useEffect(() => {
+    setShowAll(false);
+  }, [selectedSkill]);
 
   const handleQuestionClick = (id: string) => {
     navigate(`/question/${id}`);
@@ -30,16 +44,16 @@ const QuestionSection = () => {
         ))}
       </div>
       <div className="mt-8 sm:mt-12 text-center">
-        {!showAll ? (
+        {filteredQuestions.length > 8 && !showAll ? (
           <Button 
             variant="outline" 
             size="lg" 
             className="font-semibold text-sm sm:text-base"
             onClick={() => setShowAll(true)}
           >
-            See More Questions ({sqlQuestions.length - 8} more)
+            See More Questions ({filteredQuestions.length - 8} more)
           </Button>
-        ) : (
+        ) : filteredQuestions.length > 8 ? (
           <Button 
             variant="outline" 
             size="lg" 
@@ -51,7 +65,7 @@ const QuestionSection = () => {
           >
             Show Less
           </Button>
-        )}
+        ) : null}
       </div>
     </section>
   );

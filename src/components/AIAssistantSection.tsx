@@ -12,11 +12,12 @@ const AIAssistantSection = () => {
   return (
     <section id="ai-assistant" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8">
       <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-7xl mx-auto">
-        <div className="order-2 md:order-1">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
-            Ace Your Interviews with an AI Partner
+        <div className="order-2 md:order-1 animate-slide-up">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight">
+            Ace Your Interviews with an{" "}
+            <span className="text-gradient">AI Partner</span>
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-muted-foreground">
+          <p className="mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
             Our AI-powered assistant provides real-time feedback and personalized questions to help you prepare for any data engineering interview scenario.
           </p>
           <ul className="mt-6 space-y-3 sm:space-y-4">
@@ -27,14 +28,14 @@ const AIAssistantSection = () => {
               </li>
             ))}
           </ul>
-          <Button className="mt-6 sm:mt-8 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold w-full sm:w-auto" size="lg">
+          <Button className="mt-8 sm:mt-10 bg-gradient-primary hover:opacity-90 text-white font-semibold w-full sm:w-auto shadow-primary transition-all duration-300 hover:shadow-glow hover:scale-105" size="lg">
             Try the AI Assistant
           </Button>
         </div>
-        <div className="order-1 md:order-2">
+        <div className="order-1 md:order-2 animate-scale-in">
           <img
             alt="Professional data engineer working with AI assistance"
-            className="rounded-lg shadow-xl w-full"
+            className="rounded-xl shadow-2xl w-full hover:shadow-glow transition-all duration-300 hover:scale-105"
             src={aiPartnerImage}
           />
         </div>

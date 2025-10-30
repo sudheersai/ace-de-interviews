@@ -30,11 +30,14 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-muted rounded-lg my-8">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-foreground px-4">From Our Users</h2>
-      <div className="mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
+    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-muted rounded-2xl my-8 animate-fade-in">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center px-4">
+        <span className="text-gradient">Success Stories</span>{" "}
+        <span className="text-foreground">From Our Users</span>
+      </h2>
+      <div className="mt-10 sm:mt-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
         {testimonials.map((testimonial, index) => (
-          <Card key={index} className="p-4 sm:p-6">
+          <Card key={index} className="p-6 sm:p-8 hover:shadow-primary transition-all duration-300 hover:scale-105 animate-slide-up border-2">
             <div className="flex items-center">
               <img
                 alt={`${testimonial.name} profile picture`}

@@ -28,27 +28,28 @@ const QuestionSection = ({ selectedSkill }: QuestionSectionProps) => {
   };
 
   return (
-    <section className="px-4">
-      <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
-        {displayedQuestions.map((question) => (
+    <section className="px-2 sm:px-4">
+      <div className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 max-w-4xl mx-auto">
+        {displayedQuestions.map((question, index) => (
           <Card 
             key={question.id} 
-            className="p-4 sm:p-6 text-left hover:shadow-lg transition-all cursor-pointer hover:border-primary"
+            className="p-3 sm:p-4 md:p-6 text-left hover:shadow-lg transition-all cursor-pointer hover:border-primary animate-fade-in"
             onClick={() => handleQuestionClick(question.id)}
+            style={{ animationDelay: `${index * 0.05}s` }}
           >
-            <div className="text-xs text-muted-foreground mb-2 font-medium">
+            <div className="text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2 font-medium">
               {question.category}
             </div>
-            <p className="text-sm sm:text-base text-card-foreground">{question.question}</p>
+            <p className="text-xs sm:text-sm md:text-base text-card-foreground leading-relaxed">{question.question}</p>
           </Card>
         ))}
       </div>
-      <div className="mt-8 sm:mt-12 text-center">
+      <div className="mt-6 sm:mt-8 md:mt-12 text-center px-2">
         {filteredQuestions.length > 8 && !showAll ? (
           <Button 
             variant="outline" 
             size="lg" 
-            className="font-semibold text-sm sm:text-base"
+            className="font-semibold text-xs sm:text-sm md:text-base w-full sm:w-auto"
             onClick={() => setShowAll(true)}
           >
             See More Questions ({filteredQuestions.length - 8} more)
@@ -57,7 +58,7 @@ const QuestionSection = ({ selectedSkill }: QuestionSectionProps) => {
           <Button 
             variant="outline" 
             size="lg" 
-            className="font-semibold text-sm sm:text-base"
+            className="font-semibold text-xs sm:text-sm md:text-base w-full sm:w-auto"
             onClick={() => {
               setShowAll(false);
               window.scrollTo({ top: 0, behavior: 'smooth' });

@@ -356,6 +356,626 @@ export const sqlQuestions: Question[] = [
     answer: "The Catalyst Optimizer is Spark SQL's extensible query optimizer. When you write a DataFrame query or a SQL query, the Catalyst Optimizer leverages advanced programming features to build and optimize a plan for execution. This process involves steps like Analysis (creating a logical plan), Logical Optimization, Physical Planning (selecting a physical plan using a cost model), and Code Generation (which generates RDDs).",
     category: "Advanced PySpark",
     skill: "Pyspark"
+  },
+  // Data Warehousing Questions
+  {
+    id: "dw-1",
+    question: "What is a Data Warehouse?",
+    answer: "A Data Warehouse is a centralized system that stores integrated data from multiple sources, optimized for analysis and reporting rather than transaction processing.\n\nExample: A retail company collects data from sales systems, CRM, and inventory apps — then stores it in a warehouse (like Snowflake) for analyzing customer purchase patterns.\n\nKey Point: Mention integration, time-variant, non-volatile properties.",
+    category: "Foundational Concepts",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-2",
+    question: "Why do companies need a Data Warehouse?",
+    answer: "To consolidate data for decision-making, reporting, and analytics instead of querying multiple systems individually.\n\nExample: Marketing uses warehouse data to see customer trends and optimize campaigns.\n\nKey Point: Helps in data-driven decision-making and cross-departmental reporting.",
+    category: "Foundational Concepts",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-3",
+    question: "What is the difference between Data Warehouse and Database?",
+    answer: "• Database: Used for daily operations (OLTP), normalized schema, stores current data\n• Data Warehouse: Used for analytics & reporting (OLAP), denormalized schema, stores historical data\n\nExample: Customer order system = database; company-wide sales dashboard = data warehouse.\n\nKey Point: OLTP vs OLAP use case clarity.",
+    category: "Foundational Concepts",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-4",
+    question: "Explain ETL with a real-world example.",
+    answer: "ETL = Extract, Transform, Load — process of moving data from source systems into the warehouse.\n\nExample:\n1. Extract: Pull daily sales from POS system\n2. Transform: Convert currency, clean nulls\n3. Load: Insert into Snowflake sales table\n\nKey Point: Show understanding of data pipeline automation.",
+    category: "ETL & Data Integration",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-5",
+    question: "Difference between ETL and ELT",
+    answer: "In ETL, data is transformed before loading; in ELT, raw data is loaded and transformed later inside the warehouse.\n\nExample:\n• ETL: Informatica performs transformation → data enters DB\n• ELT: Raw data lands in BigQuery → SQL transformations applied later\n\nKey Point: Cloud data warehouses prefer ELT.",
+    category: "ETL & Data Integration",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-6",
+    question: "What are Slowly Changing Dimensions (SCD)?",
+    answer: "They manage how historical data changes over time in dimension tables.\n\nExample: A customer changes address:\n• Type 1 → overwrite old value\n• Type 2 → keep both records with date range\n• Type 3 → add new column for 'previous address'\n\nKey Point: Most companies use Type 2 for audit history.",
+    category: "Data Modeling",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-7",
+    question: "Explain Star Schema with an example.",
+    answer: "Central Fact table connected to Dimension tables.\n\nExample: Fact_Sales linked to Dim_Customer, Dim_Product, Dim_Date.\n\nKey Point: Optimized for query performance in OLAP.",
+    category: "Data Modeling",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-8",
+    question: "Difference between Star and Snowflake Schema",
+    answer: "• Star: Dimensions not normalized (simpler, faster)\n• Snowflake: Dimensions normalized (saves space)\n\nExample: Product dimension split into Product, Category, and Supplier tables = Snowflake.\n\nKey Point: Mention trade-off between performance and storage.",
+    category: "Data Modeling",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-9",
+    question: "What is Data Lake vs Data Warehouse?",
+    answer: "• Data Lake: Stores raw data (structured/unstructured)\n• Data Warehouse: Stores structured, processed data\n\nExample:\nRaw IoT sensor logs → Data Lake\nCleaned and summarized logs → Warehouse",
+    category: "Foundational Concepts",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-10",
+    question: "What are Fact and Dimension Tables?",
+    answer: "• Fact Table: Contains measurable data (sales, revenue)\n• Dimension Table: Descriptive context (customer, product, time)\n\nExample: Fact_Sales(amount, product_id) joins with Dim_Product(name).\n\nKey Point: Facts = numeric measures; Dimensions = business context.",
+    category: "Data Modeling",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-11",
+    question: "What is OLAP vs OLTP?",
+    answer: "• OLAP supports analytics, OLTP supports transactions\n\nExample:\n• OLTP: Bank deposits\n• OLAP: Bank's monthly transaction report\n\nKey Point: OLAP = Read-heavy; OLTP = Write-heavy.",
+    category: "Foundational Concepts",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-12",
+    question: "What is a Data Mart?",
+    answer: "Subset of data warehouse focused on a department or business function.\n\nExample: Finance Mart, Sales Mart.\n\nKey Point: Speeds up queries for domain-specific reporting.",
+    category: "Architecture",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-13",
+    question: "What is Data Mining and how is it related to Data Warehousing?",
+    answer: "Data Mining extracts patterns from warehouse data for prediction.\n\nExample: Analyzing warehouse data to find which customers buy most on weekends.\n\nKey Point: Mining uses warehouse data for insights.",
+    category: "Analytics",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-14",
+    question: "Explain Incremental Load.",
+    answer: "Loads only new or changed data since the last update.\n\nExample: Using last_updated_date to load only yesterday's new sales.\n\nKey Point: Efficient for large datasets.",
+    category: "ETL & Data Integration",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-15",
+    question: "What is a Data Cube?",
+    answer: "Multidimensional view of data used for fast OLAP queries.\n\nExample: Sales analyzed by Product, Region, and Time.\n\nKey Point: Supports drill-down and roll-up operations.",
+    category: "Analytics",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-16",
+    question: "What are ACID Properties?",
+    answer: "Atomicity, Consistency, Isolation, Durability — ensure reliable transactions.\n\nExample: Bank transfer completes fully or not at all (atomic).",
+    category: "Database Concepts",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-17",
+    question: "Difference between Normalization and Denormalization",
+    answer: "• Normalization: Reduces redundancy, improves consistency\n• Denormalization: Adds redundancy to improve read speed\n\nExample: OLTP = normalized; Warehouse = denormalized.\n\nKey Point: Denormalization is better for reporting.",
+    category: "Data Modeling",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-18",
+    question: "What is a Three-Tier Data Warehouse Architecture?",
+    answer: "1. Bottom Tier: Data sources and staging\n2. Middle Tier: OLAP server\n3. Top Tier: Reporting tools\n\nExample: ETL → Snowflake → Power BI.\n\nKey Point: Separates storage, processing, and presentation layers.",
+    category: "Architecture",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-19",
+    question: "What are common ETL tools?",
+    answer: "• Informatica\n• Talend\n• Pentaho\n• SSIS\n• DataStage\n\nExample: SSIS pipeline loads daily sales into Azure SQL DW.\n\nKey Point: Mention any tool you have hands-on with.",
+    category: "ETL & Data Integration",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-20",
+    question: "What are common Cloud Data Warehouses?",
+    answer: "Snowflake, AWS Redshift, Google BigQuery, Azure Synapse.\n\nExample: E-commerce firm uses Redshift for monthly KPIs.\n\nKey Point: Highlight your preferred platform.",
+    category: "Cloud Technologies",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-21",
+    question: "What is a Hybrid Storage Model?",
+    answer: "Mixes row and column storage for OLTP + OLAP performance.\n\nExample: SQL Server with columnstore indexes.\n\nKey Point: Balances speed for both transactional and analytical workloads.",
+    category: "Architecture",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-22",
+    question: "Explain a Real-Time Data Warehouse Use Case.",
+    answer: "Streaming data ingestion for dashboards.\n\nExample: Using Kafka → Snowflake Streams → Real-time sales dashboard in Power BI.\n\nKey Point: Emphasize low-latency ingestion setup.",
+    category: "Real-Time Processing",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-23",
+    question: "How do you ensure Data Quality in ETL?",
+    answer: "Use validation checks, null handling, data profiling.\n\nExample: Reject records with missing customer_id in SSIS.\n\nKey Point: Show awareness of data accuracy and consistency.",
+    category: "Data Quality",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-24",
+    question: "What is Metadata in a Data Warehouse?",
+    answer: "Metadata is 'data about data' — defines data origin, format, and lineage.\n\nExample: ETL log showing 'sales.csv → transformed → loaded to Dim_Sales.'\n\nKey Point: Metadata is critical for governance and auditing.",
+    category: "Data Governance",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-25",
+    question: "What are Common Data Warehouse Challenges?",
+    answer: "• Data inconsistency\n• Long ETL time\n• Schema changes\n• Performance issues\n\nKey Point: Mention use of incremental loads, partitioning, and indexes to optimize.",
+    category: "Performance Optimization",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-26",
+    question: "What is Partitioning and why use it?",
+    answer: "Dividing large tables into smaller segments for performance.\n\nExample: Partition Fact_Sales by month to speed up queries.\n\nKey Point: Improves query speed and maintenance.",
+    category: "Performance Optimization",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-27",
+    question: "What are Surrogate Keys?",
+    answer: "Artificial keys used instead of business keys for dimension tables.\n\nExample: Customer_SK instead of Customer_ID (natural key).\n\nKey Point: Prevents dependency on source system changes.",
+    category: "Data Modeling",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-28",
+    question: "Explain Slowly Changing Fact Tables.",
+    answer: "Facts can change over time — handled with versioning or effective dates.\n\nExample: Sales amounts updated due to discounts.\n\nKey Point: Use effective_date and expiry_date for tracking.",
+    category: "Data Modeling",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-29",
+    question: "What is Data Lineage and why is it important?",
+    answer: "Tracks data flow from source to destination through transformations.\n\nExample: Customer data → ETL → Cleansed → Warehouse → Dashboard.\n\nKey Point: Crucial for auditing, debugging, and compliance.",
+    category: "Data Governance",
+    skill: "Data Warehousing"
+  },
+  {
+    id: "dw-30",
+    question: "How to optimize Data Warehouse performance?",
+    answer: "Use indexes, partitions, materialized views, and query optimization.\n\nExample: Create indexes on frequently queried columns.\n\nKey Point: Balance between storage and query performance.",
+    category: "Performance Optimization",
+    skill: "Data Warehousing"
+  },
+  // Data Modeling Questions
+  {
+    id: "dm-1",
+    question: "What is Data Modeling?",
+    answer: "Data modeling is the process of organizing and structuring data so it can be stored and used efficiently. It's like creating a map of how data will be stored in a database.\n\nSimple Example: Imagine you run an online bookstore. You'll have data about books, customers, and orders. A data model helps define how these are connected — for example, one customer can have many orders, and each order can include multiple books.\n\nWhy It's Important: It makes it easier for developers, analysts, and businesses to understand, use, and analyze data.",
+    category: "Foundational Concepts",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-2",
+    question: "What is the difference between Logical and Physical Data Models?",
+    answer: "• Logical Model: Describes what data is needed and the relationships between them. It's a high-level view without technical details.\n• Physical Model: Describes how and where data will actually be stored in a database, including tables, columns, and data types.\n\nExample:\nLogical – We have an entity called 'Customer' with Name and Email.\nPhysical – We create a table Customer with columns customer_name VARCHAR(50) and email VARCHAR(100).\n\nWhy It's Important: Logical models help communicate with business teams; physical models help database engineers build the actual system.",
+    category: "Foundational Concepts",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-3",
+    question: "What are Entities, Attributes, and Relationships?",
+    answer: "• Entity: A thing you want to store information about (like Customer, Product, or Order)\n• Attribute: A detail about an entity (like Customer Name, Email, or Phone)\n• Relationship: How two entities are connected (e.g., one customer can place many orders)\n\nExample: A Customer places an Order for a Product → this shows relationships.\n\nWhy It's Important: It helps define clear links between data for easy querying and analysis.",
+    category: "Foundational Concepts",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-4",
+    question: "What is Cardinality and Modality?",
+    answer: "• Cardinality: defines how many relationships exist (e.g., one-to-one, one-to-many, many-to-many)\n• Modality: shows whether a relationship is required or optional\n\nExample: A customer must have at least one order (mandatory), but an order can have multiple products (many-to-many).\n\nWhy It's Important: It helps determine how data tables connect, ensuring accuracy and integrity.",
+    category: "Relationships",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-5",
+    question: "What is an ER Diagram and why is it used?",
+    answer: "An Entity-Relationship Diagram visually represents entities, their attributes, and relationships in a database.\n\nWhy It's Important: Makes it easy to understand database structure and communicate designs with stakeholders.",
+    category: "Design Tools",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-6",
+    question: "What is a Database Index and why is it important?",
+    answer: "An index makes searching and retrieving data faster, just like a book's index helps find pages quickly.\n\nExample: If you frequently search customers by their email, you can create an index on the 'email' column.\n\nWhy It's Important: Improves query performance, especially for large datasets.",
+    category: "Performance",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-7",
+    question: "What are the different types of Indexes?",
+    answer: "• B-Tree Index: Great for sorting and range queries\n• Hash Index: Fast for exact matches (like finding a customer by ID)\n• Bitmap Index: Best for low-cardinality columns (like Gender = M/F)\n• Composite Index: Combines multiple columns\n\nExample: Use a composite index on (CustomerID, OrderDate) for queries involving both fields.",
+    category: "Performance",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-8",
+    question: "What is Data Partitioning?",
+    answer: "Data partitioning means dividing a large table into smaller parts (partitions) for better performance and easier management.\n\nExample: Partitioning sales data by month, so when querying January data, only the January partition is scanned.\n\nWhy It's Important:\n• Improves query performance\n• Easier to maintain large datasets\n• Helps parallel processing",
+    category: "Performance",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-9",
+    question: "What are Primary and Foreign Keys?",
+    answer: "• Primary Key: A unique identifier for each record in a table (e.g., CustomerID)\n• Foreign Key: A link to the primary key in another table, maintaining relationships between data\n\nExample: In the Orders table, CustomerID is a foreign key linked to the Customer table's primary key.\n\nWhy It's Important: Ensures data integrity and prevents duplicates.",
+    category: "Keys and Constraints",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-10",
+    question: "What is the difference between Natural and Surrogate Keys?",
+    answer: "• Natural Key: Exists naturally in the data (like Social Security Number)\n• Surrogate Key: Artificial key created for the database (like an auto-increment ID)\n\nWhy It's Important: Surrogate keys provide stability and don't depend on business data changes.",
+    category: "Keys and Constraints",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-11",
+    question: "What are Fact and Dimension Tables?",
+    answer: "Fact Table: Stores numeric, measurable data (like sales, revenue, quantity)\nDimension Table: Stores descriptive data (like product name, customer info)\n\nExample:\n• Fact Table → Sales_Fact (sales_amount, quantity)\n• Dimension Table → Product_Dim (product_id, name, category)\n\nWhy It's Important: This structure makes it easy to analyze data in business intelligence tools like Power BI.",
+    category: "Star Schema",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-12",
+    question: "What is a Star Schema?",
+    answer: "A Star Schema has a central fact table linked directly to multiple dimension tables.\n\nExample: Sales_Fact connected to Customer_Dim, Product_Dim, and Time_Dim.\n\nWhy It's Important:\n• Simple and fast for queries\n• Easy for reporting and dashboards",
+    category: "Star Schema",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-13",
+    question: "What is a Snowflake Schema?",
+    answer: "A Snowflake Schema is similar to a Star Schema but with normalized dimension tables.\n\nExample: Instead of storing all product details in one table, you split it into Product and Category tables.\n\nWhy It's Important: Reduces data duplication but makes queries slightly slower.\n\nWhen to Use: When saving storage space is more important than query speed.",
+    category: "Snowflake Schema",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-14",
+    question: "What is a Galaxy Schema?",
+    answer: "Also called a Fact Constellation, it has multiple fact tables that share dimension tables.\n\nExample: Sales_Fact and Inventory_Fact share Product_Dim and Time_Dim.\n\nWhy It's Important: Used in enterprise systems with multiple business processes like sales, marketing, and inventory.",
+    category: "Advanced Schemas",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-15",
+    question: "What are Slowly Changing Dimensions (SCDs)?",
+    answer: "SCDs handle changes in dimension data over time (like customer address changes).\n\nTypes:\n• Type 1: Overwrite old data (no history)\n• Type 2: Add a new record for every change (keeps history)\n• Type 3: Add new column for previous value\n\nExample: If a customer moves to a new city, Type 2 adds a new row, so history is preserved.\n\nWhy It's Important: Keeps accurate historical data for analytics.",
+    category: "Slowly Changing Dimensions",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-16",
+    question: "What is Denormalization and why do we use it?",
+    answer: "Denormalization means combining related tables to reduce joins and improve read performance.\n\nExample: Instead of separate tables for Customer and Address, merge them if queries always need both.\n\nWhy It's Important:\n• Speeds up data retrieval\n• Simplifies reporting\n\nTrade-Off: Increases data redundancy and storage usage.",
+    category: "Normalization",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-17",
+    question: "What is Normalization?",
+    answer: "Normalization is organizing data to reduce duplication and improve data integrity.\n\nExample: Instead of repeating customer names in the orders table, store them once in the customer table and reference them.\n\nWhy It's Important: Saves space and ensures consistency.",
+    category: "Normalization",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-18",
+    question: "What are the main types of normalization?",
+    answer: "• 1NF (First Normal Form): No repeating columns\n• 2NF: No partial dependencies\n• 3NF: No transitive dependencies\n\nExample: Customer table should not have multiple phone columns (violates 1NF).",
+    category: "Normalization",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-19",
+    question: "What is Data Integrity?",
+    answer: "It means data is accurate, consistent, and reliable across the database.\n\nExample: If a product ID exists in the order table, it must exist in the product table too.\n\nWhy It's Important: Ensures trust in the system's data.",
+    category: "Data Quality",
+    skill: "Data Modeling"
+  },
+  {
+    id: "dm-20",
+    question: "What are some common data modeling interview questions?",
+    answer: "You might be asked:\n• Design a data model for an online shopping platform\n• Explain the difference between Star and Snowflake schemas\n• What are Fact and Dimension tables?\n• How do you handle Slowly Changing Dimensions (SCDs)?\n• What is the role of keys in data modeling?\n\nFinal Tip: Focus on understanding why each concept is used, not just definitions. Interviewers value your ability to explain with simple, real-world examples!",
+    category: "Interview Preparation",
+    skill: "Data Modeling"
+  },
+  // GitHub Questions
+  {
+    id: "github-1",
+    question: "What is Git?",
+    answer: "Git is a tool used to track changes in your code so that you can go back to any version if something goes wrong. It helps multiple developers work on the same project at the same time without interfering with each other.\n\nSimple Example: Imagine writing an essay. Git saves every version — so if you make a mistake, you can restore an older version easily.\n\nWhy It's Important: It keeps your project safe, helps you collaborate, and prevents you from losing code.",
+    category: "Fundamentals",
+    skill: "GitHub"
+  },
+  {
+    id: "github-2",
+    question: "What is a Distributed Version Control System?",
+    answer: "In Git, every developer has a complete copy of the project on their own computer. You don't need to be online to work. You can commit, edit, and manage changes locally, then push to a central repository when ready.\n\nExample: You can work on your code without the internet, and once you're connected, you upload your work to GitHub.\n\nWhy It's Important: It allows you to work independently and safely — even without internet access.",
+    category: "Fundamentals",
+    skill: "GitHub"
+  },
+  {
+    id: "github-3",
+    question: "What is Version Control in Git?",
+    answer: "Version control means saving different versions of your files so you can track changes and go back if needed.\n\nExample: If you accidentally delete part of your code, you can revert to the last working version with Git.\n\nWhy It's Important: It prevents data loss and helps teams manage updates efficiently.",
+    category: "Fundamentals",
+    skill: "GitHub"
+  },
+  {
+    id: "github-4",
+    question: "What is the difference between Git and SVN?",
+    answer: "Git is distributed and allows offline work, while SVN is centralized and requires constant server connection.\n\nComparison:\n• Type: Git (Distributed) vs SVN (Centralized)\n• Work offline: Git (Yes) vs SVN (No)\n• Speed: Git (Faster) vs SVN (Slower)\n• Branching: Git (Easy) vs SVN (Complex)\n\nWhy It's Important: Git gives developers more flexibility and better performance.",
+    category: "Fundamentals",
+    skill: "GitHub"
+  },
+  {
+    id: "github-5",
+    question: "What is a Repository in Git?",
+    answer: "A repository is like a project folder that contains all your code files and their version history.\n\nExample: You can create a Git repo for your portfolio website to track every change you make.\n\nWhy It's Important: It's where all your work and history are saved.",
+    category: "Repository Management",
+    skill: "GitHub"
+  },
+  {
+    id: "github-6",
+    question: "How do you create a local Git repository?",
+    answer: "Use the command: git init\n\nThis creates a new local repository in your project folder.\n\nExample: If your project folder is myapp, running git init starts tracking your files in that folder.",
+    category: "Repository Management",
+    skill: "GitHub"
+  },
+  {
+    id: "github-7",
+    question: "What is a Bare Repository?",
+    answer: "A bare repository only stores the Git history and doesn't have actual working files. It's mainly used as a shared repo (e.g., on GitHub).\n\nExample: When you create a new repo on GitHub, it's a bare repo — other users push their changes to it.\n\nWhy It's Important: It's the central place where teams share their code.",
+    category: "Repository Management",
+    skill: "GitHub"
+  },
+  {
+    id: "github-8",
+    question: "How to configure your Git username and email?",
+    answer: "Use these commands:\ngit config --global user.name 'Your Name'\ngit config --global user.email 'you@example.com'\n\nWhy It's Important: Every commit you make is tagged with your name and email for identification.",
+    category: "Configuration",
+    skill: "GitHub"
+  },
+  {
+    id: "github-9",
+    question: "What does 'git clone' do?",
+    answer: "git clone is used to download a copy of an existing repository from GitHub (or any remote source) to your local system.\n\nExample: git clone https://github.com/user/project.git\n\nThis copies the entire project to your local computer.",
+    category: "Basic Commands",
+    skill: "GitHub"
+  },
+  {
+    id: "github-10",
+    question: "What does 'git add' do?",
+    answer: "It adds files from your working directory to the staging area (preparing them for commit).\n\nExample: git add index.html adds the file before committing.\n\nWhy It's Important: It helps you choose which changes to commit.",
+    category: "Basic Commands",
+    skill: "GitHub"
+  },
+  {
+    id: "github-11",
+    question: "What is the Staging Area?",
+    answer: "It's like a waiting room before saving your changes permanently (commit).\n\nExample: You edit 5 files but only want to commit 2 — you add those 2 files to the staging area.",
+    category: "Basic Commands",
+    skill: "GitHub"
+  },
+  {
+    id: "github-12",
+    question: "What does 'git commit' do?",
+    answer: "It saves your changes to the local repository permanently with a message.\n\nExample: git commit -m 'Added new login feature'\n\nWhy It's Important: Every commit acts like a checkpoint in your project history.",
+    category: "Basic Commands",
+    skill: "GitHub"
+  },
+  {
+    id: "github-13",
+    question: "What is 'git push'?",
+    answer: "git push uploads your local commits to the remote repository (like GitHub).\n\nExample: git push origin main\n\nThis sends your latest changes to the main branch on GitHub.",
+    category: "Remote Operations",
+    skill: "GitHub"
+  },
+  {
+    id: "github-14",
+    question: "What is 'git pull'?",
+    answer: "git pull downloads and merges the latest changes from the remote repo into your local repo.\n\nExample: If a teammate updated a file, git pull gets their changes to your system.\n\nWhy It's Important: Keeps your local project up to date.",
+    category: "Remote Operations",
+    skill: "GitHub"
+  },
+  {
+    id: "github-15",
+    question: "What is 'git fetch'?",
+    answer: "git fetch downloads new data from the remote repo but doesn't merge it automatically.\n\nExample: git fetch origin main\n\nThis gets updates but doesn't apply them yet.",
+    category: "Remote Operations",
+    skill: "GitHub"
+  },
+  {
+    id: "github-16",
+    question: "What is 'git merge'?",
+    answer: "git merge combines changes from one branch into another.\n\nExample: If you have a new feature in a branch called feature-login, you can merge it into main.\n\nWhy It's Important: Allows integration of different development streams.",
+    category: "Branching & Merging",
+    skill: "GitHub"
+  },
+  {
+    id: "github-17",
+    question: "What is a Branch in Git?",
+    answer: "A branch is like a separate workspace where you can make changes without affecting the main project.\n\nExample: You can create a new branch for testing features using: git branch test-feature\n\nWhy It's Important: It helps you work on multiple things at once safely.",
+    category: "Branching & Merging",
+    skill: "GitHub"
+  },
+  {
+    id: "github-18",
+    question: "What is a Merge Conflict?",
+    answer: "A merge conflict happens when two people edit the same part of a file differently. Git doesn't know which version to keep.\n\nExample: If you change line 10 of index.html, and your teammate changes the same line, merging will cause a conflict.\n\nHow to Fix: Edit the file, decide which version to keep, then commit.",
+    category: "Branching & Merging",
+    skill: "GitHub"
+  },
+  {
+    id: "github-19",
+    question: "What is 'git stash'?",
+    answer: "git stash saves your unfinished work temporarily so you can switch branches safely.\n\nExample: You're working on a feature but need to fix a bug — stash your changes, switch branches, fix the bug, then restore your stashed work.\n\nWhy It's Important: Prevents losing uncommitted changes.",
+    category: "Advanced Commands",
+    skill: "GitHub"
+  },
+  {
+    id: "github-20",
+    question: "What is the difference between 'git merge' and 'git rebase'?",
+    answer: "• git merge: Combines branches by creating a new commit\n• git rebase: Reapplies your changes on top of another branch\n\nExample: Rebasing gives a cleaner history, while merging keeps the original history.\n\nWhen to use: Use merge for public branches, rebase for cleaning up local commits.",
+    category: "Advanced Commands",
+    skill: "GitHub"
+  },
+  {
+    id: "github-21",
+    question: "What is a Pull Request (PR)?",
+    answer: "A pull request means asking someone to review and merge your branch into another branch (usually main).\n\nExample: You create a new feature branch, push it to GitHub, and open a PR for your manager to review.\n\nWhy It's Important: Enables code review and collaboration.",
+    category: "Collaboration",
+    skill: "GitHub"
+  },
+  {
+    id: "github-22",
+    question: "What is '.gitignore'?",
+    answer: ".gitignore tells Git which files or folders to skip (like logs, temp files, or secrets).\n\nExample: Add node_modules/ to .gitignore so it's not uploaded to GitHub.\n\nWhy It's Important: Keeps your repository clean and secure.",
+    category: "Configuration",
+    skill: "GitHub"
+  },
+  {
+    id: "github-23",
+    question: "What are some common Git interview questions?",
+    answer: "You might be asked:\n• Explain Git workflow (Working area → Staging → Local repo → Remote repo)\n• How do you resolve a merge conflict?\n• What is the difference between Git and GitHub?\n• How do you revert a commit?\n• How do you work with branches?\n\nFinal Tip: Always give real examples in interviews — for example, how you used Git to fix an issue or manage branches in a project. That shows practical understanding beyond commands!",
+    category: "Interview Preparation",
+    skill: "GitHub"
+  },
+  // Python Questions
+  {
+    id: "python-1",
+    question: "What is Python?",
+    answer: "Python is a simple, high-level programming language known for being easy to read and write. It allows developers to build web apps, analyze data, automate tasks, and even create AI models.\n\nExample: print('Hello, Python!') - This prints 'Hello, Python!' on the screen.\n\nWhy It's Important: Python's simplicity and flexibility make it one of the most used languages in tech.",
+    category: "Fundamentals",
+    skill: "Python"
+  },
+  {
+    id: "python-2",
+    question: "What are Variables in Python?",
+    answer: "Variables are used to store information so you can use it later.\n\nExample:\nname = 'John'\nage = 25\nprint(name, age)\n\nWhy It's Important: Variables allow you to work with data dynamically.",
+    category: "Fundamentals",
+    skill: "Python"
+  },
+  {
+    id: "python-3",
+    question: "What are Data Types in Python?",
+    answer: "Python has several data types such as:\n• int (for numbers) → 10\n• float (for decimals) → 10.5\n• str (for text) → 'Hello'\n• bool (True/False)\n\nExample:\nis_adult = True\nprice = 99.99\n\nWhy It's Important: Different types of data need to be stored and processed differently.",
+    category: "Data Types",
+    skill: "Python"
+  },
+  {
+    id: "python-4",
+    question: "What is a Conditional Statement?",
+    answer: "Conditional statements let your code make decisions.\n\nExample:\nage = 18\nif age >= 18:\n    print('You are an adult')\nelse:\n    print('You are a minor')\n\nWhy It's Important: Enables logic and decision-making in programs.",
+    category: "Control Flow",
+    skill: "Python"
+  },
+  {
+    id: "python-5",
+    question: "What are Loops in Python?",
+    answer: "Loops let you run the same code multiple times.\n\nExample:\nfor i in range(5):\n    print(i)\n\nOutput: 0 1 2 3 4\n\nWhy It's Important: Loops save time and reduce repetitive code.",
+    category: "Control Flow",
+    skill: "Python"
+  },
+  {
+    id: "python-6",
+    question: "What is a List in Python?",
+    answer: "A List is used to store multiple items in one variable.\n\nExample:\nfruits = ['apple', 'banana', 'cherry']\nprint(fruits[0])\n\nOutput: apple\n\nWhy It's Important: Lists are one of the most used data structures in Python.\n\nInterview Tip: Know how to use .append() and .remove() to add or delete items.",
+    category: "Data Structures",
+    skill: "Python"
+  },
+  {
+    id: "python-7",
+    question: "What is a Dictionary in Python?",
+    answer: "A Dictionary stores data in key-value pairs.\n\nExample:\nperson = {'name': 'Alice', 'age': 30}\nprint(person['name'])\n\nOutput: Alice\n\nWhy It's Important: It helps organize data with meaningful keys instead of just numbers.",
+    category: "Data Structures",
+    skill: "Python"
+  },
+  {
+    id: "python-8",
+    question: "What is a Function?",
+    answer: "A function is a block of reusable code that performs a specific task.\n\nExample:\ndef greet():\n    print('Hello!')\n\ngreet()\n\nOutput: Hello!\n\nWhy It's Important: Functions make code reusable, cleaner, and easier to debug.",
+    category: "Functions",
+    skill: "Python"
+  },
+  {
+    id: "python-9",
+    question: "What are Classes and Objects?",
+    answer: "Classes are blueprints, and objects are things created from those blueprints.\n\nExample:\nclass Car:\n    def __init__(self, brand):\n        self.brand = brand\n\nmy_car = Car('Tesla')\nprint(my_car.brand)\n\nOutput: Tesla\n\nWhy It's Important: It introduces Object-Oriented Programming (OOP), which helps organize large programs.",
+    category: "Object-Oriented Programming",
+    skill: "Python"
+  },
+  {
+    id: "python-10",
+    question: "What is Inheritance in Python?",
+    answer: "Inheritance allows one class to use properties and methods from another class.\n\nExample:\nclass Animal:\n    def speak(self):\n        print('Animal speaks')\n\nclass Dog(Animal):\n    def speak(self):\n        print('Dog barks')\n\nmy_dog = Dog()\nmy_dog.speak()\n\nOutput: Dog barks\n\nWhy It's Important: Promotes code reusability and organization.",
+    category: "Object-Oriented Programming",
+    skill: "Python"
+  },
+  {
+    id: "python-11",
+    question: "What is Encapsulation?",
+    answer: "Encapsulation means hiding internal details of how an object works and only showing what's necessary.\n\nExample:\nclass Person:\n    def __init__(self, name):\n        self.__name = name  # private variable\n    \n    def get_name(self):\n        return self.__name\n\np = Person('Alice')\nprint(p.get_name())\n\nWhy It's Important: It protects sensitive data from being accessed directly.",
+    category: "Object-Oriented Programming",
+    skill: "Python"
+  },
+  {
+    id: "python-12",
+    question: "What are Modules and Packages?",
+    answer: "A module is a Python file that contains code. A package is a collection of modules.\n\nExample:\nimport math\nprint(math.sqrt(16))\n\nOutput: 4.0\n\nWhy It's Important: Modules allow code organization and reusability.",
+    category: "Modules",
+    skill: "Python"
+  },
+  {
+    id: "python-13",
+    question: "What is Exception Handling?",
+    answer: "It's how Python handles errors gracefully.\n\nExample:\ntry:\n    print(10 / 0)\nexcept ZeroDivisionError:\n    print('Cannot divide by zero')\n\nOutput: Cannot divide by zero\n\nWhy It's Important: It prevents your program from crashing when an error happens.",
+    category: "Error Handling",
+    skill: "Python"
+  },
+  {
+    id: "python-14",
+    question: "What are Libraries in Python?",
+    answer: "Libraries are collections of ready-made functions and tools you can use in your programs.\n\nExamples:\n• NumPy for numbers\n• Pandas for data analysis\n• Matplotlib for visualization\n\nWhy It's Important: They save time — you don't have to write everything from scratch.",
+    category: "Libraries",
+    skill: "Python"
+  },
+  {
+    id: "python-15",
+    question: "What is a Real-Life Use of Python?",
+    answer: "• Building websites (e.g., Django, Flask)\n• Data Science (Pandas, NumPy)\n• Automation (Scripts)\n• AI & Machine Learning (TensorFlow, PyTorch)\n\nExample:\nimport datetime\nprint(datetime.datetime.now())\n\nWhy It's Important: Shows how Python is versatile in real-world use cases.\n\nFinal Tip: When preparing for a Python interview — focus on understanding concepts, not memorizing syntax. Be ready to explain with examples!",
+    category: "Applications",
+    skill: "Python"
   }
 ];
 

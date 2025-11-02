@@ -11,7 +11,7 @@ const skills = [
   "Pyspark",
   "Data Warehousing",
   "Data Modeling",
-  "GitHub for Data Engineers",
+  "GitHub",
   "ETL Concepts",
   "CI/CD",
   "AWS Glue",

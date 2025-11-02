@@ -976,6 +976,322 @@ export const sqlQuestions: Question[] = [
     answer: "• Building websites (e.g., Django, Flask)\n• Data Science (Pandas, NumPy)\n• Automation (Scripts)\n• AI & Machine Learning (TensorFlow, PyTorch)\n\nExample:\nimport datetime\nprint(datetime.datetime.now())\n\nWhy It's Important: Shows how Python is versatile in real-world use cases.\n\nFinal Tip: When preparing for a Python interview — focus on understanding concepts, not memorizing syntax. Be ready to explain with examples!",
     category: "Applications",
     skill: "Python"
+  },
+  // CI/CD Questions
+  {
+    id: "cicd-1",
+    question: "What is CI/CD?",
+    answer: "CI/CD stands for Continuous Integration and Continuous Delivery/Deployment. It's a process that helps software and data engineering teams automatically test, build, and deploy their work.\n\n• Continuous Integration (CI) means every time a developer changes code, it's automatically tested to make sure it doesn't break anything.\n• Continuous Delivery/Deployment (CD) means after testing, the code can be released automatically or with one click to production.\n\nExample: If a data engineer updates a Python ETL script and pushes it to GitHub, CI will run automated tests. If everything passes, CD will deploy that script to Databricks or Snowflake.\n\nIn short: CI/CD helps deliver updates faster, with fewer errors.",
+    category: "Fundamentals",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-2",
+    question: "What's the difference between CI, CD (Delivery), and CD (Deployment)?",
+    answer: "• CI (Continuous Integration): Developers push code regularly. Automated tests check if it works correctly.\n• CD (Continuous Delivery): The software is always in a deployable state. Deployment is still manual.\n• CD (Continuous Deployment): Everything that passes tests goes live automatically.\n\nExample: After writing a data ingestion script, CI tests the code; CD (Delivery) keeps it ready for release, while CD (Deployment) sends it straight to production automatically.",
+    category: "Fundamentals",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-3",
+    question: "Why is CI/CD important in Data Engineering?",
+    answer: "Data projects involve many moving parts — like ingestion, transformation, and reports. Manual deployment can cause mistakes. CI/CD automates testing and deployment so that all stages are consistent and error-free.\n\nExample: When multiple developers work on a data lake, CI/CD ensures schema changes and transformation logic are tested before going live.\n\nBenefits:\n• Fewer manual errors\n• Faster updates\n• Consistent environments\n• Easier debugging",
+    category: "Fundamentals",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-4",
+    question: "How does CI/CD improve data pipelines?",
+    answer: "CI/CD helps you automatically test and deploy ETL jobs, transformations, or data validation scripts. It ensures the pipeline runs correctly every time you update it.\n\nExample: Before deploying a Snowflake ETL, the CI/CD pipeline runs checks for missing columns, incorrect data types, and null values.",
+    category: "Data Pipelines",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-5",
+    question: "What are popular CI/CD tools?",
+    answer: "Common tools include:\n• Jenkins – open-source and customizable\n• GitHub Actions – integrated with GitHub\n• GitLab CI/CD – YAML-based automation\n• Azure DevOps – integrates with Microsoft tools\n• CircleCI / Bitbucket Pipelines – good for cloud workflows\n\nExample: You can use GitHub Actions to deploy Airflow DAGs every time code changes.",
+    category: "Tools",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-6",
+    question: "What are the stages in a CI/CD pipeline?",
+    answer: "1. Source: Detect changes in the repository.\n2. Build: Prepare environment and install dependencies.\n3. Test: Run automated tests.\n4. Package: Create artifacts (like .whl files or Docker images).\n5. Deploy: Send code to the server or data environment.\n6. Notify: Alert the team if something fails.\n\nExample: After code is pushed to GitHub, the CI pipeline installs dependencies, runs tests, and deploys a new ETL job to Databricks.",
+    category: "Pipeline Design",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-7",
+    question: "How do you design a CI/CD pipeline for data ingestion?",
+    answer: "• Step 1: Code is pushed to Git.\n• Step 2: Pipeline runs code style and syntax checks.\n• Step 3: Sample data is ingested to test schema.\n• Step 4: After tests pass, the pipeline deploys to Dev/QA/Prod environments.\n\nExample: Ingest data from MySQL to Snowflake automatically using Airflow triggered through CI/CD.",
+    category: "Pipeline Design",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-8",
+    question: "What is the difference between ETL and ELT?",
+    answer: "• ETL (Extract, Transform, Load): Data is transformed before loading to the warehouse.\n• ELT (Extract, Load, Transform): Data is loaded first, then transformed inside the warehouse (like Snowflake or BigQuery).\n\nExample: ELT is better for big data — it lets powerful databases do the heavy lifting.",
+    category: "Data Integration",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-9",
+    question: "How do you test data pipelines?",
+    answer: "1. Unit tests: Check individual functions (e.g., a date formatter).\n2. Integration tests: Verify end-to-end flow between systems.\n3. Data quality tests: Check for missing, duplicate, or invalid data.\n\nTools: Pytest, Great Expectations, dbt tests.",
+    category: "Testing",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-10",
+    question: "What is a flaky test?",
+    answer: "A flaky test sometimes passes and sometimes fails, even if nothing changes.\n\nFix:\n• Use fixed inputs.\n• Avoid using current timestamps.\n• Mock external APIs.\n\nExample: A Spark test failing due to time zone differences — fixed by setting a fixed date.",
+    category: "Testing",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-11",
+    question: "What is version control?",
+    answer: "It's a system (like Git) that tracks code changes over time. It helps teams collaborate, undo mistakes, and roll back if needed.\n\nExample: Every ETL update is a commit in Git, with clear change history.",
+    category: "Version Control",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-12",
+    question: "What branching strategies are used?",
+    answer: "• Gitflow: Separate branches for development, release, and hotfix.\n• Trunk-based: Everyone works on short branches merged daily into the main branch.\n\nBeginners Tip: Use Gitflow for large teams and trunk-based for small fast-moving teams.",
+    category: "Version Control",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-13",
+    question: "How are schema changes handled?",
+    answer: "Use migration tools like Flyway, Liquibase, or dbt. Store SQL migration files in Git and apply automatically via CI/CD.",
+    category: "Database Management",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-14",
+    question: "How do you use Docker in CI/CD?",
+    answer: "Docker lets you package code with its environment. CI builds a Docker image, tests it, and pushes it to a registry (like Docker Hub or ACR). This ensures the same setup works everywhere.",
+    category: "Containerization",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-15",
+    question: "What are container registries?",
+    answer: "Places to store Docker images (like GitHub Container Registry, AWS ECR, Azure ACR). CI/CD retrieves images from here to deploy consistent builds.",
+    category: "Containerization",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-16",
+    question: "How do you integrate Airflow in CI/CD?",
+    answer: "Store Airflow DAGs in Git. Every time a DAG changes, CI validates and tests it before copying to the Airflow server.",
+    category: "Orchestration",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-17",
+    question: "How to ensure data quality in CI/CD?",
+    answer: "Use tools like Great Expectations or Soda SQL to check if data meets expected rules (schema, nulls, unique IDs). Fail the pipeline if checks fail.",
+    category: "Data Quality",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-18",
+    question: "What is Infrastructure as Code (IaC)?",
+    answer: "IaC means defining infrastructure (servers, networks, DBs) using code like Terraform. It ensures all environments are identical and reproducible.",
+    category: "Infrastructure",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-19",
+    question: "How do you CI/CD Terraform?",
+    answer: "Use a pipeline to automatically run terraform plan (preview changes) and terraform apply (deploy resources) with manual approval steps.",
+    category: "Infrastructure",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-20",
+    question: "What security best practices exist for CI/CD?",
+    answer: "• Never hardcode passwords.\n• Use secret vaults.\n• Restrict access.\n• Scan code and images for vulnerabilities.",
+    category: "Security",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-21",
+    question: "How do you manage secrets safely?",
+    answer: "Use secure storage (like Azure Key Vault or GitHub Secrets) and load them as environment variables during the build.",
+    category: "Security",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-22",
+    question: "How do you monitor CI/CD pipelines?",
+    answer: "Use tools like Grafana, Datadog, or built-in dashboards. Set alerts for failed jobs, slow builds, or data issues.",
+    category: "Monitoring",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-23",
+    question: "How do you rollback a deployment?",
+    answer: "Redeploy the previous working version or restore backup data. Version control makes this quick.",
+    category: "Deployment Strategies",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-24",
+    question: "What's Blue-Green deployment?",
+    answer: "Keep two environments (Blue = live, Green = new). Switch traffic to Green once it's tested. If something fails, switch back to Blue instantly.",
+    category: "Deployment Strategies",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-25",
+    question: "What's a Canary deployment?",
+    answer: "Roll out to a small portion of users/data first. If successful, expand gradually.",
+    category: "Deployment Strategies",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-26",
+    question: "What's DVC and how is it used?",
+    answer: "Data Version Control (DVC) tracks datasets and ML models like Git tracks code. Ensures reproducibility and rollback in data workflows.",
+    category: "Version Control",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-27",
+    question: "How do you test pipelines with big data?",
+    answer: "Use small samples or synthetic data to mimic real loads. Run large-scale tests in staging.",
+    category: "Testing",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-28",
+    question: "How do you improve CI/CD speed?",
+    answer: "• Cache dependencies.\n• Run steps in parallel.\n• Skip unnecessary builds.\n• Use smaller Docker images.",
+    category: "Performance",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-29",
+    question: "What are pipeline metrics to monitor?",
+    answer: "• Build time\n• Success rate\n• Deployment frequency\n• Error rate\n• Mean time to recover (MTTR)",
+    category: "Monitoring",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-30",
+    question: "What is artifact management?",
+    answer: "Artifacts (e.g., .whl files, Docker images, reports) are stored after build for reusability and rollback.",
+    category: "Artifact Management",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-31",
+    question: "What is Continuous Testing?",
+    answer: "It means running automated tests continuously in the pipeline to detect issues early.",
+    category: "Testing",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-32",
+    question: "How do you automate schema validation?",
+    answer: "Use dbt or Great Expectations to compare schemas. Fail deployment if columns or data types don't match.",
+    category: "Data Quality",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-33",
+    question: "How to debug failed pipelines?",
+    answer: "Check logs, rerun jobs locally, verify paths/secrets, and run in debug mode for detailed output.",
+    category: "Debugging",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-34",
+    question: "What's Infrastructure Drift?",
+    answer: "When real infrastructure doesn't match IaC code. Fix it by reapplying Terraform or validating drift detection reports.",
+    category: "Infrastructure",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-35",
+    question: "How do you manage dependencies?",
+    answer: "List all packages with fixed versions in a requirements.txt or poetry.lock file to ensure consistent environments.",
+    category: "Dependency Management",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-36",
+    question: "How to monitor data lineage?",
+    answer: "Use tools like OpenLineage or dbt docs to track where data comes from and how it changes across steps.",
+    category: "Data Governance",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-37",
+    question: "What's rollback testing?",
+    answer: "Test if reverting to an older version restores the system correctly without breaking anything.",
+    category: "Testing",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-38",
+    question: "What's the purpose of pipeline notifications?",
+    answer: "Send alerts when pipelines fail, finish, or exceed expected time — via Slack, Teams, or email.",
+    category: "Monitoring",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-39",
+    question: "What's a practical CI/CD example for data projects?",
+    answer: "Code commit → test Spark job → build Docker image → deploy to Databricks → validate data → notify on Teams.",
+    category: "Best Practices",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-40",
+    question: "How do you ensure reproducibility?",
+    answer: "Version control all code, configurations, and datasets. Use Docker for consistent environments.",
+    category: "Best Practices",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-41",
+    question: "What's a data contract and why is it useful?",
+    answer: "A data contract defines what structure (columns, data types) is expected from a dataset. It prevents schema drift between teams.",
+    category: "Data Governance",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-42",
+    question: "How to integrate dbt with CI/CD?",
+    answer: "Run dbt test during CI to check for errors and dbt run during CD to deploy models automatically.",
+    category: "Data Transformation",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-43",
+    question: "How do you parallelize pipeline builds?",
+    answer: "Run multiple test sets or regional data jobs simultaneously to save time.",
+    category: "Performance",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-44",
+    question: "What's the difference between Jenkins and GitHub Actions?",
+    answer: "Jenkins is flexible but requires maintenance. GitHub Actions is cloud-based, easier to set up, and integrates directly with GitHub repos.",
+    category: "Tools",
+    skill: "CI/CD"
+  },
+  {
+    id: "cicd-45",
+    question: "Final Tip for Beginners:",
+    answer: "Focus on understanding why CI/CD exists — it's all about automation, consistency, and confidence in every code or data change you make.",
+    category: "Best Practices",
+    skill: "CI/CD"
   }
 ];
 

@@ -1643,6 +1643,356 @@ export const sqlQuestions: Question[] = [
     answer: "Example:\n'I built a daily ETL pipeline to extract sales from MySQL, transform with Python (removing duplicates), and load into Snowflake for BI dashboards. It ran automatically using Airflow.'\n\nExpected Question: 'What challenges did you face, and how did you solve them?'",
     category: "Scenario Questions",
     skill: "ETL Concepts"
+  },
+  {
+    id: "glue-1",
+    question: "What is AWS Glue and what are its primary components?",
+    answer: "AWS Glue is a fully managed ETL (Extract, Transform, Load) service that makes it easy to prepare and load data for analytics. Its primary components include:\n\n• Glue Data Catalog: A central metadata repository\n• Glue Crawlers: Automatically discover and catalog data\n• Glue ETL Jobs: Apache Spark-based transformation jobs\n• Glue Triggers: Schedule and orchestrate ETL workflows\n• Glue Development Endpoints: For developing and testing ETL scripts",
+    category: "Basic Concepts",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-2",
+    question: "What is the AWS Glue Data Catalog?",
+    answer: "The AWS Glue Data Catalog is a centralized metadata repository that stores structural and operational metadata for all data assets. It acts as a persistent metadata store compatible with Apache Hive Metastore. It contains table definitions, physical locations, business-relevant attributes, and tracks data schema versions. Services like Athena, EMR, and Redshift Spectrum can directly use it.",
+    category: "Basic Concepts",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-3",
+    question: "Explain what Glue Crawlers are and how they work.",
+    answer: "Glue Crawlers are programs that connect to data stores, progress through a prioritized list of classifiers to determine schema, and create or update metadata tables in the Glue Data Catalog. They automatically infer schema, detect partitions, and can handle various data formats (JSON, CSV, Parquet, Avro, ORC). Crawlers run on-demand or on a schedule and can handle schema evolution.",
+    category: "Basic Concepts",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-4",
+    question: "What are Glue Classifiers?",
+    answer: "Glue Classifiers determine the schema of data during crawling. AWS Glue provides built-in classifiers for common formats (JSON, CSV, Parquet, Avro, ORC, XML) and also supports custom classifiers using Grok patterns. Classifiers run in priority order, and the first successful match determines the data format. Custom classifiers can be created for proprietary or unusual data formats.",
+    category: "Basic Concepts",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-5",
+    question: "What is a Glue Connection?",
+    answer: "A Glue Connection stores connection information for a particular data store, including connection properties like JDBC URLs, usernames, passwords, and network configuration. Connections can be used for JDBC data sources (RDS, Redshift), MongoDB, Kafka, or network connections for VPC access. They enable secure connectivity to data sources from Glue jobs.",
+    category: "Basic Concepts",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-6",
+    question: "Explain Glue Dynamic Frames vs Spark DataFrames.",
+    answer: "Dynamic Frames are AWS Glue's enhanced data structure built on top of Spark DataFrames. Key differences:\n\n• Dynamic Frames handle schema inconsistencies better with a 'choice' type\n• Support for semi-structured data without requiring fixed schema\n• Built-in transformations optimized for ETL operations\n• Can be converted to/from Spark DataFrames\n• Better error handling with error records tracking\n• DataFrames require consistent schema across all records.",
+    category: "Basic Concepts",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-7",
+    question: "What are Glue Job Bookmarks?",
+    answer: "Job Bookmarks track data that has already been processed during previous runs of an ETL job, preventing reprocessing of old data. They maintain state information, tracking processed files or rows based on modification times or sequence numbers. Bookmarks work with S3 sources, JDBC sources, and relational databases. They can be enabled, paused, or reset per job.",
+    category: "Basic Concepts",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-8",
+    question: "What types of Glue Jobs are available?",
+    answer: "AWS Glue offers several job types:\n\n• Spark ETL Jobs: For large-scale data transformation using Apache Spark\n• Streaming ETL Jobs: For continuous data processing from Kinesis or Kafka\n• Python Shell Jobs: For lightweight tasks, scripting, and orchestration\n• Ray Jobs: For distributed Python workloads using Ray framework\n\nEach type is optimized for different use cases and processing requirements.",
+    category: "Basic Concepts",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-9",
+    question: "What is Glue Studio?",
+    answer: "AWS Glue Studio is a visual interface for creating, running, and monitoring ETL jobs. It provides drag-and-drop functionality to build data integration workflows without coding. Features include visual job editor, data preview, job monitoring, and the ability to switch between visual and code views. It simplifies ETL development for users with varying technical expertise.",
+    category: "Basic Concepts",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-10",
+    question: "What are Glue DataBrew?",
+    answer: "AWS Glue DataBrew is a visual data preparation tool that allows data analysts and scientists to clean and normalize data without writing code. It provides 250+ pre-built transformations, data profiling capabilities, data quality rules, and can handle data from various sources. It's designed for preparing data before analysis or machine learning, with a visual, spreadsheet-like interface.",
+    category: "Basic Concepts",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-11",
+    question: "How do you handle schema evolution in AWS Glue?",
+    answer: "Schema evolution in Glue can be managed through:\n\n• Crawler configuration: Enable 'Update all new and existing partitions'\n• Dynamic Frames: Automatically handle schema changes with choice types\n• enableUpdateCatalog option: Updates catalog during job run\n• Schema version control in Data Catalog\n• ResolveChoice transformation: Handle ambiguous data types\n• ApplyMapping transformation: Explicitly map schema changes\n• Regular crawler runs detect and propagate schema changes.",
+    category: "ETL Operations",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-12",
+    question: "Explain Glue's ResolveChoice transformation.",
+    answer: "ResolveChoice resolves ambiguous data types (choice types) in Dynamic Frames. Options include:\n\n• cast: Convert to specified type\n• make_cols: Create separate columns for each type\n• make_struct: Create a structure containing all types\n• project: Select specific type to keep\n\nExample: resolvedDF = ResolveChoice.apply(frame = dyf, choice = 'make_cols', transformation_ctx = 'resolved')",
+    category: "ETL Operations",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-13",
+    question: "What is ApplyMapping transformation in Glue?",
+    answer: "ApplyMapping explicitly maps source columns to target columns, allowing renaming, type conversion, and column selection. Syntax includes source field name, source type, target field name, and target type. It's useful for schema standardization, data type conversion, and selecting specific columns for transformation.\n\nExample:\napplymapping1 = ApplyMapping.apply(frame = datasource0, \n    mappings = [('col1', 'string', 'column1', 'string'), \n                ('col2', 'int', 'column2', 'bigint')])",
+    category: "ETL Operations",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-14",
+    question: "How do you implement incremental data loading in Glue?",
+    answer: "Incremental loading strategies include:\n\n• Job Bookmarks: Automatically track processed data\n• Pushdown Predicates: Filter at source using WHERE clauses\n• Partitioning: Process only new partitions\n• Timestamp-based filtering: Use watermark columns\n• Change Data Capture (CDC): Track only changed records\n• State management: Store last processed timestamp/ID\n\nCombine with appropriate data source configurations for optimal performance.",
+    category: "ETL Operations",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-15",
+    question: "What are Glue Triggers and their types?",
+    answer: "Glue Triggers start jobs or crawlers based on events or schedules. Types include:\n\n• Scheduled Triggers: Run on cron expressions\n• On-Demand Triggers: Manual execution\n• Conditional Triggers: Based on job completion status (succeeded, failed, stopped)\n• EventBridge Triggers: Integration with EventBridge events\n\nTriggers can chain multiple jobs, implement conditional logic, and create complex workflows.",
+    category: "ETL Operations",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-16",
+    question: "How do you handle duplicate records in Glue?",
+    answer: "Duplicate handling strategies:\n\n• DropDuplicates transformation: Remove exact duplicates\n• Spark's dropDuplicates with subset of columns\n• Window functions: Keep first/last record per key\n• Aggregation with GROUP BY\n• Custom logic using map/filter transformations\n• Deduplication based on business keys with timestamp precedence\n\nExample: dedupedDF = dyf.toDF().dropDuplicates(['id', 'date']).toDF()",
+    category: "ETL Operations",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-17",
+    question: "Explain Glue's error handling mechanisms.",
+    answer: "Error handling includes:\n\n• Error records in Dynamic Frames: Captured automatically\n• Try-catch blocks in Python/Scala code\n• Job metrics and CloudWatch logging\n• Data quality rules and validation\n• DQ (Data Quality) transformations\n• Error thresholds configuration\n• Separate error tables/S3 paths for failed records\n• Notification via SNS on job failures\n\nAccess error records: dyf.errorsCount() and dyf.stageErrorsCount()",
+    category: "ETL Operations",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-18",
+    question: "What is pushdown predicate in Glue?",
+    answer: "Pushdown predicates push filtering operations down to the data source level, reducing data transferred and processed. Instead of reading all data and then filtering, the filter is applied at the source (database or S3). Benefits include reduced I/O, faster performance, and lower costs. Enabled with push_down_predicate parameter in connection options. Works with JDBC sources and partitioned S3 data.",
+    category: "ETL Operations",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-19",
+    question: "How do you optimize Glue job performance?",
+    answer: "Performance optimization techniques:\n\n• Enable Job Bookmarks for incremental processing\n• Use pushdown predicates for filtering at source\n• Partition data appropriately\n• Use columnar formats (Parquet, ORC)\n• Optimize DPU allocation and worker types\n• Enable Glue job metrics and monitoring\n• Use broadcast joins for small tables\n• Implement proper data skew handling\n• Leverage Glue Data Catalog partitioning\n• Use connection pre-warming for JDBC sources",
+    category: "ETL Operations",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-20",
+    question: "What are Glue Development Endpoints?",
+    answer: "Development Endpoints are environments for developing and testing Glue ETL scripts interactively. Features include:\n\n• Direct access to Spark and Glue libraries\n• Support for notebooks (Zeppelin, Jupyter)\n• SSH access for IDEs\n• Same runtime as Glue jobs\n• Custom JAR and Python library support\n• Used for prototyping before deploying jobs\n\nNote: Being phased out in favor of Glue Interactive Sessions.",
+    category: "ETL Operations",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-21",
+    question: "Explain Glue Workflows.",
+    answer: "Glue Workflows orchestrate multiple crawlers, jobs, and triggers as a single unit. They provide:\n\n• Visual representation of dependencies\n• Centralized monitoring and tracking\n• Event-based triggering between components\n• Parallel and sequential execution control\n• Parameter passing between jobs\n• Conditional branching based on job status\n\nBetter alternative to managing individual triggers for complex ETL pipelines.",
+    category: "Advanced Topics",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-22",
+    question: "What is AWS Glue Elastic Views?",
+    answer: "AWS Glue Elastic Views (now deprecated) was a service that created materialized views combining and replicating data across multiple data stores using SQL. It continuously monitored source tables and updated target views. While discontinued, its concepts influenced other AWS data integration features. Modern alternatives include Glue ETL jobs, Redshift materialized views, or custom CDC implementations.",
+    category: "Advanced Topics",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-23",
+    question: "How does Glue handle data partitioning?",
+    answer: "Glue handles partitioning through:\n\n• Automatic partition discovery by crawlers\n• Partition predicate pushdown for S3 reads\n• EnablePartitioningInference option\n• Partition keys in Data Catalog\n• Write partitioned data using partitionKeys parameter\n• Supports Hive-style partitioning (key=value/)\n• Partition projection for improved query performance\n• Add/remove partitions via API or crawlers",
+    category: "Advanced Topics",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-24",
+    question: "What are Glue Custom Connectors?",
+    answer: "Custom Connectors extend Glue's connectivity to data sources not natively supported. Built using Spark data source API or custom code implementing Glue's connector interface. Can be:\n\n• Developed from scratch\n• Downloaded from AWS Marketplace\n• Shared within organization\n\nEnable connectivity to SaaS applications, custom databases, or proprietary data stores. Packaged as JARs and configured in Glue jobs.",
+    category: "Advanced Topics",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-25",
+    question: "Explain Glue Data Quality.",
+    answer: "Glue Data Quality automatically measures and monitors data quality using rules. Features include:\n\n• Pre-built quality rules (completeness, accuracy, uniqueness)\n• Custom rule definitions using DQDL (Data Quality Definition Language)\n• Statistical analysis and profiling\n• Anomaly detection\n• Quality scores and metrics\n• Integration with Glue jobs and workflows\n• CloudWatch metrics and alerting\n\nExample rules: ColumnValues 'price' > 0, Completeness 'customer_id' > 0.95",
+    category: "Advanced Topics",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-26",
+    question: "How do you secure AWS Glue jobs?",
+    answer: "Security measures include:\n\n• IAM roles with least privilege permissions\n• Encryption at rest (S3-SSE, KMS)\n• Encryption in transit (SSL/TLS)\n• VPC configuration for network isolation\n• Security groups and NACLs\n• Data Catalog resource policies\n• Connection password encryption\n• CloudTrail logging for auditing\n• Secrets Manager for credential management\n• Job bookmark encryption",
+    category: "Advanced Topics",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-27",
+    question: "What is Glue Interactive Sessions?",
+    answer: "Glue Interactive Sessions provide on-demand, serverless Spark runtime for data exploration and development. Features:\n\n• Fast startup (< 60 seconds)\n• Jupyter notebook integration\n• Pay-per-second billing\n• Same runtime as Glue jobs\n• No infrastructure management\n• Automatic scaling\n• Access to Glue Data Catalog\n\nReplaces Development Endpoints with better cost efficiency and ease of use.",
+    category: "Advanced Topics",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-28",
+    question: "How do you monitor and troubleshoot Glue jobs?",
+    answer: "Monitoring and troubleshooting approaches:\n\n• CloudWatch Logs: Detailed execution logs\n• Glue Console: Job run history and metrics\n• Job Metrics: Enable continuous logging\n• Spark UI: Accessible via CloudWatch\n• Custom CloudWatch metrics\n• Error analysis from error records\n• Job bookmarks status\n• Data Catalog versioning\n• X-Ray for distributed tracing\n• SNS notifications for failures",
+    category: "Advanced Topics",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-29",
+    question: "What are Glue Streaming ETL capabilities?",
+    answer: "Glue Streaming ETL processes continuous data streams from Kinesis Data Streams or Apache Kafka. Features:\n\n• Exactly-once processing semantics\n• Checkpointing for fault tolerance\n• Windowing operations (tumbling, sliding)\n• Join streaming data with static data\n• Write to multiple sinks\n• Schema detection and evolution\n• Configurable batch intervals\n• Integration with Data Catalog for schema management",
+    category: "Advanced Topics",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-30",
+    question: "Explain Glue's support for different file formats.",
+    answer: "Glue supports multiple formats:\n\n• Columnar: Parquet (optimized), ORC\n• Row-based: CSV, JSON, Avro\n• Compressed: GZIP, Snappy, LZO, Bzip2\n• Specialized: XML, Ion, Avro\n• Nested structures in JSON and Parquet\n• Schema evolution support varies by format\n• Format-specific optimizations (predicate pushdown in Parquet)\n• Custom SerDe support for unusual formats\n\nParquet recommended for analytics workloads.",
+    category: "Advanced Topics",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-31",
+    question: "How does Glue integrate with Amazon Athena?",
+    answer: "Glue and Athena share the same Data Catalog, so tables created by Glue crawlers are immediately queryable in Athena. Glue prepares and catalogs data while Athena queries it. Both services use the same metadata, partitions, and schema definitions without any data movement.",
+    category: "Integration and Advanced Features",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-32",
+    question: "How do you implement CDC in Glue?",
+    answer: "CDC can be implemented using AWS DMS to capture changes and Glue to process them, or by using timestamp-based tracking in Glue jobs. For streaming, use Glue streaming jobs with Kinesis. Track operation types (INSERT, UPDATE, DELETE) and apply changes to target tables using merge logic or SCD Type 2 patterns.",
+    category: "Integration and Advanced Features",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-33",
+    question: "What are Glue Job Parameters?",
+    answer: "Job Parameters are runtime arguments passed to Glue jobs as key-value pairs. Access them using getResolvedOptions(). Common uses include database names, S3 paths, date ranges, and environment settings. Parameters enable job reusability and dynamic configuration without code changes.",
+    category: "Integration and Advanced Features",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-34",
+    question: "How do you handle large files in Glue?",
+    answer: "Split large files using groupFiles and groupSize options in S3 source. Use appropriate DPU allocation and worker types (G.1X, G.2X). Enable job metrics for monitoring. Consider pre-processing with Lambda to split files. Use columnar formats like Parquet for better performance. Optimize Spark partitioning with repartition() or coalesce().",
+    category: "Integration and Advanced Features",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-35",
+    question: "What is Glue Schema Registry?",
+    answer: "Schema Registry is a serverless feature that validates and controls streaming data evolution. It stores and versions schemas for Kafka and Kinesis streams, supports Avro, JSON, and Protobuf formats. Ensures data compatibility, reduces payload size, and integrates with MSK, Kinesis, and Lambda for schema validation.",
+    category: "Integration and Advanced Features",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-36",
+    question: "How do you join data from multiple sources in Glue?",
+    answer: "Use Join transformation on Dynamic Frames specifying join keys and type (inner, outer, left, right). For large-small table joins, use broadcast joins for performance. Can also convert to Spark DataFrames and use Spark's join operations. Ensure proper data types and handle null values before joining.",
+    category: "Integration and Advanced Features",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-37",
+    question: "What are Glue Blueprints?",
+    answer: "Blueprints are parameterized templates for creating Glue workflows. They allow standardizing ETL patterns across teams. AWS provides sample blueprints, or you can create custom ones using Python. Blueprints generate workflows, jobs, crawlers, and triggers based on user-provided parameters, ensuring consistency and reducing development time.",
+    category: "Integration and Advanced Features",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-38",
+    question: "How do you handle nested JSON in Glue?",
+    answer: "Glue automatically handles nested JSON structures. Use Relationalize transformation to flatten nested data into multiple tables with foreign keys. Alternatively, use Unnest transformation for arrays or access nested fields directly using dot notation. Can also convert to Spark DataFrame and use explode() for arrays.",
+    category: "Integration and Advanced Features",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-39",
+    question: "What is the difference between Glue 1.0, 2.0, 3.0, and 4.0?",
+    answer: "Version differences:\n\n• Glue 1.0: Uses Spark 2.4, Python 2.7\n• Glue 2.0: Introduced faster startup times, Spark 2.4.3, Python 3.7\n• Glue 3.0: Uses Spark 3.1, Python 3.7, better performance\n• Glue 4.0: Uses Spark 3.3, Python 3.10, improved autoscaling, and enhanced performance\n\nEach version offers performance improvements and newer Spark features.",
+    category: "Integration and Advanced Features",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-40",
+    question: "How do you implement data validation in Glue?",
+    answer: "Use Glue Data Quality rules with DQDL syntax. Implement custom validation logic in Python/Scala code. Check data types, null values, ranges, and uniqueness. Use assertions and conditional logic. Write validation failures to error tables. Integrate with CloudWatch for alerting. Fail the job if critical validation fails.",
+    category: "Integration and Advanced Features",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-41",
+    question: "What are Glue Job Metrics?",
+    answer: "Job Metrics provide detailed insights into job execution. Includes executor count, memory usage, data shuffle, active executors, and completed stages. Enable continuous logging to see real-time metrics in CloudWatch. Helps identify bottlenecks, optimize resource allocation, and troubleshoot performance issues. Available in CloudWatch Logs and Glue Console.",
+    category: "Monitoring and Optimization",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-42",
+    question: "How do you manage dependencies in Glue jobs?",
+    answer: "Specify Python libraries using --additional-python-modules parameter or upload wheel/egg files to S3 and reference with --extra-py-files. For JARs, use --extra-jars parameter. Can also package dependencies in ZIP files. Use --additional-files for other resources. Dependencies are distributed to all workers during job execution.",
+    category: "Monitoring and Optimization",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-43",
+    question: "What is Glue Data Catalog encryption?",
+    answer: "Catalog encryption protects metadata using AWS KMS. Two levels: metadata encryption (table definitions, schemas) and connection password encryption. Enable at catalog settings level. All metadata and passwords are encrypted at rest. Uses envelope encryption with customer-managed or AWS-managed KMS keys. Decrypt permissions required for access.",
+    category: "Monitoring and Optimization",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-44",
+    question: "How do you handle time zones in Glue?",
+    answer: "Set timezone in job parameters or code using Python's datetime and pytz libraries. Glue jobs run in UTC by default. Convert timestamps explicitly when reading/writing data. Use Spark's to_timestamp() with timezone parameters. Store timestamps in UTC and convert at query time. Document timezone conventions in Data Catalog.",
+    category: "Monitoring and Optimization",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-45",
+    question: "What are Glue Flex execution jobs?",
+    answer: "Glue Flex is a cost-optimized execution class for non-time-sensitive workloads. Offers up to 35% cost savings compared to standard execution. Jobs may take longer to start and run. Suitable for batch jobs with flexible SLAs. Cannot be used with streaming jobs or jobs requiring fast startup. Enable by setting execution class to FLEX.",
+    category: "Monitoring and Optimization",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-46",
+    question: "How do you implement slowly changing dimensions in Glue?",
+    answer: "For SCD Type 1, simply update existing records. For SCD Type 2, add effective/expiration dates and current flags. Read existing dimension, identify changes, expire old records, and insert new versions. Use merge logic with conditional updates. Can also use Delta Lake format for built-in SCD support with merge operations.",
+    category: "Monitoring and Optimization",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-47",
+    question: "What is connection-based crawling in Glue?",
+    answer: "Connection-based crawlers use Glue Connections to access JDBC databases, MongoDB, or data stores in VPCs. Configure connection with authentication details and network settings. Crawler uses the connection to access data, infer schema, and populate the catalog. Supports databases like RDS, Redshift, and on-premises databases via VPN/Direct Connect.",
+    category: "Monitoring and Optimization",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-48",
+    question: "How do you handle data skew in Glue jobs?",
+    answer: "Identify skewed keys causing uneven data distribution. Use salting techniques by adding random prefixes to skewed keys. Repartition data explicitly using repartition(). Use broadcast joins for skewed join keys. Adjust spark.sql.shuffle.partitions configuration. Monitor executor metrics to identify skew. Consider pre-aggregation for heavily skewed data.",
+    category: "Monitoring and Optimization",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-49",
+    question: "What are Glue crawlers' exclusion patterns?",
+    answer: "Exclusion patterns prevent crawlers from scanning specific S3 objects or database tables. Use glob patterns like *.tmp, _temporary/, or specific prefixes. Reduces crawling time and cost by skipping unnecessary data. Configure in crawler settings under exclude patterns. Useful for ignoring temporary files, backups, or non-data directories.",
+    category: "Monitoring and Optimization",
+    skill: "AWS Glue"
+  },
+  {
+    id: "glue-50",
+    question: "How do you version control Glue jobs?",
+    answer: "Glue maintains automatic versioning of job scripts. Each save creates a new version. Roll back to previous versions from the console or API. For external version control, store scripts in Git repositories and deploy using CI/CD pipelines. Use Infrastructure as Code (CloudFormation, Terraform) for job definitions. Tag jobs with version metadata for tracking.",
+    category: "Monitoring and Optimization",
+    skill: "AWS Glue"
   }
 ];
 

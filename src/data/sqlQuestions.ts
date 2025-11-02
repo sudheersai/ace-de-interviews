@@ -1292,6 +1292,357 @@ export const sqlQuestions: Question[] = [
     answer: "Focus on understanding why CI/CD exists — it's all about automation, consistency, and confidence in every code or data change you make.",
     category: "Best Practices",
     skill: "CI/CD"
+  },
+  // ETL Concepts Questions
+  {
+    id: "etl-1",
+    question: "What is ETL?",
+    answer: "ETL stands for Extract, Transform, Load — the process of moving data from multiple sources into a data warehouse.\n\n• Extract: Collect data from sources\n• Transform: Clean, format, and modify data\n• Load: Store it into the target system\n\nExample: Extract sales data from Excel, clean duplicates, and load into Snowflake.\n\nWhy Important: It ensures accurate, consistent data for reporting.",
+    category: "Basic Concepts",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-2",
+    question: "What is the difference between ETL and ELT?",
+    answer: "• ETL: Transform before loading.\n• ELT: Load first, transform inside the target (common in cloud warehouses).\n\nExample:\nETL – Done using Informatica; ELT – Done using Snowflake or BigQuery.\n\nExpected Question: 'Which one is better for big data systems?'",
+    category: "Basic Concepts",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-3",
+    question: "Why do companies use ETL?",
+    answer: "To consolidate data from different systems (CRM, ERP, etc.) into one place for analysis.\n\nExample: Combine sales data from Shopify and payments from Stripe into one dashboard.\n\nWhy Important: It enables data-driven decisions.",
+    category: "Basic Concepts",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-4",
+    question: "What are the main stages of ETL?",
+    answer: "1. Extract: Pull data from sources.\n2. Transform: Clean, standardize, and filter.\n3. Load: Insert into a target database or warehouse.\n\nExpected Question: 'Which phase is most error-prone and why?' (Answer: Transformation.)",
+    category: "Basic Concepts",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-5",
+    question: "What is data extraction?",
+    answer: "The process of pulling data from source systems like databases, APIs, or flat files.\n\nExample: Extracting data from SQL Server tables daily.\n\nWhy Important: It's the first step — bad extraction leads to missing or inconsistent data.",
+    category: "Extraction",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-6",
+    question: "What is data transformation?",
+    answer: "Changing raw data into a useful format (cleaning, filtering, joining, converting types).\n\nExample: Converting 'Yes/No' into '1/0' or merging customer info from two tables.\n\nWhy Important: Ensures consistency across data.",
+    category: "Transformation",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-7",
+    question: "What is data loading?",
+    answer: "Inserting transformed data into a target — like a warehouse or data mart.\n\nExample: Loading cleaned data into Amazon Redshift.\n\nExpected Question: 'What's the difference between full load and incremental load?'",
+    category: "Loading",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-8",
+    question: "What is a full load vs incremental load?",
+    answer: "• Full Load: Loads all data every time.\n• Incremental Load: Loads only new or changed data.\n\nExample: Loading daily sales instead of all sales each day.\n\nWhy Important: Saves time and system resources.",
+    category: "Loading",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-9",
+    question: "What are ETL tools?",
+    answer: "Software that automates ETL processes — e.g., Informatica, Talend, SSIS, Pentaho, AWS Glue, DataStage.\n\nExpected Question: 'Which ETL tool have you used and why?'",
+    category: "Tools",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-10",
+    question: "What is a data warehouse?",
+    answer: "A system used to store integrated data from multiple sources for analytics.\n\nExample: Storing company-wide sales and customer data in Snowflake.\n\nWhy Important: Centralizes data for BI and reporting.",
+    category: "Basic Concepts",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-11",
+    question: "What are common data sources in ETL?",
+    answer: "Databases, APIs, CSVs, flat files, JSON, ERP systems, cloud applications.\n\nExample: MySQL, Salesforce, Excel, REST APIs.",
+    category: "Process Details",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-12",
+    question: "What are common data targets in ETL?",
+    answer: "Data warehouses (like Redshift, BigQuery, Snowflake) or databases (SQL Server, Oracle).",
+    category: "Process Details",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-13",
+    question: "What is a staging area?",
+    answer: "A temporary storage area between extraction and loading, used for cleaning and validation.\n\nWhy Important: Improves data accuracy and rollback ability.",
+    category: "Process Details",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-14",
+    question: "What is a data mart?",
+    answer: "A subset of a data warehouse focused on one business area (e.g., Sales or HR).",
+    category: "Process Details",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-15",
+    question: "What is data cleansing?",
+    answer: "The process of removing duplicates, fixing errors, and standardizing data.\n\nExample: Removing extra spaces or invalid email IDs.",
+    category: "Data Quality",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-16",
+    question: "What is data validation?",
+    answer: "Checking data correctness before loading — e.g., verifying dates or null values.",
+    category: "Data Quality",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-17",
+    question: "What is a lookup in ETL?",
+    answer: "A technique to find related information from another dataset or table.\n\nExample: Matching product ID in sales data with product names from a reference table.",
+    category: "Transformation",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-18",
+    question: "What is a surrogate key?",
+    answer: "A unique artificial key (like an auto-increment ID) used instead of natural keys.\n\nExample: Customer_ID = 101 (instead of using Email).",
+    category: "Process Details",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-19",
+    question: "What is a Slowly Changing Dimension (SCD)?",
+    answer: "It tracks how dimension data (like customer address) changes over time.\n\n• Type 1: Overwrite old data.\n• Type 2: Keep old + new record.\n• Type 3: Add new column for previous value.",
+    category: "Process Details",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-20",
+    question: "What is data lineage?",
+    answer: "It shows where data comes from, how it's transformed, and where it goes.\n\nWhy Important: Ensures traceability and compliance.",
+    category: "Data Governance",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-21",
+    question: "What are ETL performance challenges?",
+    answer: "Slow loading, large data volume, network latency, inefficient transformations.",
+    category: "Performance & Optimization",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-22",
+    question: "How to optimize ETL performance?",
+    answer: "• Use incremental loads.\n• Use indexes.\n• Optimize SQL queries.\n• Parallel processing.",
+    category: "Performance & Optimization",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-23",
+    question: "What is parallel processing in ETL?",
+    answer: "Running multiple ETL tasks simultaneously to speed up performance.",
+    category: "Performance & Optimization",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-24",
+    question: "What is partitioning in ETL?",
+    answer: "Dividing large datasets into smaller pieces (e.g., by date) to improve query and load times.",
+    category: "Performance & Optimization",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-25",
+    question: "What is a workflow in ETL tools?",
+    answer: "A sequence of connected ETL tasks that execute in a defined order (extract → transform → load).",
+    category: "Process Details",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-26",
+    question: "What is real-time ETL?",
+    answer: "Data is extracted and loaded as soon as it changes in the source (streaming).\n\nExample: Kafka + AWS Glue streaming updates to Redshift.",
+    category: "Real-Time & Cloud",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-27",
+    question: "What's the difference between batch ETL and real-time ETL?",
+    answer: "• Batch: Scheduled (e.g., daily or hourly).\n• Real-time: Continuous streaming updates.",
+    category: "Real-Time & Cloud",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-28",
+    question: "What is CDC (Change Data Capture)?",
+    answer: "Captures only the data that has changed since the last extraction.\n\nWhy Important: Reduces processing time.",
+    category: "Real-Time & Cloud",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-29",
+    question: "What is data orchestration?",
+    answer: "Managing, scheduling, and automating ETL jobs (e.g., Airflow, AWS Step Functions).",
+    category: "Real-Time & Cloud",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-30",
+    question: "What is cloud-based ETL?",
+    answer: "ETL tools hosted on the cloud — e.g., AWS Glue, Azure Data Factory, Google Dataflow.",
+    category: "Real-Time & Cloud",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-31",
+    question: "What is data profiling?",
+    answer: "Analyzing data for patterns, completeness, and errors before ETL.",
+    category: "Data Quality",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-32",
+    question: "What are ETL logs?",
+    answer: "Logs record ETL execution details — success, failure, time, and errors.\n\nWhy Important: Helps debug issues.",
+    category: "Data Quality",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-33",
+    question: "What are common ETL errors?",
+    answer: "• Missing data\n• Type mismatch\n• Duplicates\n• Constraint violations",
+    category: "Data Quality",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-34",
+    question: "How to handle ETL errors?",
+    answer: "• Create error logs.\n• Skip invalid rows.\n• Send email alerts.\n• Validate data before loading.",
+    category: "Data Quality",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-35",
+    question: "What are ETL best practices?",
+    answer: "• Keep staging area clean.\n• Use incremental loads.\n• Validate data early.\n• Document transformations.",
+    category: "Best Practices",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-36",
+    question: "What is an ETL pipeline?",
+    answer: "A series of automated processes that move data from sources to destinations.",
+    category: "Advanced Concepts",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-37",
+    question: "What is mapping in ETL?",
+    answer: "Defines how source data maps to the target fields (columns).",
+    category: "Advanced Concepts",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-38",
+    question: "What is a transformation rule?",
+    answer: "A logic or formula that defines how data is changed.\n\nExample: Convert 'M/F' to 'Male/Female'.",
+    category: "Transformation",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-39",
+    question: "What is the difference between join and lookup?",
+    answer: "• Join: Combines data from multiple sources directly.\n• Lookup: Retrieves matching data using a key value.",
+    category: "Transformation",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-40",
+    question: "What are ETL dependencies?",
+    answer: "Order in which ETL jobs must run — e.g., you must load Customers before Orders.",
+    category: "Advanced Concepts",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-41",
+    question: "What is metadata in ETL?",
+    answer: "Data about data — describes source, transformations, and target schema.",
+    category: "Data Governance",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-42",
+    question: "What is data aggregation?",
+    answer: "Summarizing detailed data — e.g., calculating total sales per month.",
+    category: "Transformation",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-43",
+    question: "What is a transformation type in ETL?",
+    answer: "• Filter\n• Join\n• Sort\n• Expression\n• Aggregation",
+    category: "Transformation",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-44",
+    question: "What are ETL job scheduling tools?",
+    answer: "Airflow, Control-M, Azure Data Factory, Informatica Scheduler.",
+    category: "Tools",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-45",
+    question: "What is job monitoring?",
+    answer: "Tracking ETL jobs to check for failures, delays, or success.",
+    category: "Monitoring",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-46",
+    question: "How would you handle duplicate data in ETL?",
+    answer: "Use the DISTINCT keyword or remove duplicates with data quality checks before loading.",
+    category: "Scenario Questions",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-47",
+    question: "How do you ensure data accuracy after ETL?",
+    answer: "• Row count validation\n• Checksum comparison\n• Manual spot checks",
+    category: "Scenario Questions",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-48",
+    question: "What's your approach to debugging failed ETL jobs?",
+    answer: "1. Check logs for errors.\n2. Verify source connectivity.\n3. Validate transformation logic.",
+    category: "Scenario Questions",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-49",
+    question: "How do you test ETL workflows?",
+    answer: "Use test cases to validate source-to-target mapping, transformations, and counts.",
+    category: "Scenario Questions",
+    skill: "ETL Concepts"
+  },
+  {
+    id: "etl-50",
+    question: "Describe a real-life ETL project you worked on.",
+    answer: "Example:\n'I built a daily ETL pipeline to extract sales from MySQL, transform with Python (removing duplicates), and load into Snowflake for BI dashboards. It ran automatically using Airflow.'\n\nExpected Question: 'What challenges did you face, and how did you solve them?'",
+    category: "Scenario Questions",
+    skill: "ETL Concepts"
   }
 ];
 

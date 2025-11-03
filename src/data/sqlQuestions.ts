@@ -2343,6 +2343,356 @@ export const sqlQuestions: Question[] = [
     answer: "Regularly run VACUUM (weekly or after significant deletes), execute ANALYZE after loads, monitor table fragmentation, implement appropriate distribution and sort keys, use compression, archive old data to S3 using Spectrum, maintain statistics currency, schedule maintenance during off-peak hours, monitor disk space, and review Advisor recommendations. Automate maintenance tasks where possible.",
     category: "Maintenance & Administration",
     skill: "AWS Redshift"
+  },
+  {
+    id: "emr-1",
+    question: "What is Amazon EMR?",
+    answer: "Amazon EMR (Elastic MapReduce) is a managed big data platform for processing vast amounts of data using open-source frameworks like Hadoop, Spark, Hive, Presto, and HBase. It automates cluster provisioning, configuration, and scaling. Supports batch processing, interactive analytics, machine learning, and streaming workloads with cost-effective EC2 or serverless options.",
+    category: "Basic Concepts",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-2",
+    question: "What is the architecture of EMR?",
+    answer: "EMR consists of a master node (manages cluster, coordinates distribution), core nodes (run tasks and store HDFS data), and optional task nodes (run tasks only, no HDFS). Uses EC2 instances organized in instance groups or fleets. Master node runs YARN ResourceManager and NameNode. Core nodes run DataNode and NodeManager. Supports multi-master for high availability.",
+    category: "Basic Concepts",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-3",
+    question: "What are EMR node types?",
+    answer: "Master node manages the cluster and resource allocation. Core nodes store HDFS data and execute tasks; minimum one required. Task nodes only execute tasks without HDFS storage; optional and ideal for spot instances. Can add/remove task nodes without data loss. Each type has different roles in cluster operation and data persistence.",
+    category: "Basic Concepts",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-4",
+    question: "What is the difference between EMR and EC2?",
+    answer: "EMR is a managed service for big data frameworks with automatic configuration, scaling, and integration. EC2 is raw compute requiring manual setup. EMR handles framework installation, cluster coordination, monitoring, and provides optimized AMIs. EC2 offers more control but requires expertise. EMR simplifies big data operations with pre-configured environments.",
+    category: "Basic Concepts",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-5",
+    question: "What storage options are available in EMR?",
+    answer: "HDFS for distributed storage across core nodes (ephemeral), EMRFS for S3 integration with consistency view, EBS volumes attached to nodes, local instance store (fastest but ephemeral), and HBase on S3. EMRFS is recommended for persistent storage. HDFS for intermediate processing. Choose based on performance, durability, and cost requirements.",
+    category: "Basic Concepts",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-6",
+    question: "What is EMRFS?",
+    answer: "EMRFS is EMR's implementation of HDFS interface for S3 access. Allows reading/writing S3 data as if it's HDFS. Features include consistent view (metadata tracking for S3 consistency), SSE encryption support, IAM role integration, and S3 prefix optimization. Separates storage from compute, enabling cluster termination without data loss.",
+    category: "Basic Concepts",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-7",
+    question: "What frameworks does EMR support?",
+    answer: "EMR supports Hadoop MapReduce, Apache Spark, Hive, Presto, HBase, Flink, Phoenix, Pig, Sqoop, Zeppelin, Jupyter, Hudi, Iceberg, and many others. Can install multiple frameworks on same cluster. Each framework suited for different use cases: Spark for fast processing, Hive for SQL, Presto for interactive queries, HBase for NoSQL.",
+    category: "Basic Concepts",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-8",
+    question: "What are EMR release versions?",
+    answer: "EMR releases package specific versions of big data frameworks. Each release (e.g., emr-6.x, emr-5.x) includes compatible framework versions. Newer releases offer performance improvements, security patches, and new features. Choose based on framework version requirements and stability needs. Can't change release after cluster creation.",
+    category: "Basic Concepts",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-9",
+    question: "What is EMR Serverless?",
+    answer: "EMR Serverless automatically provisions and scales resources for Spark and Hive jobs without managing clusters. Pay only for resources used during job execution. No infrastructure management needed. Pre-initialized workers for sub-second startup. Define application with compute/memory limits. Ideal for intermittent workloads and variable usage patterns.",
+    category: "Basic Concepts",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-10",
+    question: "What are EMR deployment modes?",
+    answer: "EMR on EC2 (traditional clusters with full control), EMR on EKS (run on Kubernetes clusters for containerized workloads), EMR Serverless (no infrastructure management), and EMR on Outposts (on-premises). Each offers different levels of control, flexibility, and management overhead. Choose based on operational requirements and existing infrastructure.",
+    category: "Basic Concepts",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-11",
+    question: "How do you size an EMR cluster?",
+    answer: "Consider data volume, processing complexity, time requirements, and budget. Use instance types matching workload (compute-optimized, memory-optimized, storage-optimized). Start with testing on smaller clusters. Monitor CPU, memory, and disk utilization. Use auto-scaling for variable workloads. Core nodes based on data size, task nodes for additional compute. Benchmark before production deployment.",
+    category: "Cluster Management",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-12",
+    question: "What are EMR instance groups vs instance fleets?",
+    answer: "Instance groups use single instance type per group (master, core, task). Instance fleets allow multiple instance types with target capacity in vCPUs or units. Fleets provide better spot availability by diversifying across types and zones. Fleets support allocation strategies (lowest-price, capacity-optimized). Use fleets for cost optimization and availability.",
+    category: "Cluster Management",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-13",
+    question: "How does EMR auto-scaling work?",
+    answer: "Auto-scaling automatically adjusts core or task nodes based on YARN metrics (memory available, containers pending/allocated) or custom CloudWatch metrics. Define scale-up/down rules with cooldown periods. Only task nodes recommended for auto-scaling (core nodes store HDFS). Managed scaling uses intelligent algorithms. Helps optimize costs while maintaining performance.",
+    category: "Cluster Management",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-14",
+    question: "What are EMR bootstrap actions?",
+    answer: "Bootstrap actions are scripts executed on all cluster nodes during startup before framework services start. Used for installing software, configuring settings, copying files, or modifying environment. Stored in S3 and specified at cluster creation. Run as hadoop user. Support conditional execution. Failures can stop cluster launch for validation.",
+    category: "Cluster Management",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-15",
+    question: "What are EMR steps?",
+    answer: "Steps are units of work submitted to clusters (Spark jobs, Hive scripts, custom JAR). Defined with JAR location, main class, arguments. Executed sequentially or concurrently based on configuration. Cluster can auto-terminate after steps complete. Steps enable job orchestration and workflow execution. Monitor via console, CLI, or API.",
+    category: "Cluster Management",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-16",
+    question: "How do you submit Spark jobs to EMR?",
+    answer: "Submit via EMR Steps using spark-submit command with application JAR/script, configurations, and arguments. Use AWS CLI, console, or SDKs. Can also SSH to master node and run spark-submit directly. Support for PySpark, Scala, and Java. Specify executor memory, cores, and Spark configurations. Monitor via Spark UI or YARN.",
+    category: "Cluster Management",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-17",
+    question: "What is EMR cluster cloning?",
+    answer: "Cloning creates a new cluster with same configuration as existing one. Copies instance types, applications, configurations, bootstrap actions, and IAM roles. Useful for testing, creating dev environments, or disaster recovery preparation. Doesn't copy data or running jobs. Can modify configuration during cloning. Available via console or CLI.",
+    category: "Cluster Management",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-18",
+    question: "How do you secure EMR clusters?",
+    answer: "Enable Kerberos authentication, use security groups for network isolation, IAM roles for service permissions, encryption at rest (EBS, S3) and in-transit (TLS), VPC deployment, private subnets, Lake Formation integration for data governance, Apache Ranger for authorization, and enable CloudTrail logging. Use security configurations for centralized settings.",
+    category: "Cluster Management",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-19",
+    question: "What are EMR security configurations?",
+    answer: "Security configurations define encryption, authentication, and authorization settings applied at cluster creation. Include encryption settings (at-rest, in-transit), Kerberos configuration, IAM roles, and authorization via Ranger or native. Create once, reuse across clusters. Ensures consistent security posture. Simplifies compliance and governance requirements.",
+    category: "Cluster Management",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-20",
+    question: "How do you monitor EMR clusters?",
+    answer: "Use CloudWatch metrics (cluster status, node health, YARN metrics), EMR console dashboards, Ganglia for detailed metrics, application UIs (Spark, YARN), log files in S3, CloudWatch Logs integration, EventBridge for cluster state changes, and custom metrics. Monitor resource utilization, job progress, and failures. Set alarms for critical conditions.",
+    category: "Cluster Management",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-21",
+    question: "How do you optimize Spark performance on EMR?",
+    answer: "Use appropriate instance types, configure executor memory/cores properly, enable dynamic allocation, use Kryo serialization, broadcast small tables, partition data appropriately, cache frequently accessed data, tune spark.sql.shuffle.partitions, enable adaptive query execution, use columnar formats (Parquet), and leverage S3 optimizations. Monitor via Spark UI for bottlenecks.",
+    category: "Data Processing",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-22",
+    question: "What is Apache Hive on EMR?",
+    answer: "Hive provides SQL interface for querying data in S3 and HDFS. Translates SQL to MapReduce or Tez jobs. Stores metadata in MySQL or external metastore like Glue Data Catalog. Suitable for batch processing and data warehousing. Supports partitioning, bucketing, and various file formats. Integrates with BI tools via JDBC/ODBC.",
+    category: "Data Processing",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-23",
+    question: "How does EMR integrate with Glue Data Catalog?",
+    answer: "EMR can use Glue Data Catalog as external Hive metastore. Configure Hive, Spark, and Presto to reference Glue catalog. Enables metadata sharing across services (Athena, Redshift Spectrum, EMR). Persistent metadata independent of cluster lifecycle. Configure using classification properties. Eliminates need for managing separate metastore.",
+    category: "Data Processing",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-24",
+    question: "What is Apache Presto on EMR?",
+    answer: "Presto is a distributed SQL query engine for interactive analytics. Queries data across multiple sources (S3, HDFS, RDS). Faster than Hive for ad-hoc queries without MapReduce overhead. Memory-based processing. Supports ANSI SQL. Ideal for analysts running exploratory queries. Integrates with BI tools and notebooks like Zeppelin.",
+    category: "Data Processing",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-25",
+    question: "How do you handle small files problem in EMR?",
+    answer: "Combine small files using S3DistCp or custom scripts, use file formats with better small file handling (Parquet with larger row groups), implement compaction jobs periodically, use Hive bucketing, configure Spark coalesce/repartition during writes, enable S3 prefix optimization, or use EMR File System (EMRFS) optimizations. Small files reduce parallelism and increase overhead.",
+    category: "Data Processing",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-26",
+    question: "What is S3DistCp?",
+    answer: "S3DistCp is a distributed copy tool for moving large amounts of data between S3, HDFS, and other file systems. Built on Hadoop DistCp. Features include compression, aggregation of small files, filtering by regex, and parallel transfers. Common for ETL, combining files, and data migration. More efficient than standard S3 copy for large datasets.",
+    category: "Data Processing",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-27",
+    question: "How do you partition data in EMR?",
+    answer: "Use Hive partitioning (directory structure like year=2024/month=01/), Spark partitionBy during write, or manual directory organization. Partitioning reduces data scanned during queries. Choose partition keys based on query filters (date, region). Avoid too many small partitions. Use dynamic partitioning for automatic organization. Improves query performance significantly.",
+    category: "Data Processing",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-28",
+    question: "What is Apache HBase on EMR?",
+    answer: "HBase is a NoSQL database running on EMR for random, real-time read/write access. Columnar store built on HDFS or S3. Suitable for wide tables with billions of rows. Supports point lookups and range scans. Can use S3 as backing store. Integrates with Phoenix for SQL interface. Used for time-series, IoT, and operational data.",
+    category: "Data Processing",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-29",
+    question: "How do you handle data skew in EMR?",
+    answer: "Identify skewed keys causing uneven partition distribution. Use salting (add random prefix to keys), filter skewed keys separately, increase parallelism with more partitions, use broadcast joins for skewed join keys, enable Spark adaptive query execution, repartition data explicitly, or use stratified sampling. Monitor task execution times to detect skew.",
+    category: "Data Processing",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-30",
+    question: "What is Apache Flink on EMR?",
+    answer: "Flink is a stream processing framework for real-time and batch processing. Supports exactly-once semantics, low-latency processing, stateful computations, and event time processing. Better for complex event processing than Spark Streaming. Integrates with Kinesis, Kafka. Fault-tolerant with checkpointing. Ideal for real-time analytics, fraud detection, and monitoring use cases.",
+    category: "Data Processing",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-31",
+    question: "How do you optimize EMR costs?",
+    answer: "Use spot instances for task nodes, right-size instances based on workload, enable auto-scaling, terminate idle clusters, use EMR Serverless for intermittent jobs, leverage S3 instead of HDFS for storage, use appropriate instance types, implement cluster pooling, schedule jobs during off-peak, and use Reserved Instances for steady workloads.",
+    category: "Cost Optimization",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-32",
+    question: "What are EMR spot instances best practices?",
+    answer: "Use spot for task nodes only (not master or core), diversify instance types with instance fleets, use capacity-optimized allocation strategy, set appropriate timeouts, implement graceful handling of interruptions, monitor spot availability, configure EMR-managed scaling, and have core nodes as on-demand backup. Test interruption scenarios before production use.",
+    category: "Cost Optimization",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-33",
+    question: "What is EMR cluster lifecycle?",
+    answer: "Lifecycle includes starting (provisioning, bootstrapping), running (executing steps/jobs), waiting (idle between jobs), and terminating (shutting down). Transient clusters terminate after steps complete. Long-running clusters stay in waiting state. Auto-termination available. Choose based on usage pattern. Transient cheaper for batch jobs; long-running for interactive workloads.",
+    category: "Cost Optimization",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-34",
+    question: "How do you share EMR clusters across teams?",
+    answer: "Use YARN queues for resource allocation, implement security with Kerberos and Ranger, use separate user accounts, leverage IAM roles for data access, configure capacity scheduler for fair sharing, implement notebook environments (Zeppelin, JupyterHub), use EMR Studio for collaborative development, and monitor usage per team/user for chargeback.",
+    category: "Cost Optimization",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-35",
+    question: "What is EMR managed scaling?",
+    answer: "Managed scaling automatically resizes clusters based on workload using intelligent algorithms. Evaluates YARN metrics and makes scaling decisions. More sophisticated than custom auto-scaling. Considers container pending time, cluster utilization. Scales both core and task nodes (configurable). Reduces management overhead with better scaling decisions than manual rules.",
+    category: "Cost Optimization",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-36",
+    question: "How do you reduce EMR data transfer costs?",
+    answer: "Keep data and clusters in same region, use VPC endpoints for S3 access, minimize cross-AZ transfers, compress data, use EMR with local HDFS for intermediate results, optimize partitioning to reduce data scanning, leverage S3 Select, and use appropriate file formats. Stage data in S3 bucket collocated with cluster.",
+    category: "Cost Optimization",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-37",
+    question: "What is EMR cluster utilization?",
+    answer: "Measure utilization via YARN metrics (allocated vs available memory/vCPUs), CloudWatch metrics, Ganglia, and Spark/application UIs. Low utilization indicates oversizing. Optimize by right-sizing instances, increasing parallelism, using auto-scaling, or consolidating workloads. High utilization may require scaling up. Target 70-80% for optimal balance.",
+    category: "Cost Optimization",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-38",
+    question: "How do you implement job scheduling on EMR?",
+    answer: "Use YARN capacity scheduler or fair scheduler for multi-tenant environments, Apache Airflow for workflow orchestration, Step Functions for AWS-native orchestration, cron jobs with EMR steps, AWS Data Pipeline, or custom schedulers. Define priorities, resource limits, and dependencies. Schedule cluster start/stop for predictable workloads to minimize costs.",
+    category: "Cost Optimization",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-39",
+    question: "What are EMR instance fleets allocation strategies?",
+    answer: "Lowest-price selects cheapest spot instances meeting requirements. Capacity-optimized chooses instances with lowest interruption probability based on AWS prediction. Diversified spreads across instance types. Price-capacity-optimized balances price and capacity. Capacity-optimized recommended for most workloads. Allocation strategy impacts spot interruptions and costs.",
+    category: "Cost Optimization",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-40",
+    question: "How do you benchmark EMR performance?",
+    answer: "Use TPC-DS or TPC-H benchmarks for SQL workloads, TeraSort for MapReduce, custom representative jobs for specific use cases. Test with production-like data volumes and patterns. Monitor execution time, resource utilization, cost per job. Compare instance types, configurations, and frameworks. Iterate based on metrics to find optimal configuration.",
+    category: "Cost Optimization",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-41",
+    question: "How does EMR integrate with other AWS services?",
+    answer: "S3 for data storage, Glue for metadata and ETL, Redshift for data warehouse loads, Kinesis for streaming, Lambda for event-driven workflows, Step Functions for orchestration, CloudWatch for monitoring, IAM for security, VPC for networking, Secrets Manager for credentials, and Lake Formation for governance. Deep integration enables comprehensive data solutions.",
+    category: "Integration & Advanced",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-42",
+    question: "What is EMR Notebooks vs EMR Studio?",
+    answer: "EMR Notebooks (Jupyter-based) are serverless environments attached to EMR clusters. EMR Studio is an IDE for notebook development, job debugging, and collaboration with Git integration. Studio provides workspace management, user authentication via SSO, and supports multiple kernels. Studio is the evolution of Notebooks with enhanced features and collaboration.",
+    category: "Integration & Advanced",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-43",
+    question: "How do you migrate from on-premises Hadoop to EMR?",
+    answer: "Assess current cluster (size, applications, dependencies), use SCT for framework compatibility, migrate data to S3 using DistCp or DataSync, convert jobs to EMR-compatible format, test workloads on EMR, implement security configurations matching on-prem, validate performance, and implement hybrid setup during transition. Use Glue Data Catalog for metastore migration.",
+    category: "Integration & Advanced",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-44",
+    question: "What is Apache Hudi on EMR?",
+    answer: "Hudi manages large analytical datasets on S3 with record-level updates and deletes. Supports ACID transactions, incremental processing, time travel, and compaction. Enables CDC patterns and slowly changing dimensions. Integrates with Spark, Hive, Presto. Use for data lakes requiring upserts. More efficient than rewriting entire partitions for updates.",
+    category: "Integration & Advanced",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-45",
+    question: "How do you implement data lake on EMR?",
+    answer: "Use S3 as storage layer, EMR for processing, Glue Data Catalog for metadata, organize data in zones (raw, refined, curated), implement partitioning strategy, use columnar formats (Parquet), apply Lake Formation for access control, establish data quality processes, implement versioning with Hudi/Iceberg, and create governance policies. EMR processes and catalogs data lake contents.",
+    category: "Integration & Advanced",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-46",
+    question: "What is Apache Iceberg on EMR?",
+    answer: "Iceberg is a table format for large analytics tables on S3. Provides ACID transactions, schema evolution, hidden partitioning, time travel, and snapshot isolation. Better performance than traditional Hive tables. Works with Spark, Presto, Flink. Enables safe concurrent reads/writes. Handles metadata efficiently for petabyte-scale tables. Alternative to Hudi with different features.",
+    category: "Integration & Advanced",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-47",
+    question: "How do you debug failed EMR jobs?",
+    answer: "Check EMR step logs in S3, review application logs (Spark, Hive), examine YARN logs, use Spark History Server, check CloudWatch Logs, review cluster and node-level logs, analyze stderr/stdout, use EMR Notebooks for interactive debugging, examine exceptions and stack traces, verify data quality, and check resource constraints (memory, disk).",
+    category: "Integration & Advanced",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-48",
+    question: "What is EMR on EKS?",
+    answer: "EMR on EKS runs EMR applications on Kubernetes clusters (EKS). Benefits include resource sharing across applications, leveraging existing Kubernetes infrastructure, better multi-tenancy, faster job startup, and using Kubernetes tooling. Submit Spark jobs to EKS namespaces. Separates data plane (EKS) from control plane (EMR). Suitable for containerized environments.",
+    category: "Integration & Advanced",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-49",
+    question: "How do you implement real-time processing on EMR?",
+    answer: "Use Spark Streaming or Flink for stream processing, connect to Kinesis Data Streams or MSK (Managed Kafka), implement micro-batching or continuous processing, configure checkpointing for fault tolerance, use stateful operations for aggregations, write results to S3, Kinesis, or databases, and monitor lag metrics. Choose framework based on latency requirements.",
+    category: "Integration & Advanced",
+    skill: "AWS EMR"
+  },
+  {
+    id: "emr-50",
+    question: "What are EMR best practices?",
+    answer: "Use S3 for data storage, enable EMR-managed scaling, implement security configurations, use Glue Data Catalog for metadata, leverage spot instances for task nodes, separate transient and persistent workloads, enable CloudWatch detailed monitoring, implement tagging strategy, use appropriate file formats (Parquet), regular patching with latest EMR releases, and implement proper logging to S3.",
+    category: "Integration & Advanced",
+    skill: "AWS EMR"
   }
 ];
 

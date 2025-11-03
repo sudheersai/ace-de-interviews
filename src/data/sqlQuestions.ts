@@ -1993,6 +1993,356 @@ export const sqlQuestions: Question[] = [
     answer: "Glue maintains automatic versioning of job scripts. Each save creates a new version. Roll back to previous versions from the console or API. For external version control, store scripts in Git repositories and deploy using CI/CD pipelines. Use Infrastructure as Code (CloudFormation, Terraform) for job definitions. Tag jobs with version metadata for tracking.",
     category: "Monitoring and Optimization",
     skill: "AWS Glue"
+  },
+  {
+    id: "redshift-1",
+    question: "What is Amazon Redshift?",
+    answer: "Amazon Redshift is a fully managed, petabyte-scale data warehouse service in the cloud. It uses columnar storage, parallel processing, and compression to deliver fast query performance. Supports standard SQL, integrates with BI tools, and offers both provisioned and serverless options for flexible scaling and cost optimization.",
+    category: "Basic Concepts",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-2",
+    question: "What is the architecture of Redshift?",
+    answer: "Redshift uses a cluster architecture with a leader node and compute nodes. The leader node manages client connections, parses queries, and creates execution plans. Compute nodes execute queries in parallel and store data. Each compute node has multiple slices (CPU and memory portions) that process data independently for parallel execution.",
+    category: "Basic Concepts",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-3",
+    question: "What is columnar storage in Redshift?",
+    answer: "Columnar storage organizes data by columns rather than rows. Each column is stored separately with its own compression encoding. Benefits include better compression ratios, reduced I/O by reading only required columns, improved query performance for analytical workloads, and efficient aggregate operations. Ideal for OLAP but not OLTP workloads.",
+    category: "Basic Concepts",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-4",
+    question: "What are Redshift distribution styles?",
+    answer: "Distribution styles determine how data is distributed across nodes: EVEN (round-robin distribution), KEY (based on single column value), ALL (full copy on each node), and AUTO (Redshift chooses automatically). Proper distribution minimizes data movement during queries, improving performance. Choose based on join patterns and data size.",
+    category: "Basic Concepts",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-5",
+    question: "What are Redshift sort keys?",
+    answer: "Sort keys determine the order in which data is stored on disk. Types include compound (multiple columns, left-to-right priority) and interleaved (equal weight to all columns). Zone maps use sort key metadata to skip blocks during scans. Effective sort keys dramatically improve query performance by reducing data scanning.",
+    category: "Basic Concepts",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-6",
+    question: "What is the difference between Redshift and RDS?",
+    answer: "Redshift is a data warehouse for OLAP (analytics) with columnar storage, MPP architecture, and optimized for complex queries on large datasets. RDS is an OLTP database for transactional workloads with row-based storage, single-node or read replicas, and optimized for fast inserts/updates. Use Redshift for analytics, RDS for applications.",
+    category: "Basic Concepts",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-7",
+    question: "What is Redshift Spectrum?",
+    answer: "Redshift Spectrum extends Redshift's query capabilities to S3 data without loading it. Query exabytes of unstructured data using standard SQL. Spectrum nodes handle S3 queries independently from the cluster. Supports multiple formats (Parquet, ORC, JSON). Useful for separating hot and cold data, reducing storage costs while maintaining query capability.",
+    category: "Basic Concepts",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-8",
+    question: "What are Redshift workload management (WLM) queues?",
+    answer: "WLM manages query execution by creating multiple queues with defined memory allocation and concurrency levels. Manual WLM requires explicit queue configuration; automatic WLM uses ML to optimize resources. Short query acceleration (SQA) runs fast queries in dedicated queues. WLM prevents resource-intensive queries from monopolizing cluster resources.",
+    category: "Basic Concepts",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-9",
+    question: "What is Redshift Serverless?",
+    answer: "Redshift Serverless automatically provisions and scales capacity without managing clusters. Pay only for actual usage measured in RPUs (Redshift Processing Units). Ideal for variable, unpredictable, or intermittent workloads. No capacity planning required. Separates compute and storage, scales instantly, and offers simpler pricing than provisioned clusters.",
+    category: "Basic Concepts",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-10",
+    question: "What are Redshift node types?",
+    answer: "Node types define compute and storage capacity. RA3 nodes separate compute and storage using managed storage, allow independent scaling. DC2 (Dense Compute) for compute-intensive workloads with local SSD. DS2 (Dense Storage) offers HDD-based storage (legacy). RA3 is recommended for most workloads offering flexibility and performance.",
+    category: "Basic Concepts",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-11",
+    question: "How do you load data into Redshift?",
+    answer: "Primary methods include COPY command from S3, DynamoDB, or EMR (fastest, parallel), INSERT statements (suitable for small amounts), AWS Data Pipeline, Glue ETL jobs, DMS for database migration, and Kinesis Data Firehose for streaming. COPY command with manifest files and compression offers best performance for bulk loading.",
+    category: "Data Loading & Unloading",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-12",
+    question: "What is the COPY command in Redshift?",
+    answer: "COPY loads data in parallel from S3, DynamoDB, or EMR into Redshift tables. Supports multiple file formats (CSV, JSON, Parquet, Avro), compression (GZIP, BZIP2), encryption, and column mapping. Uses all compute nodes for parallel loading. Key parameters include IAM role authentication, delimiter specification, and error handling options.",
+    category: "Data Loading & Unloading",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-13",
+    question: "How do you optimize COPY command performance?",
+    answer: "Split data into multiple files (number of files = multiple of slices), use compression (GZIP), leverage columnar formats (Parquet), use manifest files, specify proper IAM roles, enable COMPUPDATE and STATUPDATE for initial loads, use REGION parameter for cross-region, and analyze error tables for troubleshooting.",
+    category: "Data Loading & Unloading",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-14",
+    question: "What is the UNLOAD command?",
+    answer: "UNLOAD exports query results to S3 in parallel. Automatically compresses files, supports Parquet format, encrypts data, and creates multiple files based on slices. Useful for data archival, sharing results, or exporting for other tools. Syntax includes query, S3 destination, IAM role, and optional formatting parameters.",
+    category: "Data Loading & Unloading",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-15",
+    question: "How do you handle COPY command errors?",
+    answer: "Specify MAXERROR parameter to allow certain error threshold before failing. Rejected records go to STL_LOAD_ERRORS table. Use NOLOAD option for validation without loading. Enable detailed error logging. Review STL_LOAD_ERRORS for specific issues. Common errors include format mismatches, encoding issues, and delimiter problems.",
+    category: "Data Loading & Unloading",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-16",
+    question: "What is the difference between COPY and INSERT in Redshift?",
+    answer: "COPY uses parallel processing across all compute nodes, significantly faster for large datasets, loads from external sources (S3, DynamoDB), supports compression and multiple formats. INSERT is single-threaded, suitable for small data amounts, supports complex transformations, and can insert from SELECT statements. Use COPY for bulk loading.",
+    category: "Data Loading & Unloading",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-17",
+    question: "How do you load JSON data into Redshift?",
+    answer: "Use COPY command with JSON format specification. Options include 'auto' (parse automatically), JSONPaths file (custom mapping), and 'noshred' (load as single column). Can flatten nested structures or store as super data type. Example: COPY table FROM 's3://bucket/data.json' IAM_ROLE 'arn' JSON 'auto'",
+    category: "Data Loading & Unloading",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-18",
+    question: "What is COMPUPDATE in COPY command?",
+    answer: "COMPUPDATE analyzes data during COPY and applies optimal compression encodings to columns. Options: ON (update compression), OFF (no update), PRESET (use existing encodings). Enable for initial loads on empty tables. Disable for subsequent loads to avoid analysis overhead. Improves storage efficiency and query performance.",
+    category: "Data Loading & Unloading",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-19",
+    question: "How do you load data from DynamoDB to Redshift?",
+    answer: "Use COPY command with DynamoDB source. Syntax includes DynamoDB table name, read capacity percentage, and IAM role. Redshift uses EMR cluster to read from DynamoDB in parallel. Monitor read capacity usage. Alternative: Export DynamoDB to S3 then COPY from S3 for better control and cost optimization.",
+    category: "Data Loading & Unloading",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-20",
+    question: "What is a manifest file in Redshift?",
+    answer: "Manifest file is a JSON file listing S3 object paths to load. Ensures exact files are loaded, prevents accidental loading of new files added during operation, supports cross-region loading, and enables partial retries. More reliable than prefix-based loading. Includes mandatory flag to ensure all files exist before loading.",
+    category: "Data Loading & Unloading",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-21",
+    question: "What is query plan in Redshift?",
+    answer: "Query plan shows execution steps determined by the query optimizer. Use EXPLAIN command to view plans before execution. Shows operations like sequential scans, hash joins, aggregates, distribution, and sort operations. Analyze for inefficiencies like data broadcasting, nested loops, or full table scans. Optimize based on plan insights.",
+    category: "Performance Optimization",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-22",
+    question: "What is VACUUM in Redshift?",
+    answer: "VACUUM reclaims space from deleted rows and resorts tables based on sort keys. Types: VACUUM FULL (reclaim + resort), VACUUM DELETE ONLY (reclaim space), VACUUM SORT ONLY (resort), VACUUM REINDEX (reinitialize interleaved indexes). Run after large deletes or updates. Can be resource-intensive; schedule during low-activity periods.",
+    category: "Performance Optimization",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-23",
+    question: "What is ANALYZE command?",
+    answer: "ANALYZE updates table statistics used by the query optimizer for better execution plans. Collects metadata about data distribution, column values, and table sizes. Run after significant data changes (loads, deletes). Can specify threshold percentages. Automatic ANALYZE runs in background but manual execution ensures current statistics for critical tables.",
+    category: "Performance Optimization",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-24",
+    question: "How do you monitor query performance in Redshift?",
+    answer: "Use system tables (STL_QUERY, SVL_QUERY_SUMMARY), console query monitoring, CloudWatch metrics, query execution details in console, EXPLAIN for query plans, and system views (SVL_QUERY_REPORT, SVV_TABLE_INFO). Monitor metrics like execution time, queue wait time, disk-based queries, and data distribution skew for optimization opportunities.",
+    category: "Performance Optimization",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-25",
+    question: "What causes slow queries in Redshift?",
+    answer: "Common causes: poor distribution keys causing data skew, missing or incorrect sort keys, outdated table statistics, large unsorted regions, disk-based operations due to memory constraints, excessive data broadcasting, nested loop joins, queue wait times due to WLM configuration, and wide tables with unnecessary column selection.",
+    category: "Performance Optimization",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-26",
+    question: "What is result caching in Redshift?",
+    answer: "Result caching stores query results for repeated identical queries. Cache is valid until underlying data changes. Leader node maintains cache, providing instant responses for cached queries. Automatically managed, no configuration needed. Improves performance for dashboards and repeated analytical queries. Monitor cache hit ratio using system tables.",
+    category: "Performance Optimization",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-27",
+    question: "What is short query acceleration (SQA)?",
+    answer: "SQA automatically detects and runs short-running queries in a dedicated queue, preventing delays behind long-running queries. Enabled in WLM configuration with ML-based prediction. Configurable maximum runtime threshold. Improves responsiveness for quick queries like dashboard refreshes. Part of automatic WLM or can be configured manually.",
+    category: "Performance Optimization",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-28",
+    question: "How do you identify disk-based queries?",
+    answer: "Query STL_ALERT_EVENT_LOG for disk-based operations warnings. Occurs when query memory exceeds allocated WLM memory. Indicates queries are spilling to disk (slower). Solutions: increase WLM memory allocation, reduce query concurrency, optimize query to use less memory, add more nodes, or use larger node types.",
+    category: "Performance Optimization",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-29",
+    question: "What is concurrency scaling in Redshift?",
+    answer: "Concurrency scaling automatically adds transient clusters to handle burst query loads. Enabled per WLM queue. Additional clusters are identical to main cluster. Users are automatically routed to available resources. Pay per second for scaling clusters. Includes free credits. Ideal for unpredictable spiky workloads.",
+    category: "Performance Optimization",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-30",
+    question: "How do you optimize table design for performance?",
+    answer: "Choose appropriate distribution keys matching join columns, select effective sort keys for filter predicates, use compression encodings, avoid very wide tables, regularly VACUUM and ANALYZE, partition large tables using date ranges, denormalize when appropriate, limit use of VARCHAR(MAX), and use appropriate data types for storage efficiency.",
+    category: "Performance Optimization",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-31",
+    question: "What is Redshift materialized views?",
+    answer: "Materialized views are precomputed query results stored as tables. Automatically refreshed based on base table changes. Significantly faster than regular views for complex aggregations. Use for frequently-run expensive queries. Incremental refresh available for certain patterns. Define refresh strategy (auto or manual). Trade-off between storage and query performance.",
+    category: "Advanced Features",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-32",
+    question: "What is late binding views in Redshift?",
+    answer: "Late binding views don't check underlying table dependencies at creation time. Resolved at query execution. Useful when tables don't exist yet or for cross-database references. Created with WITH NO SCHEMA BINDING. Allows dropping and recreating dependent tables without recreating views. Provides flexibility in schema evolution.",
+    category: "Advanced Features",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-33",
+    question: "How does Redshift handle data encryption?",
+    answer: "Supports encryption at rest using AWS KMS or HSM (Hardware Security Module). Enable at cluster creation (cannot change later). All data, metadata, snapshots encrypted. In-transit encryption via SSL. Automatic key rotation available. Loading/unloading from S3 can use S3-side encryption. Minimal performance impact with modern hardware acceleration.",
+    category: "Advanced Features",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-34",
+    question: "What are Redshift snapshots?",
+    answer: "Snapshots are point-in-time backups stored in S3. Types: automated (retention 1-35 days) and manual (retained until deleted). Incremental after first full snapshot. Can restore to new cluster, copy across regions, share with other accounts. Cross-region snapshots for disaster recovery. Included in storage pricing; minimal performance impact.",
+    category: "Advanced Features",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-35",
+    question: "What is Redshift data sharing?",
+    answer: "Data sharing allows sharing live data across Redshift clusters without copying. Producer cluster shares datashares with consumer clusters. Consumers can query shared data with their own compute resources. Enables secure, governed data access. Use cases: centralize data, separate workloads, isolate tenants. Supports cross-account and same-account sharing.",
+    category: "Advanced Features",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-36",
+    question: "What is SUPER data type?",
+    answer: "SUPER is a schemaless data type for semi-structured data (JSON, nested structures). Supports nested data without predefined schema. Use PartiQL (SQL-compatible) for queries. Automatically manages storage. Ideal for evolving schemas or sparse data. Combines flexibility of document databases with SQL power. Alternative to flattening all nested structures.",
+    category: "Advanced Features",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-37",
+    question: "How do you implement slowly changing dimensions in Redshift?",
+    answer: "SCD Type 1: Direct UPDATE of existing records. SCD Type 2: INSERT new records with version/date columns, use effective and expiration dates, maintain current flag. Use MERGE (if available) or DELETE+INSERT pattern. Consider using temporary tables for transformations. Add indexes on natural keys for efficient lookups during updates.",
+    category: "Advanced Features",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-38",
+    question: "What is federated query in Redshift?",
+    answer: "Federated query allows querying data in RDS PostgreSQL and Aurora PostgreSQL directly from Redshift without ETL. Uses external schema mapped to RDS database. Combine Redshift data warehouse with operational data. Useful for real-time operational reporting. Consider performance implications; Redshift pulls data over network during execution.",
+    category: "Advanced Features",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-39",
+    question: "What is Redshift ML?",
+    answer: "Redshift ML enables creating, training, and deploying machine learning models using SQL. Integrates with SageMaker Autopilot. Create models with CREATE MODEL statement specifying target and features. Automatically handles training, tuning, deployment. Make predictions using SQL functions. Simplifies ML for SQL users without deep ML expertise.",
+    category: "Advanced Features",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-40",
+    question: "How does automatic table optimization work?",
+    answer: "Automatic table optimization uses ML to apply optimal sort and distribution keys based on query patterns. Enabled by default on RA3 nodes. Analyzes workload and applies changes during maintenance windows. Monitors table usage and adjusts automatically. Reduces manual tuning effort. View recommendations in console. Can override with explicit settings if needed.",
+    category: "Advanced Features",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-41",
+    question: "How do you resize a Redshift cluster?",
+    answer: "Two methods: Classic resize (cluster unavailable during operation, faster for simple changes) and Elastic resize (cluster available in read-only during most operations, limited node changes). Elastic resize is preferred for minimal downtime. Snapshot and restore alternative for major architecture changes. Schedule during low-activity periods. RA3 nodes support storage scaling independently.",
+    category: "Maintenance & Administration",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-42",
+    question: "What is Redshift Advisor?",
+    answer: "Redshift Advisor provides automated recommendations for optimizing cluster performance and reducing costs. Suggests compression encodings, distribution keys, sort keys, VACUUM needs, table statistics updates, and configuration improvements. Accessible via console. Prioritizes recommendations by potential impact. Implement suggestions based on workload requirements and testing.",
+    category: "Maintenance & Administration",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-43",
+    question: "How do you monitor Redshift cluster health?",
+    answer: "Use CloudWatch metrics (CPU, disk space, query performance), console performance dashboard, system tables (STL_, STV_, SVV_, SVL_), query monitoring rules for automatic alerts, database audit logging, cluster metrics, and custom alarms. Key metrics: CPU utilization, disk space, queue wait time, concurrent connections, and long-running queries.",
+    category: "Maintenance & Administration",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-44",
+    question: "What are Redshift system tables and views?",
+    answer: "System tables (STL_ prefix) are logs of operations, queries, and loads. System views (SVV_, SVL_ prefix) provide formatted information about cluster state. Examples: STL_QUERY (query history), STL_LOAD_ERRORS (load failures), SVV_TABLE_INFO (table metadata), SVL_QUERY_REPORT (query execution steps). Essential for troubleshooting, monitoring, and optimization.",
+    category: "Maintenance & Administration",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-45",
+    question: "How do you implement access control in Redshift?",
+    answer: "Use database users and groups with GRANT/REVOKE permissions. Schema-level and table-level permissions. Row-level security (RLS) for fine-grained access. IAM authentication for temporary credentials. Lake Formation integration for unified governance. VPC for network isolation. Audit logging for compliance. Column-level security for sensitive data masking.",
+    category: "Maintenance & Administration",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-46",
+    question: "What is Redshift pause and resume?",
+    answer: "Pause suspends compute activity while retaining cluster configuration and data. Billing stops for compute (continue for storage). Resume restores cluster to operational state. Useful for dev/test environments with intermittent use. Automate with scheduled Lambda functions. Serverless alternative scales to zero automatically without manual pause/resume.",
+    category: "Maintenance & Administration",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-47",
+    question: "How do you handle time zone conversions in Redshift?",
+    answer: "Redshift stores TIMESTAMP data in UTC internally. Use CONVERT_TIMEZONE function for display conversions. Specify source and target timezones. Consider storing timezone metadata in separate column. For ETL, standardize to UTC during load. Use AT TIME ZONE for PostgreSQL-compatible conversion. Document timezone conventions for consistency.",
+    category: "Maintenance & Administration",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-48",
+    question: "What is Aqua for Redshift?",
+    answer: "Aqua (Advanced Query Accelerator) is distributed cache between S3 and compute nodes for RA3 clusters. Accelerates queries on S3 data (Spectrum) and managed storage. Pushes computation closer to storage. Reduces network traffic. Automatic, no configuration required. Improves scan-intensive queries. Hardware-accelerated compression. Available on RA3 node types automatically.",
+    category: "Maintenance & Administration",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-49",
+    question: "How do you migrate data to Redshift?",
+    answer: "Methods include: AWS DMS for database migration, SCT (Schema Conversion Tool) for schema conversion, Glue ETL for transformations, direct COPY from existing databases, snapshot restore from on-premises backup, Data Pipeline for orchestrated migration, and third-party ETL tools. Plan for data type conversions, test queries, and validate data completeness.",
+    category: "Maintenance & Administration",
+    skill: "AWS Redshift"
+  },
+  {
+    id: "redshift-50",
+    question: "What are best practices for Redshift table maintenance?",
+    answer: "Regularly run VACUUM (weekly or after significant deletes), execute ANALYZE after loads, monitor table fragmentation, implement appropriate distribution and sort keys, use compression, archive old data to S3 using Spectrum, maintain statistics currency, schedule maintenance during off-peak hours, monitor disk space, and review Advisor recommendations. Automate maintenance tasks where possible.",
+    category: "Maintenance & Administration",
+    skill: "AWS Redshift"
   }
 ];
 

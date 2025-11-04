@@ -3043,6 +3043,356 @@ export const sqlQuestions: Question[] = [
     answer: "Set per-query data scan limits at workgroup level, enable CloudWatch alarms for spend thresholds, use cost allocation tags on workgroups, implement data scanned budgets, enforce columnar formats via policies, require partition filters through query validation, optimize with compression and partitioning, track usage per team via workgroups, and review query patterns regularly to identify optimization opportunities.",
     category: "Integration & Best Practices",
     skill: "AWS Athena"
+  },
+  {
+    id: "kinesis-analytics-1",
+    question: "What is Amazon Kinesis Data Analytics?",
+    answer: "Amazon Kinesis Data Analytics is a fully managed service for processing and analyzing streaming data in real-time using SQL or Apache Flink. It can read from Kinesis Data Streams, Kinesis Data Firehose, or MSK. Automatically scales to match data throughput. Supports stateful processing, windowing, and complex event processing. No servers to manage.",
+    category: "Basic Concepts",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-2",
+    question: "What are the components of Kinesis Data Analytics?",
+    answer: "Main components include: Input streams (Kinesis Data Streams, Firehose, MSK), in-application streams (intermediate processing results), SQL or Flink application code, reference data (static lookup tables from S3), output destinations (Kinesis Streams, Firehose, Lambda), and pumps (connectors moving data between streams). CloudWatch for monitoring.",
+    category: "Basic Concepts",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-3",
+    question: "What is the difference between Kinesis Data Analytics for SQL and Apache Flink?",
+    answer: "SQL applications use standard SQL for simple streaming transformations, easier for SQL users, managed runtime with automatic scaling. Flink applications support complex stateful processing, custom Java/Scala/Python code, advanced event time processing, exactly-once semantics, and checkpointing. Flink offers more flexibility and control; SQL for simpler use cases.",
+    category: "Basic Concepts",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-4",
+    question: "What is an in-application stream?",
+    answer: "In-application streams are internal data flows within Kinesis Data Analytics applications. Created by SQL queries or Flink operators to store intermediate results. Act as temporary buffers between processing stages. Can have multiple in-application streams for complex workflows. Similar to views or temporary tables. Enable multi-stage data transformations and joins.",
+    category: "Basic Concepts",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-5",
+    question: "What are Kinesis Data Analytics use cases?",
+    answer: "Real-time analytics and dashboards, streaming ETL (filter, transform, enrich), anomaly detection, log analytics, IoT data processing, clickstream analysis, fraud detection, real-time recommendations, metric generation, event-driven alerts, gaming leaderboards, and continuous monitoring. Any scenario requiring sub-second latency processing of streaming data.",
+    category: "Basic Concepts",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-6",
+    question: "How does Kinesis Data Analytics handle scaling?",
+    answer: "SQL applications automatically scale based on input throughput. Flink applications use Kinesis Processing Units (KPUs) - 1 KPU = 1 vCPU and 4GB memory. Configure parallelism and KPUs. Auto-scaling available for Flink with target utilization. Application automatically distributes processing across parallel instances. Handles increased load without manual intervention.",
+    category: "Basic Concepts",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-7",
+    question: "What is a schema in Kinesis Data Analytics?",
+    answer: "Schema defines structure of incoming streaming data including column names and data types. Can be auto-discovered or manually specified. Required for SQL processing. Schema inference available for JSON and CSV. Use schema discovery wizard. Mismatch between schema and data causes errors. Regularly validate schema against actual data format.",
+    category: "Basic Concepts",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-8",
+    question: "What data formats does Kinesis Data Analytics support?",
+    answer: "JSON (most common), CSV, and custom formats using Lambda preprocessors for SQL applications. Flink applications support JSON, Avro, Parquet, CSV, and custom serializers/deserializers. Input format specified in application configuration. Can transform formats during processing. Output format configurable per destination. Format flexibility enables diverse integration scenarios.",
+    category: "Basic Concepts",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-9",
+    question: "What is reference data in Kinesis Data Analytics?",
+    answer: "Reference data is static enrichment data stored in S3 and loaded into applications as lookup tables. Used for joins with streaming data. Examples include product catalogs, user profiles, geo-locations. Refreshed periodically (manually or scheduled). Stored in-memory for fast lookups. CSV format typically used. Size limited to 2GB per reference table.",
+    category: "Basic Concepts",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-10",
+    question: "What are Kinesis Data Analytics outputs?",
+    answer: "Outputs send processed results to destinations: Kinesis Data Streams (for further processing), Kinesis Data Firehose (for S3, Redshift, Elasticsearch), Lambda (for custom actions), or AWS services via Flink connectors. Can have multiple outputs from single application. Each output has schema mapping. Configure error handling per destination.",
+    category: "Basic Concepts",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-11",
+    question: "What SQL functions are supported in Kinesis Data Analytics?",
+    answer: "Standard SQL functions (aggregate, string, date/time, mathematical), windowing functions (tumbling, sliding, stagger), streaming extensions (ROWTIME, approximate aggregates), pattern matching (MATCH_RECOGNIZE), and custom UDFs via Lambda. Streaming SQL is ANSI SQL-compliant with extensions for temporal operations. Not all standard SQL features available due to streaming nature.",
+    category: "SQL Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-12",
+    question: "What are windowing functions in Kinesis Data Analytics?",
+    answer: "Windows group streaming data by time for aggregations. Types: Tumbling (fixed, non-overlapping intervals), Sliding (overlapping, moves by slide interval), Stagger (partition-based windows). Use WINDOW clause in SQL. Example: calculate average per 5-minute window. Essential for time-series aggregations. Windows based on event time or processing time.",
+    category: "SQL Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-13",
+    question: "How do you implement tumbling windows?",
+    answer: "Tumbling windows divide stream into fixed-duration, non-overlapping intervals. Syntax: `WINDOW W AS (RANGE INTERVAL '5' MINUTE PRECEDING)`. Each event belongs to exactly one window. Use for periodic aggregations like hourly counts. Window closes and results emitted when interval completes. Simple and efficient for regular interval calculations.",
+    category: "SQL Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-14",
+    question: "What are sliding windows?",
+    answer: "Sliding windows overlap and move by slide interval smaller than window size. Example: 10-minute window sliding every 2 minutes. Syntax includes RANGE for window size and slide duration. Events can belong to multiple windows. Use for moving averages or rolling calculations. More computation than tumbling but provides continuous updates. Balance window size vs slide for performance.",
+    category: "SQL Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-15",
+    question: "How do you handle late-arriving data?",
+    answer: "Configure late data handling in application settings. For SQL, set BOUNDED option with late arrival threshold. Flink applications use watermarks and allowed lateness settings. Late data can be dropped, included in next window, or sent to side output. Monitor late arrival metrics. Consider business requirements for late data tolerance vs processing complexity.",
+    category: "SQL Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-16",
+    question: "What is ROWTIME in Kinesis Data Analytics?",
+    answer: "ROWTIME is a timestamp column representing event time (when event occurred). Used for time-based windows and temporal ordering. Can be derived from data payload or assigned at ingestion. SQL queries reference ROWTIME for windowing. Distinct from processing time (when Kinesis processes event). Critical for accurate time-series analysis respecting event chronology.",
+    category: "SQL Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-17",
+    question: "How do you join streams in Kinesis Data Analytics?",
+    answer: "Use standard SQL JOIN syntax between in-application streams. Time-bounded joins recommended to prevent unlimited state growth. Example: `SELECT * FROM Stream1 JOIN Stream2 WITHIN INTERVAL '10' MINUTE`. Can join with reference data for enrichment. Specify join conditions on keys. Consider join type (INNER, LEFT, RIGHT) based on requirements.",
+    category: "SQL Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-18",
+    question: "What are pumps in Kinesis Data Analytics?",
+    answer: "Pumps are continuous INSERT queries moving data from one in-application stream to another or to output destinations. Create processing pipelines connecting transformations. Syntax: `CREATE OR REPLACE PUMP pump_name AS INSERT INTO destination SELECT ... FROM source`. Multiple pumps enable complex workflows. Each pump runs continuously processing streaming data.",
+    category: "SQL Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-19",
+    question: "How do you implement aggregations in streaming SQL?",
+    answer: "Use GROUP BY with window clauses for temporal aggregations. Standard aggregate functions (COUNT, SUM, AVG, MIN, MAX). Approximate aggregates available for efficiency (APPROXIMATE_COUNT_DISTINCT). Combine with windowing for time-based groups. Example: `SELECT ticker, AVG(price) FROM stream GROUP BY ticker, FLOOR(ROWTIME TO MINUTE)`. Consider tumbling windows for discrete intervals.",
+    category: "SQL Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-20",
+    question: "What is anomaly detection in Kinesis Data Analytics?",
+    answer: "Built-in RANDOM_CUT_FOREST machine learning algorithm detects anomalies in numeric columns. Returns anomaly score indicating deviation from normal patterns. Use for fraud detection, sensor monitoring, or unexpected behavior identification. Configure sensitivity and training period. Syntax: `SELECT anomaly_score FROM TABLE(RANDOM_CUT_FOREST(...))`. Scores above threshold indicate anomalies.",
+    category: "SQL Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-21",
+    question: "What is Apache Flink in Kinesis Data Analytics?",
+    answer: "Apache Flink is an open-source stream processing framework supporting complex event processing, stateful computations, and exactly-once semantics. Kinesis Data Analytics for Flink provides managed environment with automatic scaling, snapshots, and monitoring. Write applications in Java, Scala, or Python. More powerful than SQL for advanced use cases requiring custom logic.",
+    category: "Apache Flink Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-22",
+    question: "What are Flink operators?",
+    answer: "Operators are transformation building blocks in Flink: map (one-to-one), flatMap (one-to-many), filter, keyBy (partitioning), window (grouping), aggregate, join, and union. Connect operators to build processing pipelines. Each operator processes data in parallel. Stateful operators maintain context across events. Combine operators for complex transformations.",
+    category: "Apache Flink Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-23",
+    question: "What is Flink state management?",
+    answer: "Flink maintains state (variables, accumulators, windows) during stream processing. Types: Keyed state (partitioned by key) and Operator state (per operator instance). State backends store state (memory, RocksDB). Checkpointing persists state for fault tolerance. State enables aggregations, joins, pattern detection. Managed automatically with recovery on failures.",
+    category: "Apache Flink Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-24",
+    question: "What are Flink checkpoints?",
+    answer: "Checkpoints are periodic snapshots of application state and position in input streams. Enable exactly-once processing and fault recovery. Configure checkpoint interval and timeout. Stored in S3 for durability. On failure, application restarts from last successful checkpoint. Trade-off between recovery time and overhead. Essential for production fault-tolerant applications.",
+    category: "Apache Flink Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-25",
+    question: "What is event time vs processing time in Flink?",
+    answer: "Event time is when event actually occurred (from event data). Processing time is when Flink processes event. Event time provides accurate results regardless of processing delays. Processing time simpler but less accurate. Use event time for correct temporal analysis. Requires watermarks for handling out-of-order events. Configure time characteristic in application.",
+    category: "Apache Flink Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-26",
+    question: "What are watermarks in Flink?",
+    answer: "Watermarks track progress of event time in stream. Signal that no events with timestamps earlier than watermark will arrive. Enable window closing and output generation. Handle out-of-order events. Define watermark strategy (bounded delay, idle detection). Late events handled by allowed lateness configuration. Critical for event-time processing correctness.",
+    category: "Apache Flink Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-27",
+    question: "How do you implement windowing in Flink?",
+    answer: "Define windows using window assigners: TumblingEventTimeWindows, SlidingEventTimeWindows, SessionWindows, or custom. Apply aggregations or process functions to windows. Example: `stream.keyBy(0).window(TumblingEventTimeWindows.of(Time.minutes(5))).sum(1)`. Configure triggers for window firing. Use evictor for element removal. Sessions group events separated by inactivity gap.",
+    category: "Apache Flink Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-28",
+    question: "What are Flink connectors?",
+    answer: "Connectors integrate Flink with external systems. Sources read data (Kinesis, Kafka, S3, databases). Sinks write results (Kinesis, S3, Elasticsearch, JDBC). Kinesis Data Analytics provides managed connectors for AWS services. Configure connector properties (parallelism, checkpointing). Community connectors available for other systems. Custom connectors possible via Flink API.",
+    category: "Apache Flink Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-29",
+    question: "How do you handle backpressure in Flink?",
+    answer: "Backpressure occurs when downstream operators slower than upstream. Flink automatically applies flow control slowing source. Monitor via metrics dashboard. Solutions: optimize slow operators, increase parallelism, add more resources, optimize serialization, tune checkpoint interval. Consider adding buffering or sampling. Persistent backpressure indicates performance bottleneck requiring optimization.",
+    category: "Apache Flink Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-30",
+    question: "What is savepoint in Flink?",
+    answer: "Savepoints are manual snapshots of application state triggered by user. Used for planned maintenance, version upgrades, or application changes. Unlike automatic checkpoints, savepoints retained until explicitly deleted. Resume application from savepoint maintaining state. Enable versioned deployments. Create before upgrades. Store in S3 with application configuration.",
+    category: "Apache Flink Applications",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-31",
+    question: "How do you monitor Kinesis Data Analytics applications?",
+    answer: "Use CloudWatch metrics (input/output records, millisBehindLatest, errors, KPU utilization), CloudWatch Logs for application logs, CloudWatch Alarms for alerts, application dashboard in console showing metrics and health. Flink applications provide additional metrics (checkpoints, backpressure, state size). Monitor lag to ensure real-time processing. Set alerts for failures or performance degradation.",
+    category: "Monitoring & Operations",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-32",
+    question: "What is millisBehindLatest metric?",
+    answer: "Indicates how far behind real-time the application is processing data. Measured in milliseconds. Zero means processing current data. Increasing value indicates falling behind (under-provisioned). Critical metric for real-time requirements. Set CloudWatch alarms for thresholds. Investigate causes: slow processing, insufficient resources, or data spikes. Optimize or scale application accordingly.",
+    category: "Monitoring & Operations",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-33",
+    question: "How do you troubleshoot application failures?",
+    answer: "Check CloudWatch Logs for error messages and stack traces. Review application error metrics. Verify input data format matches schema. Check IAM permissions for source/destination access. Validate SQL syntax or Flink code. Test with sample data. Check resource limits (KPUs, memory). Review checkpoint failures. Examine dead letter queues if configured. Validate network connectivity.",
+    category: "Monitoring & Operations",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-34",
+    question: "How do you handle errors in Kinesis Data Analytics?",
+    answer: "Configure error handling per output: continue processing, fail application, or log errors. Use error streams to capture failed records. Implement try-catch in Flink applications. Dead letter queues for poison messages. Monitor error metrics. Log errors to CloudWatch. Implement retry logic with exponential backoff. Consider circuit breakers for downstream failures.",
+    category: "Monitoring & Operations",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-35",
+    question: "What are best practices for application development?",
+    answer: "Start simple then add complexity, test with sample data before production, implement error handling, monitor key metrics, use appropriate windows for use case, partition data by key for parallelism, optimize state size, checkpoint frequently but not excessively, use reference data for enrichment, version application code, implement graceful degradation, and document data schemas.",
+    category: "Monitoring & Operations",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-36",
+    question: "How do you test Kinesis Data Analytics applications?",
+    answer: "Use sample data in development console, create test input streams with synthetic data, validate output against expected results, test edge cases (null values, missing fields, malformed data), load test with representative volumes, test failure scenarios, verify checkpointing works, validate late data handling, test with reference data, and use CI/CD pipelines for regression testing.",
+    category: "Monitoring & Operations",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-37",
+    question: "How do you optimize Kinesis Data Analytics performance?",
+    answer: "Increase parallelism for throughput, optimize SQL queries (avoid unnecessary joins, use efficient windows), tune checkpoint intervals, use appropriate state backends, optimize serialization, partition data effectively, minimize state size, use reference data instead of stream joins, configure appropriate KPUs, avoid anti-patterns (unbounded windows, cross joins), and monitor for bottlenecks.",
+    category: "Monitoring & Operations",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-38",
+    question: "What is application versioning?",
+    answer: "Maintain different versions of application code for rollbacks and testing. Update applications using update APIs or console. Create savepoint before updates to preserve state. Blue-green deployments for zero-downtime upgrades. Tag versions in code repository. Document changes between versions. Test new versions thoroughly before production deployment. Rollback to previous version if issues occur.",
+    category: "Monitoring & Operations",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-39",
+    question: "How do you implement disaster recovery?",
+    answer: "Use checkpoints and savepoints stored in S3 for recovery. Deploy applications across multiple AZs automatically. Backup application configuration and code. Document recovery procedures. Test recovery scenarios. Configure cross-region replication for critical applications. Monitor application health continuously. Implement automated failover where possible. Maintain runbooks for incident response.",
+    category: "Monitoring & Operations",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-40",
+    question: "What are Kinesis Data Analytics pricing considerations?",
+    answer: "Charged per KPU-hour for running applications. One KPU = 1 vCPU, 4GB memory, 50GB storage. SQL applications charge for data processed. Flink charges based on KPUs and runtime. Additional charges for input/output (Kinesis, S3). Optimize by: right-sizing KPUs, stopping unused applications, efficient code, minimizing state, and using auto-scaling. Monitor costs via Cost Explorer.",
+    category: "Monitoring & Operations",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-41",
+    question: "How does Kinesis Data Analytics integrate with Lambda?",
+    answer: "Lambda can preprocess input data before analytics (data transformation, filtering, enrichment). Output results to Lambda for custom processing or triggering actions. Use Lambda for reference data updates. Invoke Lambda UDFs from SQL applications. Lambda useful for integration with non-Kinesis services. Configure IAM roles for permissions. Monitor Lambda execution metrics.",
+    category: "Advanced Topics & Integration",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-42",
+    question: "How do you implement machine learning in streaming?",
+    answer: "Use built-in RANDOM_CUT_FOREST for anomaly detection in SQL. Integrate SageMaker endpoints via Lambda for real-time predictions. Implement ML models in Flink applications using libraries. Preprocess features in streaming application. Score events in real-time. Retrain models periodically with batch processing. Use streaming for feature extraction; batch for model training.",
+    category: "Advanced Topics & Integration",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-43",
+    question: "What is exactly-once processing?",
+    answer: "Guarantees each record processed exactly once despite failures. Flink provides exactly-once via checkpoints and transactional sinks. Requires idempotent operations or transactional systems. Critical for financial transactions, billing, or counting. Trade-off with performance (checkpointing overhead). Configure checkpoint interval and mode. Verify sink supports transactions. More complex than at-least-once processing.",
+    category: "Advanced Topics & Integration",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-44",
+    question: "How do you join streaming data with batch data?",
+    answer: "Use reference data loaded from S3 for batch lookups in streaming context. Flink supports broadcast joins for distributing batch data to all operators. Refresh reference data periodically. Consider caching strategies. Use Flink's asynchronous I/O for external database lookups. Balance freshness requirements vs performance. Cache frequently accessed batch data in application state.",
+    category: "Advanced Topics & Integration",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-45",
+    question: "What are session windows?",
+    answer: "Session windows group events into sessions separated by inactivity gaps. Window closes after gap duration with no events. Dynamic length unlike fixed tumbling windows. Use for user sessions, clickstream analysis, or bursty event patterns. Define session gap timeout. Each key has independent sessions. More complex state management than fixed windows.",
+    category: "Advanced Topics & Integration",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-46",
+    question: "How do you implement pattern detection?",
+    answer: "SQL applications use MATCH_RECOGNIZE for pattern matching (sequences of events). Flink CEP (Complex Event Processing) library for advanced patterns. Define patterns using regular expressions over event streams. Detect sequences, missing events, or temporal patterns. Use for fraud detection, monitoring, or business process tracking. Configure time constraints and pattern conditions.",
+    category: "Advanced Topics & Integration",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-47",
+    question: "What is schema evolution in Kinesis Data Analytics?",
+    answer: "Handle changes to input data structure over time. Flink more flexible than SQL for schema changes. Use Avro or JSON for self-describing formats. Implement backwards compatibility. Version schemas. Update application code for new fields. Test schema changes before production. Consider using schema registry. Plan for additive changes versus breaking changes.",
+    category: "Advanced Topics & Integration",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-48",
+    question: "How do you process multi-tenant data?",
+    answer: "Partition by tenant ID for isolation. Use separate in-application streams per tenant. Implement tenant-specific logic with conditional processing. Monitor per-tenant metrics. Consider separate applications for critical tenants. Use Flink's keyed state for tenant-specific aggregations. Balance between shared resources and isolation. Implement fair resource allocation.",
+    category: "Advanced Topics & Integration",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-49",
+    question: "What are anti-patterns in Kinesis Data Analytics?",
+    answer: "Avoid unbounded windows without time constraints, cross joins between large streams, storing excessive state, insufficient parallelism, ignoring backpressure, not handling late data, missing error handling, over-checkpointing, not using reference data for static lookups, and complex logic in SQL (use Flink instead). These cause performance issues or failures.",
+    category: "Advanced Topics & Integration",
+    skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "kinesis-analytics-50",
+    question: "How do you migrate from SQL to Flink applications?",
+    answer: "Assess SQL limitations versus requirements. Rewrite SQL logic using Flink APIs. Test thoroughly with production-like data. Use savepoints to preserve state if possible. Plan migration window for testing. Implement equivalent transformations in Flink code. Validate output consistency. Monitor performance after migration. Consider phased migration for complex applications. Document differences in behavior.",
+    category: "Advanced Topics & Integration",
+    skill: "Amazon Kinesis Data Analytics"
   }
 ];
 

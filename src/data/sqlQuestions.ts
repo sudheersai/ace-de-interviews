@@ -2693,6 +2693,356 @@ export const sqlQuestions: Question[] = [
     answer: "Use S3 for data storage, enable EMR-managed scaling, implement security configurations, use Glue Data Catalog for metadata, leverage spot instances for task nodes, separate transient and persistent workloads, enable CloudWatch detailed monitoring, implement tagging strategy, use appropriate file formats (Parquet), regular patching with latest EMR releases, and implement proper logging to S3.",
     category: "Integration & Advanced",
     skill: "AWS EMR"
+  },
+  {
+    id: "athena-1",
+    question: "What is AWS Athena?",
+    answer: "AWS Athena is a serverless, interactive query service for analyzing data in Amazon S3 using standard SQL. No infrastructure to manage, pay per query based on data scanned. Uses Presto engine under the hood. Supports various formats (CSV, JSON, Parquet, ORC, Avro). Integrates with Glue Data Catalog for metadata management and BI tools via JDBC/ODBC.",
+    category: "Basic Concepts",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-2",
+    question: "What is the architecture of Athena?",
+    answer: "Athena is serverless with separated compute and storage. Data resides in S3, metadata in Glue Data Catalog. Query execution uses distributed Presto workers managed by AWS. Results stored in S3 output location. No servers to provision or manage. Automatically scales based on query complexity. Uses VPC endpoints for secure access without internet gateway.",
+    category: "Basic Concepts",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-3",
+    question: "How does Athena pricing work?",
+    answer: "Athena charges $5 per TB of data scanned. No charges for DDL statements or failed queries. Compressed and columnar formats reduce costs by scanning less data. Partitioning significantly reduces scanned data. Results stored in S3 incur standard S3 storage costs. No minimum fees or upfront costs. Cost optimization through efficient data organization crucial.",
+    category: "Basic Concepts",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-4",
+    question: "What file formats does Athena support?",
+    answer: "Athena supports CSV, TSV, JSON, Parquet, ORC, Avro, Apache web logs, Cloudtrail logs, and custom formats with SerDe. Columnar formats (Parquet, ORC) recommended for cost and performance. Supports compressed files (GZIP, Snappy, LZO, Bzip2). Can query mixed formats in same table using partitions. Format choice impacts query performance and cost significantly.",
+    category: "Basic Concepts",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-5",
+    question: "What is the Glue Data Catalog's role in Athena?",
+    answer: "Glue Data Catalog serves as Athena's central metadata repository storing table schemas, partition information, and data locations. Athena queries reference catalog tables. Glue Crawlers auto-discover schemas and create catalog entries. Catalog enables metadata sharing across Athena, EMR, Redshift Spectrum, and Glue. Persistent metadata independent of query engine.",
+    category: "Basic Concepts",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-6",
+    question: "How do you create tables in Athena?",
+    answer: "Use CREATE EXTERNAL TABLE DDL statements specifying schema, location, and format. Alternatively, use Glue Crawlers to automatically create tables. Can also use AWS console table creation wizard. Tables are external, pointing to S3 data without moving it. Support for partitioned and non-partitioned tables. Define SerDe for data parsing.",
+    category: "Basic Concepts",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-7",
+    question: "What are Athena workgroups?",
+    answer: "Workgroups separate users, teams, or applications for access control, cost tracking, and query management. Each workgroup has separate query history, output location, encryption settings, and per-query limits. Enable tagging for cost allocation. Configure data usage controls. Enforce settings at workgroup level. Primary workgroup exists by default.",
+    category: "Basic Concepts",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-8",
+    question: "What is the difference between Athena and Redshift?",
+    answer: "Athena is serverless for ad-hoc querying with pay-per-query pricing, best for infrequent queries. Redshift is a provisioned data warehouse for frequent, complex queries with consistent performance. Athena queries S3 directly; Redshift loads data internally. Athena for sporadic analysis; Redshift for regular reporting and dashboards. Different cost models and use cases.",
+    category: "Basic Concepts",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-9",
+    question: "What query engine does Athena use?",
+    answer: "Athena uses Presto, a distributed SQL query engine originally developed by Facebook. Athena v2 uses newer Presto versions with performance improvements. Athena v3 uses Trino (Presto fork) with enhanced performance and additional features. Provides ANSI SQL support, complex query capabilities, and federation features. Engine version impacts available functions and performance.",
+    category: "Basic Concepts",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-10",
+    question: "What are Athena's limitations?",
+    answer: "30-minute query timeout, 100 concurrent queries per account (requestable increase), DDL query limit of 20 concurrent queries, 1GB string size limit, limited transaction support (no updates/deletes on data), partition limit of 20,000 per table, query string length limit of 256KB. Not suitable for OLTP workloads or real-time updates.",
+    category: "Basic Concepts",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-11",
+    question: "How do you optimize Athena query performance?",
+    answer: "Use columnar formats (Parquet/ORC), implement partitioning, compress data, use appropriate data types, select only needed columns, filter early with WHERE clauses, avoid SELECT *, use CTAS for intermediate results, leverage statistics with ANALYZE TABLE, and optimize JOIN order (large table last). These reduce data scanned and processing time.",
+    category: "Query Optimization",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-12",
+    question: "What is partitioning in Athena?",
+    answer: "Partitioning divides data into separate folders based on column values (typically date/region). Reduces data scanned by querying specific partitions. Uses Hive-style partitioning (key=value/). Must include partition columns in WHERE clause for effectiveness. Add partitions via ALTER TABLE or MSCK REPAIR TABLE. Critical for cost and performance optimization on large datasets.",
+    category: "Query Optimization",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-13",
+    question: "How do you add partitions in Athena?",
+    answer: "Use ALTER TABLE ADD PARTITION for manual addition, MSCK REPAIR TABLE for automatic discovery of Hive-style partitions, or Glue Crawlers to detect and add partitions. Partition projection for automatic partition creation. Manual method for control; MSCK for convenience. Ensure partition locations match expected S3 structure.",
+    category: "Query Optimization",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-14",
+    question: "What is partition projection in Athena?",
+    answer: "Partition projection automatically generates partition metadata without storing it in Glue Catalog. Define projection rules using patterns (enum, integer, date). Eliminates partition loading overhead, supports infinite partitions, and improves query planning speed. Particularly useful for date-based partitions. Configure via table properties. Reduces catalog storage and crawler costs.",
+    category: "Query Optimization",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-15",
+    question: "How do you convert data formats in Athena?",
+    answer: "Use CREATE TABLE AS SELECT (CTAS) to query existing data and write in new format. Specify format and compression in CTAS properties. Example: convert CSV to Parquet with compression. CTAS creates optimized tables. Use for consolidating files, changing formats, or applying transformations. Output written to specified S3 location.",
+    category: "Query Optimization",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-16",
+    question: "What is columnar format and why use it?",
+    answer: "Columnar formats (Parquet, ORC) store data by column rather than row. Benefits include better compression (similar data types together), efficient column pruning (read only needed columns), predicate pushdown, and encoding optimization. Reduces data scanned by 90%+ for analytical queries. Essential for cost optimization. Ideal for queries selecting few columns from wide tables.",
+    category: "Query Optimization",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-17",
+    question: "How do you use compression in Athena?",
+    answer: "Specify compression codec in CTAS or during data creation. Supported codecs: GZIP, Snappy, LZO, Bzip2, Zstandard. Snappy recommended for Parquet (good compression, splittable). GZIP for archival. Compression reduces storage costs and data scanned. Balance compression ratio vs query performance. Columnar formats handle compression automatically during CTAS.",
+    category: "Query Optimization",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-18",
+    question: "What is predicate pushdown in Athena?",
+    answer: "Predicate pushdown applies WHERE filters at storage level before reading data. Columnar formats (Parquet, ORC) support this natively. Reduces data read and transferred. Works with partition pruning. Filters are evaluated against file/row group metadata. Significantly improves performance. Include filters on partition columns and indexed columns for maximum benefit.",
+    category: "Query Optimization",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-19",
+    question: "How do you monitor Athena query performance?",
+    answer: "Check query execution details in console showing data scanned, execution time, and query stages. Use CloudWatch metrics for data scanned, query execution time, and errors. Query history provides costs and performance trends. Explain plan shows query execution strategy. Enable query result reuse. Monitor with custom dashboards for usage patterns.",
+    category: "Query Optimization",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-20",
+    question: "What are Athena CTAS queries?",
+    answer: "CREATE TABLE AS SELECT creates new table from query results. Benefits include format conversion, data optimization, combining multiple files, applying transformations, and creating bucketed tables. Specify storage format, compression, partitioning, and bucketing. More efficient than INSERT INTO for new tables. Output location configurable. Useful for materialized views pattern.",
+    category: "Query Optimization",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-21",
+    question: "What is Athena Federated Query?",
+    answer: "Federated queries enable querying data across relational databases (RDS, Aurora, Redshift), NoSQL (DynamoDB), and custom sources using Lambda-based data source connectors. Join S3 data with operational databases. Pre-built connectors available for common sources. Custom connectors possible via SDK. Data stays at source; only results transferred. Useful for unified analytics.",
+    category: "Advanced Features",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-22",
+    question: "How do you create a federated query connector?",
+    answer: "Use AWS Serverless Application Repository to deploy pre-built connectors or develop custom ones using Athena Query Federation SDK. Implement Lambda functions handling metadata and data requests. Register connector in Athena. Query using three-part naming (catalog.database.table). Lambda executes queries at source and returns results to Athena for processing.",
+    category: "Advanced Features",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-23",
+    question: "What are Athena prepared statements?",
+    answer: "Prepared statements are parameterized queries stored for reuse with different parameter values. Use PREPARE to create, EXECUTE with parameters to run. Benefits include query plan reuse, SQL injection prevention, and simplified query management. Parameters specified with question marks. Useful for repeated queries with variable filters. Session-scoped, not persistent across connections.",
+    category: "Advanced Features",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-24",
+    question: "What is Athena query result reuse?",
+    answer: "Query result reuse caches results for identical queries within 60 minutes. Subsequent identical queries retrieve cached results instantly without rescanning data. No additional charges for cached results. Enable at workgroup level. Useful for dashboards and repeated queries. Cache invalidated if underlying data changes. Significantly reduces costs and improves response time.",
+    category: "Advanced Features",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-25",
+    question: "How do you implement views in Athena?",
+    answer: "Create views using CREATE VIEW statement with SELECT query. Views are virtual tables storing query logic, not data. Reference views like tables in queries. Useful for abstracting complexity, security (restricting column access), and query reuse. Views don't improve performance (no materialization). Consider CTAS for materialized view pattern.",
+    category: "Advanced Features",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-26",
+    question: "What is bucketing in Athena?",
+    answer: "Bucketing divides data into fixed number of files based on hash of specified columns. Use with CTAS specifying bucketed_by and bucket_count. Improves join performance by co-locating matching records. Reduces shuffle in joins and aggregations. Combined with sorting for additional optimization. Useful for large tables with frequent joins on specific columns.",
+    category: "Advanced Features",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-27",
+    question: "How do you handle schema evolution in Athena?",
+    answer: "Add new columns with ALTER TABLE ADD COLUMNS (appears at end). For major changes, create new table version. Parquet/ORC handle missing columns gracefully with nulls. Use schema-on-read flexibility. For complex evolution, use Glue crawlers to update schema. Consider data lake frameworks like Hudi/Iceberg for advanced schema evolution with version management.",
+    category: "Advanced Features",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-28",
+    question: "What are Athena user-defined functions (UDFs)?",
+    answer: "UDFs extend Athena with custom functions written in Java. Deployed as Lambda functions using Athena Query Federation SDK. Invoke in SQL queries like built-in functions. Use for complex transformations, external API calls, or custom logic. Performance consideration as Lambda invoked per row/batch. Pre-built UDFs available; custom development supported.",
+    category: "Advanced Features",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-29",
+    question: "How do you secure Athena queries?",
+    answer: "Use IAM policies for Athena and S3 access control, workgroup settings for isolation, encrypt data at rest (S3-SSE, KMS) and in transit (TLS), Lake Formation for fine-grained access, VPC endpoints for private connectivity, query result encryption, workgroup-enforced encryption, CloudTrail for auditing, and column-level security via views. Multi-layered security approach recommended.",
+    category: "Advanced Features",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-30",
+    question: "What is Athena for Apache Spark?",
+    answer: "Athena for Spark provides serverless Spark execution within Athena. Submit Spark applications via notebook interface or API. Pay per DPU-hour. Supports Python and Scala. No cluster management needed. Use for complex transformations, ML workflows, and iterative processing. Separate from Athena SQL engine. Integrates with same Data Catalog and security model.",
+    category: "Advanced Features",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-31",
+    question: "How do you delete data in Athena?",
+    answer: "Athena doesn't support DELETE statements on external tables. Delete data by removing S3 objects directly and running MSCK REPAIR TABLE to sync metadata. Alternatively, use CTAS to create new table excluding unwanted records. For transactional deletes, use Iceberg or Hudi tables with DELETE support. Drop partitions with ALTER TABLE DROP PARTITION.",
+    category: "Data Management",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-32",
+    question: "How do you update data in Athena?",
+    answer: "Athena doesn't support UPDATE on traditional external tables. Use CTAS to create table with updated values, overwrite original data in S3, then drop old table and rename new one. For update capability, use Iceberg or Hudi tables supporting ACID transactions. Consider data lake patterns where immutability is preferred with versioning.",
+    category: "Data Management",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-33",
+    question: "What is MSCK REPAIR TABLE?",
+    answer: "MSCK (MetaStore Check) REPAIR TABLE scans S3 location and automatically adds Hive-style partitions to table metadata. Discovers partitions without manual ALTER TABLE statements. Useful after bulk data loads. Can be slow for many partitions. Alternative: use partition projection or Glue Crawlers. Only works with standard Hive partitioning format.",
+    category: "Data Management",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-34",
+    question: "How do you handle large result sets in Athena?",
+    answer: "Athena automatically splits large results into multiple files in S3. Increase pagination limit for JDBC/ODBC. Use CTAS to create table from large query instead of retrieving results. Limit rows with LIMIT clause for testing. Consider aggregating data before retrieval. Results expire after configurable period. Download from S3 for very large datasets.",
+    category: "Data Management",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-35",
+    question: "What are Athena data types?",
+    answer: "Athena supports primitive types (BOOLEAN, TINYINT, SMALLINT, INT, BIGINT, DOUBLE, FLOAT, DECIMAL, VARCHAR, CHAR, STRING, BINARY, DATE, TIMESTAMP) and complex types (ARRAY, MAP, STRUCT). Choose appropriate types for storage efficiency. Date/timestamp for temporal data, DECIMAL for precision, STRING for variable length. Complex types for nested JSON/Parquet structures.",
+    category: "Data Management",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-36",
+    question: "How do you query JSON data in Athena?",
+    answer: "Create table with JSON SerDe (org.openx.data.jsonserde.JsonSerDe) or for nested JSON, use OpenX SerDe. Define schema matching JSON structure. Use dot notation or array subscripts for nested elements. For deeply nested data, consider flattening with CTAS. Can also use complex types (STRUCT, ARRAY, MAP) in schema definition.",
+    category: "Data Management",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-37",
+    question: "How do you handle nested and array data?",
+    answer: "Define schema using complex types (ARRAY, MAP, STRUCT). Access nested fields with dot notation. Unnest arrays using UNNEST clause to create rows from array elements. Use CROSS JOIN UNNEST for multiple arrays. Access array elements by index. Combine with LATERAL for correlated unnesting. Parquet naturally handles nested structures efficiently.",
+    category: "Data Management",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-38",
+    question: "What is the difference between STRING and VARCHAR in Athena?",
+    answer: "STRING is unlimited length, VARCHAR has specified maximum length (VARCHAR(n)). STRING more flexible but may use more storage. VARCHAR enforces length constraints. For Parquet/ORC, both stored efficiently. Use VARCHAR when length limits needed for validation. STRING more common in big data scenarios. Performance difference minimal in Athena.",
+    category: "Data Management",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-39",
+    question: "How do you implement incremental data loads in Athena?",
+    answer: "Use date-based partitioning to add only new data partitions. Load new data to new partition folders. Query specific partitions for recent data. Use partition projection for automated partition handling. Combine with Glue workflows for orchestration. Consider watermark columns for tracking last processed timestamp. Efficient pattern for daily/hourly data ingestion.",
+    category: "Data Management",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-40",
+    question: "How do you merge small files in Athena?",
+    answer: "Use CTAS with bucketing or without to consolidate files into optimal sizes. Group multiple small files during read, process, and write fewer larger files. Schedule regular compaction jobs. Small files increase query planning overhead and reduce parallelism. Target 128MB-1GB file sizes. Use Glue jobs or EMR for large-scale compaction operations.",
+    category: "Data Management",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-41",
+    question: "How does Athena integrate with QuickSight?",
+    answer: "QuickSight connects to Athena as native data source via ODBC/JDBC. Create datasets from Athena tables or direct SQL queries. QuickSight can import data or use direct query mode. Supports SPICE (in-memory) for faster dashboards. Parameter mapping for interactive filters. Shared Glue Data Catalog enables seamless metadata access. Automatic refresh schedules available.",
+    category: "Integration & Best Practices",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-42",
+    question: "How do you use Athena with AWS Glue?",
+    answer: "Athena uses Glue Data Catalog for metadata. Glue Crawlers create/update Athena tables. Glue ETL jobs can prepare data for Athena queries. Glue workflows orchestrate crawlers and jobs. Share metadata across both services. Glue Triggers automate updates. DataBrew can profile Athena datasets. Integrated data preparation and query pipeline.",
+    category: "Integration & Best Practices",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-43",
+    question: "What are Athena best practices?",
+    answer: "Use columnar formats (Parquet/ORC), partition data appropriately, compress files, select only needed columns, optimize file sizes (avoid small files), use partition projection, enable query result reuse, leverage statistics, implement proper data types, use CTAS for transformations, organize S3 structure logically, and monitor costs via CloudWatch. Regular optimization reviews essential.",
+    category: "Integration & Best Practices",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-44",
+    question: "How do you troubleshoot Athena query failures?",
+    answer: "Check error message in query history for specific issue (syntax, permissions, timeout). Verify IAM permissions for S3 and Glue. Confirm data format matches SerDe. Check partition definitions. Validate S3 paths exist. Review data type mismatches. Check query timeout (30 min limit). Examine CloudTrail logs. Test with smaller data subset. Verify workgroup settings.",
+    category: "Integration & Best Practices",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-45",
+    question: "How do you implement access control in Athena?",
+    answer: "Use IAM policies for Athena API and S3 data access. Workgroup-level controls for query separation. Lake Formation for fine-grained column/row-level security. S3 bucket policies for data access. Encrypt results with KMS. Use resource tags for policy conditions. VPC endpoints for network isolation. CloudTrail for audit logging. Views for column-level restrictions.",
+    category: "Integration & Best Practices",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-46",
+    question: "What is Athena ACID transactions support?",
+    answer: "Traditional Athena tables don't support ACID transactions. Use Apache Iceberg or Hudi tables for ACID support with INSERT, UPDATE, DELETE, MERGE operations. These formats manage transactional metadata. Enable time travel and snapshot isolation. Configure via table properties. Required for use cases needing data modifications and consistency guarantees.",
+    category: "Integration & Best Practices",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-47",
+    question: "How do you version data in Athena?",
+    answer: "Implement versioning at S3 level with S3 versioning feature. Organize data in timestamped folders (version=v1/, version=v2/). Use Iceberg/Hudi for built-in versioning with time travel. Create separate tables for versions. Use partitioning with version dimension. Maintain metadata tracking versions. Document version schema changes in Glue Data Catalog descriptions.",
+    category: "Integration & Best Practices",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-48",
+    question: "How do you query CloudTrail logs with Athena?",
+    answer: "Create table with CloudTrail SerDe pointing to CloudTrail S3 bucket. Use partitioning by account, region, and date. AWS provides CloudFormation template for automatic setup. Query for security analysis, compliance, and audit. Filter by event names, users, resources. Combine with other security logs. Pre-built queries available for common scenarios.",
+    category: "Integration & Best Practices",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-49",
+    question: "What is the difference between Athena engine v2 and v3?",
+    answer: "V3 uses Trino (vs Presto in v2) with improved performance, more SQL functions, better error messages, enhanced schema evolution support, and faster query planning. V3 recommended for new workloads. V2 still supported for compatibility. Migration straightforward for most queries. Some syntax differences may require testing. Performance improvements up to 3x for complex queries.",
+    category: "Integration & Best Practices",
+    skill: "AWS Athena"
+  },
+  {
+    id: "athena-50",
+    question: "How do you implement cost controls in Athena?",
+    answer: "Set per-query data scan limits at workgroup level, enable CloudWatch alarms for spend thresholds, use cost allocation tags on workgroups, implement data scanned budgets, enforce columnar formats via policies, require partition filters through query validation, optimize with compression and partitioning, track usage per team via workgroups, and review query patterns regularly to identify optimization opportunities.",
+    category: "Integration & Best Practices",
+    skill: "AWS Athena"
   }
 ];
 

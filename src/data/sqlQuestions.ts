@@ -3769,3 +3769,360 @@ export const getRelatedQuestions = (currentId: string, excludeIds: string[], cou
   
   return sameSkillQuestions;
 };
+
+// AWS Lambda Questions
+const lambdaQuestions: Question[] = [
+  {
+    id: "lambda-1",
+    question: "What is AWS Lambda?",
+    answer: "AWS Lambda is a serverless compute service that runs your code in response to events without requiring you to provision or manage servers. You pay only for the compute time consumed, and Lambda automatically scales your applications by running code in response to triggers from AWS services or HTTP requests.",
+    category: "Basic Concepts",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-2",
+    question: "What are the main benefits of using AWS Lambda?",
+    answer: "Lambda offers several key benefits: no server management, automatic scaling, pay-per-use pricing (charged per millisecond), built-in high availability, and easy integration with other AWS services. It also reduces operational overhead and allows developers to focus on code rather than infrastructure.",
+    category: "Basic Concepts",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-3",
+    question: "What is the maximum execution time for a Lambda function?",
+    answer: "The maximum execution timeout for a Lambda function is 15 minutes (900 seconds). If your function requires longer processing time, you'll need to consider alternative solutions like AWS Step Functions, ECS, or EC2.",
+    category: "Basic Concepts",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-4",
+    question: "What triggers can invoke a Lambda function?",
+    answer: "Lambda functions can be triggered by various AWS services including S3 events, DynamoDB streams, API Gateway requests, CloudWatch Events, SNS notifications, SQS messages, Kinesis streams, EventBridge events, Application Load Balancers, and direct SDK invocations.",
+    category: "Basic Concepts",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-5",
+    question: "What programming languages does Lambda support?",
+    answer: "Lambda natively supports Node.js, Python, Java, Go, Ruby, .NET (C#/PowerShell), and custom runtimes through the Runtime API. You can also use container images to include any runtime or language of your choice.",
+    category: "Basic Concepts",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-6",
+    question: "What is a Lambda execution environment?",
+    answer: "The execution environment is a secure, isolated runtime where Lambda executes your function code. It includes the runtime, operating system, network settings, and necessary resources. Lambda reuses execution environments across invocations for improved performance through warm starts.",
+    category: "Architecture & Configuration",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-7",
+    question: "What is cold start in Lambda?",
+    answer: "A cold start occurs when Lambda initializes a new execution environment to handle a request. This happens when a function is invoked for the first time, after being idle, or when scaling up. Cold starts add latency (typically 100ms-5s depending on runtime and function size).",
+    category: "Architecture & Configuration",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-8",
+    question: "How can you reduce cold starts?",
+    answer: "You can reduce cold starts by: keeping deployment packages small, using provisioned concurrency, minimizing VPC usage, choosing faster runtimes (Python, Node.js), lazy-loading dependencies, using Lambda SnapStart (for Java), and implementing connection pooling.",
+    category: "Architecture & Configuration",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-9",
+    question: "What is Lambda's memory and CPU allocation model?",
+    answer: "Lambda memory can be configured from 128 MB to 10,240 MB (10 GB) in 1 MB increments. CPU power scales proportionally with memory—at 1,769 MB you get one full vCPU, and at 10,240 MB you get six vCPUs. This affects both performance and cost.",
+    category: "Architecture & Configuration",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-10",
+    question: "What is Lambda's ephemeral storage?",
+    answer: "Lambda provides /tmp directory storage ranging from 512 MB to 10,240 MB (10 GB). This temporary storage is available during function execution and persists across invocations within the same execution environment, but is not guaranteed to be available between invocations.",
+    category: "Architecture & Configuration",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-11",
+    question: "What is Lambda Provisioned Concurrency?",
+    answer: "Provisioned Concurrency keeps a specified number of execution environments initialized and ready to respond immediately. This eliminates cold starts for time-sensitive applications. You're charged for the configured concurrency whether it's used or not, plus standard invocation charges.",
+    category: "Advanced Features",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-12",
+    question: "Explain Lambda Layers.",
+    answer: "Lambda Layers are a distribution mechanism for libraries, custom runtimes, or other dependencies. You can package shared code into layers and reference them from multiple functions, reducing deployment package sizes and promoting code reuse. Each function can use up to five layers.",
+    category: "Advanced Features",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-13",
+    question: "What are Lambda Destinations?",
+    answer: "Destinations allow you to route asynchronous invocation results (success or failure) to other AWS services like SQS, SNS, EventBridge, or another Lambda function without writing additional code. This simplifies error handling and enables event-driven workflows.",
+    category: "Advanced Features",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-14",
+    question: "What is the difference between synchronous and asynchronous invocation?",
+    answer: "Synchronous invocation waits for the function to complete and returns the response directly (used by API Gateway, ALB). Asynchronous invocation queues the event and returns immediately without waiting (used by S3, SNS). Lambda retries failed async invocations automatically.",
+    category: "Advanced Features",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-15",
+    question: "What is Lambda's concurrency model?",
+    answer: "Concurrency is the number of requests your function handles simultaneously. Lambda has account-level limits (default 1,000 concurrent executions per region) and supports reserved concurrency (guarantees capacity for specific functions) and provisioned concurrency (keeps environments warm).",
+    category: "Advanced Features",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-16",
+    question: "What is an execution role in Lambda?",
+    answer: "An execution role is an IAM role that grants the Lambda function permissions to access AWS services and resources. Lambda assumes this role when executing your function, and it must include necessary permissions like writing to CloudWatch Logs and accessing resources your function uses.",
+    category: "Security & Permissions",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-17",
+    question: "How does Lambda integrate with VPC?",
+    answer: "Lambda functions can connect to VPC resources by configuring VPC settings (subnets and security groups). The function uses Hyperplane ENIs for connectivity without consuming ENI quota. VPC integration historically caused cold start delays, but this has been largely mitigated.",
+    category: "Security & Permissions",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-18",
+    question: "What are environment variables in Lambda?",
+    answer: "Environment variables are key-value pairs available to your function code at runtime. They're useful for configuration management, storing non-sensitive settings, and modifying function behavior without code changes. They can be encrypted using AWS KMS for sensitive data.",
+    category: "Security & Permissions",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-19",
+    question: "How can you secure sensitive data in Lambda?",
+    answer: "Secure sensitive data by: using AWS Secrets Manager or Parameter Store, encrypting environment variables with KMS, implementing least-privilege IAM policies, enabling VPC endpoints, using AWS PrivateLink, and never hardcoding credentials in code.",
+    category: "Security & Permissions",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-20",
+    question: "What is Lambda function versioning?",
+    answer: "Versioning allows you to publish immutable versions of your Lambda function. Each version has a unique ARN and cannot be modified. Version $LATEST always points to the most recent unpublished code. Versions enable safe rollbacks and testing.",
+    category: "Security & Permissions",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-21",
+    question: "How do you monitor Lambda functions?",
+    answer: "Monitor Lambda using CloudWatch Metrics (invocations, errors, duration, throttles), CloudWatch Logs for function output, X-Ray for distributed tracing, CloudWatch Insights for log analysis, and Lambda Insights for enhanced metrics including memory usage and cold starts.",
+    category: "Monitoring & Debugging",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-22",
+    question: "What metrics does CloudWatch provide for Lambda?",
+    answer: "Key metrics include: Invocations (number of times invoked), Duration (execution time), Errors (failed invocations), Throttles (rejected due to concurrency limits), ConcurrentExecutions (functions running simultaneously), and DeadLetterErrors (failed event delivery to DLQ).",
+    category: "Monitoring & Debugging",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-23",
+    question: "What is AWS X-Ray and how does it work with Lambda?",
+    answer: "X-Ray provides distributed tracing to analyze and debug serverless applications. It tracks requests through your application, identifies performance bottlenecks, and visualizes service maps. Enable X-Ray tracing in Lambda configuration to automatically instrument your functions.",
+    category: "Monitoring & Debugging",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-24",
+    question: "How do you handle Lambda function errors?",
+    answer: "Handle errors through: try-catch blocks in code, configuring Dead Letter Queues (DLQ) for failed async invocations, using Destinations for result routing, implementing retry logic with exponential backoff, setting up CloudWatch Alarms, and using appropriate error codes for different failure types.",
+    category: "Monitoring & Debugging",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-25",
+    question: "What is a Dead Letter Queue (DLQ)?",
+    answer: "A DLQ is an SQS queue or SNS topic that receives events Lambda failed to process after exhausting retries (for async invocations or stream-based sources). DLQs help you investigate failures and implement custom error handling without losing events.",
+    category: "Monitoring & Debugging",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-26",
+    question: "How do you optimize Lambda function performance?",
+    answer: "Optimize by: right-sizing memory allocation, minimizing deployment package size, reusing execution contexts (initialize connections outside handler), enabling connection pooling, using Lambda Layers, implementing efficient code algorithms, and reducing external API calls.",
+    category: "Performance Optimization",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-27",
+    question: "What is connection pooling in Lambda?",
+    answer: "Connection pooling involves creating database or API connections outside the handler function so they're reused across invocations in the same execution environment. This significantly reduces latency by avoiding repeated connection establishment overhead.",
+    category: "Performance Optimization",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-28",
+    question: "How does Lambda handle concurrent executions?",
+    answer: "Lambda automatically scales by creating additional execution environments to handle concurrent requests, up to your account's concurrency limit. Each environment handles one invocation at a time. Reserved concurrency ensures specific functions have guaranteed capacity.",
+    category: "Performance Optimization",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-29",
+    question: "What is the impact of deployment package size?",
+    answer: "Larger packages increase cold start times because Lambda must download and extract your code. Keep packages under 50 MB (compressed) for optimal performance. Use Layers for dependencies, remove unnecessary files, and consider compiled languages for smaller runtimes.",
+    category: "Performance Optimization",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-30",
+    question: "How do you handle long-running processes in Lambda?",
+    answer: "For processes exceeding 15 minutes, use Step Functions to orchestrate multiple Lambda functions, break tasks into smaller chunks, use ECS/Fargate for long-running containers, implement checkpointing to resume work, or consider EC2 for truly long-running tasks.",
+    category: "Performance Optimization",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-31",
+    question: "How does Lambda integrate with API Gateway?",
+    answer: "API Gateway acts as a fully managed HTTP endpoint that triggers Lambda functions. It handles request routing, authentication, rate limiting, and response transformation. Lambda functions process requests synchronously and return responses that API Gateway forwards to clients.",
+    category: "Integration & Use Cases",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-32",
+    question: "Explain Lambda's integration with DynamoDB Streams.",
+    answer: "DynamoDB Streams capture table modifications in real-time. Lambda can poll these streams and automatically invoke functions with batches of records. This enables event-driven architectures for data replication, aggregation, notifications, or triggering workflows based on database changes.",
+    category: "Integration & Use Cases",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-33",
+    question: "How does Lambda work with S3 events?",
+    answer: "S3 can trigger Lambda functions when objects are created, deleted, or modified. Lambda receives event notifications with object metadata, allowing you to process files, generate thumbnails, transcode media, trigger workflows, or move data to other storage locations.",
+    category: "Integration & Use Cases",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-34",
+    question: "What is Lambda@Edge?",
+    answer: "Lambda@Edge runs Lambda functions at CloudFront edge locations globally, closer to users. It allows you to customize CDN content delivery by modifying requests/responses, implementing security headers, A/B testing, authentication, or URL rewrites with low latency.",
+    category: "Integration & Use Cases",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-35",
+    question: "How do you implement event-driven architectures with Lambda?",
+    answer: "Use Lambda with EventBridge for event routing, SNS for pub-sub messaging, SQS for queuing, Step Functions for orchestration, and DynamoDB/Kinesis Streams for data processing. Design loosely coupled services that react to events asynchronously for scalability.",
+    category: "Integration & Use Cases",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-36",
+    question: "How is Lambda pricing calculated?",
+    answer: "Lambda charges based on number of requests (first 1M requests/month free, then $0.20 per 1M) and compute duration (GB-seconds, with 400,000 GB-seconds free tier). Duration is rounded to nearest millisecond. Provisioned concurrency has additional charges.",
+    category: "Cost & Limits",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-37",
+    question: "What are Lambda's service limits?",
+    answer: "Key limits include: 15-minute timeout, 10 GB memory, 10 GB /tmp storage, 512 MB-10 GB deployment package (uncompressed), 1,000 concurrent executions (default, adjustable), 75 GB total code/layer storage, and 6 MB synchronous payload size.",
+    category: "Cost & Limits",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-38",
+    question: "What strategies reduce Lambda costs?",
+    answer: "Reduce costs by: right-sizing memory (optimal price/performance), reducing execution time, using ARM-based Graviton2 processors (20% cheaper), avoiding unnecessary invocations, implementing efficient code, using appropriate timeout values, and monitoring unused functions.",
+    category: "Cost & Limits",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-39",
+    question: "What is the Lambda free tier?",
+    answer: "AWS Free Tier includes 1 million free requests and 400,000 GB-seconds of compute time per month, permanently. This is sufficient for many small applications and experimentation. Free tier doesn't apply to provisioned concurrency.",
+    category: "Cost & Limits",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-40",
+    question: "How does Reserved Concurrency affect costs?",
+    answer: "Reserved concurrency itself doesn't incur charges, but it reduces available concurrency for other functions. You still pay standard request and duration charges. It's useful for ensuring critical functions have guaranteed capacity and preventing any single function from consuming all concurrency.",
+    category: "Cost & Limits",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-41",
+    question: "What are Lambda best practices for production?",
+    answer: "Use separate functions for different concerns, implement proper error handling, enable tracing with X-Ray, use environment variables for configuration, implement idempotency, set appropriate timeouts, use Layers for dependencies, apply least-privilege IAM policies, and monitor with CloudWatch.",
+    category: "Best Practices",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-42",
+    question: "How do you implement idempotency in Lambda?",
+    answer: "Implement idempotency by: generating unique identifiers for operations, storing processed event IDs in DynamoDB with conditional writes, using idempotency tokens, implementing duplicate detection logic, and ensuring operations can be safely retried without side effects.",
+    category: "Best Practices",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-43",
+    question: "What is the recommended Lambda deployment strategy?",
+    answer: "Use Infrastructure as Code (CloudFormation, SAM, Terraform), implement CI/CD pipelines, utilize Lambda aliases for traffic shifting, employ blue-green or canary deployments, version your functions, test thoroughly in staging environments, and automate rollbacks.",
+    category: "Best Practices",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-44",
+    question: "How do you handle database connections in Lambda?",
+    answer: "Initialize connections outside the handler, implement connection pooling, use RDS Proxy for managing database connections efficiently, set appropriate timeout values, handle connection failures gracefully, and consider reusing connections across invocations in warm containers.",
+    category: "Best Practices",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-45",
+    question: "What testing strategies should you use for Lambda?",
+    answer: "Implement unit tests for business logic, use AWS SAM CLI for local testing, create integration tests with actual AWS services, perform load testing to verify concurrency handling, test cold start scenarios, validate error handling, and implement automated testing in CI/CD pipelines.",
+    category: "Best Practices",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-46",
+    question: "How do you implement blue-green deployments with Lambda?",
+    answer: "Use Lambda aliases with weighted routing to shift traffic gradually between versions. Create a new version, update the alias to route a percentage of traffic to the new version, monitor for errors, and either continue shifting traffic or rollback by adjusting weights.",
+    category: "Advanced Scenarios",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-47",
+    question: "What is AWS SAM (Serverless Application Model)?",
+    answer: "SAM is an open-source framework for building serverless applications. It extends CloudFormation with simplified syntax for defining Lambda functions, APIs, databases, and event mappings. SAM CLI provides local testing and debugging capabilities before deployment.",
+    category: "Advanced Scenarios",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-48",
+    question: "How do you handle Lambda function state?",
+    answer: "Lambda functions are stateless by design. Store state externally using DynamoDB for key-value data, S3 for files, ElastiCache for caching, Parameter Store for configuration, or Step Functions for workflow state. Use /tmp for temporary state within executions.",
+    category: "Advanced Scenarios",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-49",
+    question: "What is Lambda SnapStart?",
+    answer: "SnapStart (available for Java) improves cold start performance by taking a snapshot of the initialized execution environment and caching it. When invoked, Lambda restores from the snapshot instead of initializing from scratch, reducing startup time by up to 10x.",
+    category: "Advanced Scenarios",
+    skill: "AWS Lambda"
+  },
+  {
+    id: "lambda-50",
+    question: "How do you migrate existing applications to Lambda?",
+    answer: "Break monoliths into microservices, containerize applications (Lambda supports containers up to 10 GB), use Application Load Balancers for gradual migration, implement API Gateway as a facade, refactor synchronous processes to event-driven patterns, and leverage AWS migration tools and services.",
+    category: "Advanced Scenarios",
+    skill: "AWS Lambda"
+  }
+];
+
+// Combine all questions
+sqlQuestions.push(...lambdaQuestions);

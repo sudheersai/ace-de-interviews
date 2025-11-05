@@ -3393,6 +3393,356 @@ export const sqlQuestions: Question[] = [
     answer: "Assess SQL limitations versus requirements. Rewrite SQL logic using Flink APIs. Test thoroughly with production-like data. Use savepoints to preserve state if possible. Plan migration window for testing. Implement equivalent transformations in Flink code. Validate output consistency. Monitor performance after migration. Consider phased migration for complex applications. Document differences in behavior.",
     category: "Advanced Topics & Integration",
     skill: "Amazon Kinesis Data Analytics"
+  },
+  {
+    id: "s3-1",
+    question: "What is Amazon S3?",
+    answer: "Amazon S3 (Simple Storage Service) is a highly scalable object storage service that allows you to store and retrieve any amount of data from anywhere on the web. It provides 99.999999999% durability and 99.99% availability, making it ideal for backup, archiving, content distribution, and big data analytics. S3 stores data as objects within buckets and offers multiple storage classes to optimize costs based on access patterns.",
+    category: "Basics & Core Concepts",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-2",
+    question: "What are the main components of S3?",
+    answer: "S3 consists of several key components: Buckets (containers for storing objects with globally unique names), Objects (actual files with metadata and unique keys), Keys (unique identifiers for objects within buckets), Regions (geographic locations where buckets are stored), and Access Control mechanisms (policies, ACLs, and IAM roles). Understanding these components is essential for designing effective S3 architectures.",
+    category: "Basics & Core Concepts",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-3",
+    question: "What is an S3 bucket and what are its naming rules?",
+    answer: "An S3 bucket is a container for storing objects in Amazon S3. Bucket names must be globally unique across all AWS accounts, 3-63 characters long, lowercase only, and can contain letters, numbers, hyphens, and periods. They must start with a letter or number and cannot be formatted as IP addresses. Once created, bucket names cannot be changed, and buckets belong to a specific AWS region.",
+    category: "Basics & Core Concepts",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-4",
+    question: "What is an S3 object and what does it contain?",
+    answer: "An S3 object is the fundamental entity stored in Amazon S3, consisting of three main parts: object data (the actual file content up to 5 TB), object metadata (system and user-defined key-value pairs containing information about the object), and a unique key (the identifier used to retrieve the object). Objects are immutable, meaning any modification creates a new version rather than updating the existing one.",
+    category: "Basics & Core Concepts",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-5",
+    question: "What is the maximum size of an S3 object and how do you handle large files?",
+    answer: "The maximum size for a single S3 object is 5 TB. For files larger than 100 MB, AWS recommends using multipart upload, which breaks the file into smaller parts (5 MB to 5 GB each) and uploads them in parallel. This approach improves throughput, enables quick recovery from network failures by re-uploading only failed parts, and allows you to begin uploads before knowing the final object size.",
+    category: "Basics & Core Concepts",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-6",
+    question: "What are the different S3 storage classes and when should you use each?",
+    answer: "S3 offers multiple storage classes: S3 Standard for frequently accessed data, S3 Intelligent-Tiering for unknown or changing access patterns, S3 Standard-IA and S3 One Zone-IA for infrequently accessed data, and S3 Glacier classes (Instant, Flexible Retrieval, and Deep Archive) for long-term archival. Each class is optimized for different access patterns, durability requirements, and cost considerations, allowing you to match storage needs with cost efficiency.",
+    category: "Storage Classes",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-7",
+    question: "What is S3 Intelligent-Tiering and how does it work?",
+    answer: "S3 Intelligent-Tiering is an automated storage class that optimizes costs by moving objects between different access tiers based on changing access patterns. It monitors access patterns and automatically moves objects not accessed for 30 days to an infrequent access tier, and objects not accessed for 90 days to archive tiers. There are no retrieval fees, making it ideal when access patterns are unknown or unpredictable.",
+    category: "Storage Classes",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-8",
+    question: "What is the difference between S3 Standard-IA and S3 One Zone-IA?",
+    answer: "S3 Standard-IA stores data redundantly across multiple availability zones, providing high durability and availability for infrequently accessed data that requires millisecond access. S3 One Zone-IA stores data in a single availability zone, offering 20% lower costs but with reduced resilience. Use One Zone-IA for data that can be easily recreated or for secondary backup copies where multi-AZ resilience isn't required.",
+    category: "Storage Classes",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-9",
+    question: "What are S3 Glacier storage classes and what are their retrieval times?",
+    answer: "S3 Glacier provides three archive storage classes: Glacier Instant Retrieval (milliseconds retrieval, for quarterly accessed data), Glacier Flexible Retrieval (minutes to hours retrieval, for data accessed 1-2 times per year), and Glacier Deep Archive (12-48 hours retrieval, lowest cost, for data accessed less than once per year). These classes offer significant cost savings for long-term archival storage while maintaining high durability.",
+    category: "Storage Classes",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-10",
+    question: "Can you change the storage class of existing objects in S3?",
+    answer: "Yes, you can change storage classes in multiple ways: manually using the console or API, automatically using lifecycle policies that transition objects based on age or other criteria, or by using S3 Intelligent-Tiering for automatic optimization. Lifecycle transitions are one-way (you can move to less expensive classes but typically don't auto-transition back), and some transitions have minimum storage duration requirements.",
+    category: "Storage Classes",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-11",
+    question: "What is S3 versioning and why is it important?",
+    answer: "S3 versioning maintains multiple variants of an object in the same bucket, protecting against accidental deletions and overwrites. When enabled, every PUT operation creates a new version with a unique version ID. Deleted objects become \"delete markers\" rather than being permanently removed, allowing recovery. Versioning is essential for compliance, disaster recovery, and maintaining data history, though it increases storage costs as all versions are retained.",
+    category: "Data Management",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-12",
+    question: "How does S3 lifecycle management work?",
+    answer: "S3 lifecycle management automates moving objects between storage classes or deleting them based on predefined rules. You can create policies that transition objects to cheaper storage classes after specific time periods (e.g., move to IA after 30 days, then to Glacier after 90 days) or expire objects after a certain age. Lifecycle policies support both current and previous versions in versioned buckets, helping optimize storage costs automatically.",
+    category: "Data Management",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-13",
+    question: "What is S3 replication and what types are available?",
+    answer: "S3 replication automatically copies objects across buckets asynchronously. Cross-Region Replication (CRR) copies objects to buckets in different AWS regions for disaster recovery, compliance, and latency optimization. Same-Region Replication (SRR) copies within the same region for log aggregation, production-to-test account replication, or data sovereignty. Replication requires versioning on both source and destination buckets and can replicate encrypted objects and delete markers.",
+    category: "Data Management",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-14",
+    question: "What are the prerequisites and limitations of S3 replication?",
+    answer: "S3 replication requires versioning enabled on both source and destination buckets, appropriate IAM permissions for S3 to replicate objects, and the destination bucket must be in a different region for CRR. Replication doesn't copy existing objects by default (only new objects after rule creation), doesn't replicate delete markers by default, and doesn't chain (objects replicated to bucket B aren't replicated to bucket C). You can use S3 Batch Replication for existing objects.",
+    category: "Data Management",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-15",
+    question: "What is S3 Object Lock and what are its retention modes?",
+    answer: "S3 Object Lock uses a Write Once Read Many (WORM) model to prevent object deletion or modification for a specified retention period or indefinitely. It offers two retention modes: Compliance mode (no one, including root user, can delete or modify until retention expires) and Governance mode (users with special permissions can override). Legal hold provides indefinite protection independent of retention periods, useful for litigation or investigations.",
+    category: "Data Management",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-16",
+    question: "What are the different ways to control access to S3 buckets and objects?",
+    answer: "S3 offers multiple access control mechanisms: IAM policies (attached to users/roles defining what they can access), bucket policies (JSON-based policies attached to buckets controlling who can access), Access Control Lists (ACLs) for legacy fine-grained permissions, S3 Access Points for simplified large-scale access management, and presigned URLs for temporary access. You can also use VPC endpoints, Block Public Access settings, and encryption for enhanced security.",
+    category: "Security & Access Control",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-17",
+    question: "What is the difference between bucket policies and IAM policies?",
+    answer: "IAM policies are attached to IAM users, groups, or roles and define what AWS resources those identities can access across services. Bucket policies are attached directly to S3 buckets and define who can access that specific bucket and its objects, including cross-account access and anonymous users. Bucket policies are evaluated together with IAM policies, and access is granted if either allows and neither explicitly denies the action.",
+    category: "Security & Access Control",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-18",
+    question: "What encryption options does S3 provide?",
+    answer: "S3 offers server-side encryption (SSE) with three key management options: SSE-S3 (Amazon manages keys with AES-256 encryption), SSE-KMS (AWS Key Management Service manages keys with audit trail and rotation), and SSE-C (customer provides and manages encryption keys). Additionally, you can implement client-side encryption where data is encrypted before uploading. Data in transit is encrypted using SSL/TLS. Default encryption can be set at the bucket level.",
+    category: "Security & Access Control",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-19",
+    question: "What is S3 Block Public Access and why is it important?",
+    answer: "S3 Block Public Access provides settings to block public access to buckets and objects at the account or bucket level, overriding any bucket policies or ACLs that might grant public access. It includes four settings: block new public ACLs, ignore existing public ACLs, block new public bucket policies, and block public and cross-account access via any public policies. This feature helps prevent accidental data exposure and is a security best practice.",
+    category: "Security & Access Control",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-20",
+    question: "How do presigned URLs work in S3?",
+    answer: "Presigned URLs are time-limited URLs that grant temporary access to specific S3 objects without requiring AWS credentials. They're generated using your security credentials and include authentication information in the URL parameters. Anyone with the URL can perform the specified operation (GET, PUT, etc.) until the URL expires. This is useful for allowing users to upload files directly to S3 or providing temporary download access to private objects.",
+    category: "Security & Access Control",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-21",
+    question: "What is S3 Transfer Acceleration and when should you use it?",
+    answer: "S3 Transfer Acceleration uses Amazon CloudFront's globally distributed edge locations to accelerate uploads and downloads to S3 over long distances. Data is routed through the nearest edge location and then transferred to S3 over optimized network paths. It's beneficial when transferring large files over long geographic distances, when users are distributed globally, or when network conditions are unreliable. You pay only when it provides a speed improvement.",
+    category: "Performance & Optimization",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-22",
+    question: "What is multipart upload and what are its benefits?",
+    answer: "Multipart upload allows you to upload large objects (up to 5 TB) by breaking them into smaller parts (5 MB to 5 GB each) and uploading them independently in parallel. Benefits include improved throughput through parallel uploads, quick recovery from network failures by re-uploading only failed parts, ability to pause and resume uploads, and starting uploads before knowing the final object size. It's required for objects over 5 GB and recommended for objects over 100 MB.",
+    category: "Performance & Optimization",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-23",
+    question: "What is S3 Select and how does it improve performance?",
+    answer: "S3 Select allows you to retrieve a subset of data from objects using SQL expressions to filter rows and columns, rather than retrieving entire objects. This significantly reduces data transfer costs and latency by up to 80%, as only the relevant data is processed and returned. It works with CSV, JSON, and Parquet formats, and is particularly useful for applications that need to query structured data stored in S3 without moving it to a database.",
+    category: "Performance & Optimization",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-24",
+    question: "How can you optimize S3 request performance?",
+    answer: "S3 automatically scales to handle high request rates, supporting 3,500 PUT/COPY/POST/DELETE and 5,500 GET/HEAD requests per second per prefix. To optimize performance: use random prefixes to parallelize requests across multiple partitions, implement multipart upload for large files, use S3 Transfer Acceleration for global users, leverage CloudFront for caching frequently accessed content, and optimize application retry logic with exponential backoff for rate limiting scenarios.",
+    category: "Performance & Optimization",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-25",
+    question: "What are S3 prefixes and how do they affect performance?",
+    answer: "An S3 prefix is the part of the object key between the bucket name and the object name, similar to folder paths. S3 automatically partitions data based on prefixes, and each prefix can handle 3,500 PUT and 5,500 GET requests per second. By distributing objects across multiple prefixes (using random or hash-based prefixes), you can achieve higher aggregate throughput, enabling applications to scale to thousands of requests per second.",
+    category: "Performance & Optimization",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-26",
+    question: "What is S3's durability and how is it achieved?",
+    answer: "S3 provides 99.999999999% (11 nines) durability by automatically storing multiple copies of each object across at least three geographically separated availability zones within a region. This means if you store 10 million objects, you can expect to lose one object every 10,000 years on average. S3 continuously monitors data integrity using checksums and automatically repairs any detected corruption by replacing damaged data with redundant copies.",
+    category: "Data Consistency & Durability",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-27",
+    question: "What is the difference between durability and availability in S3?",
+    answer: "Durability refers to the likelihood that data will not be lost over time (S3 Standard offers 99.999999999% durability, meaning data is extremely unlikely to be lost). Availability refers to the ability to access your data when needed (S3 Standard offers 99.99% availability, meaning the service is accessible 99.99% of the time). High durability doesn't guarantee high availability, and different storage classes offer different availability levels while maintaining high durability.",
+    category: "Data Consistency & Durability",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-28",
+    question: "What consistency model does S3 use?",
+    answer: "S3 provides strong read-after-write consistency for all operations, including PUT, DELETE, and LIST operations. This means that after a successful write (receiving a 200 OK response), any subsequent read will return the latest version of the object, and any LIST operation will reflect the changes. This applies to both new objects and overwrites of existing objects, eliminating the need for applications to implement complex eventual consistency handling logic.",
+    category: "Data Consistency & Durability",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-29",
+    question: "How does S3 protect against data loss in a regional disaster?",
+    answer: "For single-region protection, S3 stores data across multiple availability zones (physically separate data centers within a region). For cross-region protection, you can enable Cross-Region Replication to automatically copy objects to buckets in different regions. Additionally, S3 versioning protects against accidental deletions and overwrites, and S3 Object Lock provides WORM protection. For critical data, combining CRR with versioning and Object Lock provides comprehensive disaster recovery capabilities.",
+    category: "Data Consistency & Durability",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-30",
+    question: "What happens when you delete an object in a versioned bucket?",
+    answer: "In a versioned bucket, deleting an object doesn't permanently remove it. Instead, S3 inserts a delete marker with a new version ID, making the object appear deleted in simple listing operations. All previous versions remain intact and can be retrieved using version-specific requests. To permanently delete an object, you must specify the version ID in the delete request. This behavior protects against accidental deletions and allows easy recovery of deleted data.",
+    category: "Data Consistency & Durability",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-31",
+    question: "What are S3 Event Notifications and what can trigger them?",
+    answer: "S3 Event Notifications automatically send messages to Amazon SNS topics, SQS queues, or Lambda functions when specific events occur in a bucket. Triggers include object creation (PUT, POST, COPY, multipart upload completion), object deletion, object restoration from Glacier, and replication events. This enables real-time processing workflows like image thumbnail generation, video transcoding, data indexing, or triggering ETL pipelines when new data arrives.",
+    category: "Advanced Features",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-32",
+    question: "What is S3 Inventory and how is it useful?",
+    answer: "S3 Inventory provides scheduled reports (daily or weekly) listing all objects in a bucket along with their metadata, including storage class, encryption status, replication status, and custom metadata. Reports are generated in CSV, ORC, or Parquet format and delivered to a specified bucket. This is valuable for business intelligence, compliance audits, lifecycle policy verification, and identifying objects for bulk operations without making expensive list API calls.",
+    category: "Advanced Features",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-33",
+    question: "What are S3 Access Points and what problems do they solve?",
+    answer: "S3 Access Points are unique hostnames that simplify managing data access at scale for shared datasets. Instead of managing complex bucket policies with multiple conditions, you create access points with specific permissions for different use cases or applications. Each access point has its own policy and can be restricted to a VPC. This simplifies permission management, provides separate audit trails per access point, and allows different teams to work independently on shared data.",
+    category: "Advanced Features",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-34",
+    question: "What is S3 Batch Operations and what can it do?",
+    answer: "S3 Batch Operations allows you to perform large-scale operations on billions of objects with a single request. Supported operations include copying objects between buckets, replacing object tags or metadata, modifying ACLs, restoring archived objects, and invoking Lambda functions on each object. You can use S3 Inventory reports or CSV manifests to specify target objects. Batch Operations provides completion reports, retry handling, and job prioritization for managing large-scale data operations.",
+    category: "Advanced Features",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-35",
+    question: "What is S3 Object Lambda and how does it work?",
+    answer: "S3 Object Lambda allows you to add custom code to process data retrieved from S3 before returning it to applications. You create an Object Lambda Access Point, associate it with a Lambda function, and configure a supporting standard Access Point. When applications request objects through the Object Lambda Access Point, S3 automatically calls your Lambda function to transform the data (like redacting PII, resizing images, or converting formats) before returning it, without modifying the original object.",
+    category: "Advanced Features",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-36",
+    question: "What is S3 Server Access Logging and what information does it capture?",
+    answer: "S3 Server Access Logging provides detailed records of all requests made to a bucket, including request type, resources accessed, request time, requester IP address, request parameters, HTTP status code, and error information. Logs are delivered to a specified target bucket as text files. This is valuable for security audits, access pattern analysis, troubleshooting, and meeting compliance requirements. However, logs are delivered on a best-effort basis and may not include all requests.",
+    category: "Monitoring & Logging",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-37",
+    question: "How do you monitor S3 performance and usage with CloudWatch?",
+    answer: "S3 publishes various metrics to CloudWatch, including request metrics (number of GET, PUT, DELETE, HEAD, POST, LIST requests), storage metrics (bytes stored, number of objects), data transfer metrics, and error metrics (4xx and 5xx errors). You can enable request metrics for real-time monitoring with 1-minute granularity, create alarms to notify you of issues, and use CloudWatch dashboards to visualize S3 usage patterns and identify performance bottlenecks.",
+    category: "Monitoring & Logging",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-38",
+    question: "What is the difference between S3 Server Access Logs and AWS CloudTrail?",
+    answer: "S3 Server Access Logs capture bucket-level detailed access records for all requests, providing granular information about every operation, but with best-effort delivery. AWS CloudTrail logs API calls made to S3 at the account level, capturing who made requests, from which IP, when, and what parameters were used, with guaranteed delivery suitable for compliance and security analysis. CloudTrail focuses on the \"who\" and \"when,\" while access logs focus on detailed request patterns.",
+    category: "Monitoring & Logging",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-39",
+    question: "What is S3 Storage Lens and what insights does it provide?",
+    answer: "S3 Storage Lens provides organization-wide visibility into object storage usage and activity trends across all accounts and buckets. It delivers metrics and recommendations for optimizing costs and applying data protection best practices. Features include usage analytics, activity metrics, cost optimization recommendations, and data protection status. Storage Lens aggregates data for up to 15 months, allowing you to identify trends, anomalies, and opportunities for optimization across your entire S3 footprint.",
+    category: "Monitoring & Logging",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-40",
+    question: "How can you track and attribute S3 costs to different teams or projects?",
+    answer: "You can track S3 costs using several methods: AWS Cost Explorer with S3-specific filters, S3 Storage Lens for storage analytics, resource tags applied to buckets (cost allocation tags), separate AWS accounts or organizations for different teams, S3 Inventory for detailed object-level costing, and CloudWatch metrics for usage patterns. Combining bucket-level tagging with Cost and Usage Reports provides detailed cost attribution and enables showback/chargeback models.",
+    category: "Monitoring & Logging",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-41",
+    question: "How is S3 pricing structured and what are the main cost components?",
+    answer: "S3 pricing includes several components: storage costs (per GB-month, varying by storage class), request costs (GET, PUT, COPY, etc., priced per 1,000 requests), data transfer costs (transfer out to internet, cross-region transfers are charged; transfers within the same region to AWS services are free), and optional feature costs like replication, analytics, inventory, and Object Lambda. Pricing varies by region and storage class, with less frequently accessed storage classes offering lower per-GB rates but higher request costs.",
+    category: "Cost Optimization",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-42",
+    question: "What strategies can you use to reduce S3 storage costs?",
+    answer: "Cost optimization strategies include: using appropriate storage classes based on access patterns, implementing lifecycle policies to automatically transition objects to cheaper classes or delete expired data, enabling S3 Intelligent-Tiering for unpredictable access patterns, using S3 Analytics to identify optimization opportunities, deleting incomplete multipart uploads, removing unnecessary object versions, compressing data before upload, and reviewing S3 Storage Lens recommendations. Regularly analyzing usage patterns is key to ongoing optimization.",
+    category: "Cost Optimization",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-43",
+    question: "What is S3 Analytics and how does it help with cost optimization?",
+    answer: "S3 Analytics – Storage Class Analysis examines object access patterns to help determine when to transition objects between storage classes. It provides recommendations by analyzing access frequency over 30+ days and generates reports showing data age groups, how often they're accessed, and optimal transition timings. This data-driven approach helps you create effective lifecycle policies, ensuring objects are in the most cost-effective storage class without manual analysis or guesswork.",
+    category: "Cost Optimization",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-44",
+    question: "Are there any free tier benefits or free operations in S3?",
+    answer: "AWS Free Tier includes 5 GB of S3 Standard storage, 20,000 GET requests, and 2,000 PUT requests per month for 12 months for new customers. Beyond free tier, certain operations are free: data transfer into S3 from the internet, data transfer between S3 and other AWS services within the same region, data transfer out to CloudFront, and S3 to S3 transfers in the same region. However, storage, requests, and data transfer out to internet are chargeable.",
+    category: "Cost Optimization",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-45",
+    question: "What is the cost difference between S3 storage classes?",
+    answer: "Storage costs decrease significantly across classes: S3 Standard is the most expensive but offers highest availability (99.99%); Standard-IA costs about 50% less for storage but charges retrieval fees; One Zone-IA is ~20% cheaper than Standard-IA; Glacier Instant Retrieval is ~68% cheaper than Standard; Glacier Flexible Retrieval is ~82% cheaper; and Glacier Deep Archive is ~95% cheaper than Standard. However, infrequent access and archive classes have minimum storage durations (30-180 days) and retrieval costs.",
+    category: "Cost Optimization",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-46",
+    question: "How does S3 integrate with CloudFront for content delivery?",
+    answer: "S3 integrates seamlessly with CloudFront CDN to distribute content globally with low latency. You configure an S3 bucket as a CloudFront origin, and CloudFront caches content at edge locations worldwide. Benefits include reduced latency for global users, decreased load on S3 by serving cached content, DDoS protection, custom SSL certificates, and ability to restrict access using Origin Access Identity (OAI) or Origin Access Control (OAC) so users can only access content through CloudFront.",
+    category: "Integration & Use Cases",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-47",
+    question: "What are common use cases for Amazon S3?",
+    answer: "Common use cases include: backup and disaster recovery (versioning, cross-region replication), data archiving (Glacier classes for long-term retention), big data analytics (data lake storage for analytics tools like Athena, EMR, Redshift Spectrum), content distribution and web hosting (static website hosting, media files), application data storage (user-generated content, logs, documents), and hybrid cloud storage (AWS Storage Gateway for on-premises integration). S3's scalability and durability make it suitable for virtually any storage need.",
+    category: "Integration & Use Cases",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-48",
+    question: "How can S3 be used as a data lake?",
+    answer: "S3 serves as an excellent data lake foundation due to its scalability, durability, and integration with analytics services. You can store structured, semi-structured, and unstructured data in native formats, use S3 prefixes to organize data by subject/date, apply security controls at various levels, and query data directly using Athena, Redshift Spectrum, or EMR without moving it. S3's integration with AWS Glue for cataloging and ETL, along with lifecycle management, makes it ideal for centralized data repositories.",
+    category: "Integration & Use Cases",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-49",
+    question: "How does S3 integrate with Lambda for serverless processing?",
+    answer: "S3 integrates with Lambda through event notifications, automatically triggering Lambda functions when objects are created, deleted, or modified. This enables serverless workflows like real-time image resizing, video transcoding, log processing, ETL pipelines, and data validation. The Lambda function receives event metadata including bucket and object key, can read the object, process it, and write results back to S3 or other services, all without managing servers.",
+    category: "Integration & Use Cases",
+    skill: "Amazon S3"
+  },
+  {
+    id: "s3-50",
+    question: "Can you host a static website on S3 and how?",
+    answer: "Yes, S3 can host static websites (HTML, CSS, JavaScript, images) by enabling static website hosting on a bucket. You configure the index document (e.g., index.html) and optional error document, make objects publicly readable, and access the site via the S3 website endpoint. For custom domains, use Route 53 to map your domain to the S3 endpoint. For HTTPS and improved performance, place CloudFront in front of the S3 bucket. This is cost-effective for static sites without needing web servers.",
+    category: "Integration & Use Cases",
+    skill: "Amazon S3"
   }
 ];
 

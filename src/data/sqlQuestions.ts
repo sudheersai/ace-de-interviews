@@ -4477,6 +4477,360 @@ const stepFunctionsQuestions: Question[] = [
   }
 ];
 
+const awsCertifiedDataEngineerQuestions: Question[] = [
+  {
+    id: "aws-de-1",
+    question: "What are the different data ingestion methods in AWS?",
+    answer: "Batch ingestion using S3, DataSync, Snow Family, Database Migration Service. Real-time streaming with Kinesis Data Streams, Kinesis Data Firehose, MSK (Managed Kafka), IoT Core. API-based with API Gateway and Lambda. File transfer using Transfer Family (SFTP/FTPS). Direct database connections via Glue, DMS. Choose based on data volume, velocity, latency requirements, and source systems.",
+    category: "Data Ingestion & Collection",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-2",
+    question: "When would you use Kinesis Data Streams vs Kinesis Data Firehose?",
+    answer: "Data Streams for custom processing, multiple consumers, real-time analytics, replay capability, ordering guarantees, and retention up to 365 days. Firehose for simple delivery to S3/Redshift/Elasticsearch/Splunk, automatic scaling, built-in transformations, no consumer management, and buffering. Data Streams requires manual scaling and consumer code; Firehose is fully managed delivery.",
+    category: "Data Ingestion & Collection",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-3",
+    question: "How do you handle schema evolution in data pipelines?",
+    answer: "Use schema registries (Glue Schema Registry, MSK Schema Registry) for validation and versioning. Implement backwards compatibility in transformations. Use schema-on-read with formats like Parquet/JSON. Glue Crawlers detect schema changes. Versioning in Data Catalog. Handle missing/new columns gracefully. Test schema changes in dev environments. Document breaking changes. Use data lake frameworks like Hudi/Iceberg for schema evolution.",
+    category: "Data Ingestion & Collection",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-4",
+    question: "What is AWS Database Migration Service (DMS)?",
+    answer: "DMS migrates databases to AWS with minimal downtime. Supports homogeneous (Oracle to Oracle) and heterogeneous (Oracle to Aurora) migrations. Continuous data replication (CDC) available. Source can be on-premises or cloud. Handles schema conversion with SCT. Supports major databases (Oracle, SQL Server, PostgreSQL, MySQL, MongoDB). Use for database consolidation, disaster recovery, or cloud migration.",
+    category: "Data Ingestion & Collection",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-5",
+    question: "How do you ingest data from SaaS applications?",
+    answer: "Use AppFlow for managed integration with Salesforce, ServiceNow, Slack, etc. Lambda with API calls for custom integration. Third-party connectors from AWS Marketplace. Partner solutions like Fivetran, Stitch. EventBridge for SaaS events. Schedule regular extracts to S3. API Gateway for webhook receivers. Consider rate limits, authentication, and incremental loads.",
+    category: "Data Ingestion & Collection",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-6",
+    question: "What are AWS Snow Family devices?",
+    answer: "Physical devices for petabyte-scale data transfer and edge computing. Snowcone (8TB/14TB), Snowball Edge (80TB storage/compute), Snowmobile (100PB). Use when network transfer impractical due to bandwidth, cost, or time. Encrypted, rugged, trackable. Copy data locally, ship to AWS, data loaded to S3. Edge computing available on Snowball Edge. Ideal for migrations or remote locations.",
+    category: "Data Ingestion & Collection",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-7",
+    question: "How do you implement change data capture (CDC)?",
+    answer: "DMS captures changes from source databases using binary logs/transaction logs. Writes changes to S3, Kinesis, or target databases. Enables real-time replication. Glue processes CDC files. Use for data warehousing, cache invalidation, or event-driven architectures. Format includes operation type (I/U/D), before/after images. Apply changes using merge/upsert logic. Monitor lag and errors.",
+    category: "Data Ingestion & Collection",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-8",
+    question: "What is Amazon AppFlow?",
+    answer: "Fully managed integration service for SaaS applications. Bi-directional data transfer between AWS services and SaaS apps (Salesforce, ServiceNow, Slack, SAP, etc.). No code required. Schedule-driven, event-driven, or on-demand flows. Data transformation and filtering. Encryption in transit and at rest. Manages API limits and authentication. Alternative to custom integration code.",
+    category: "Data Ingestion & Collection",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-9",
+    question: "How do you handle large file uploads to AWS?",
+    answer: "S3 Transfer Acceleration for distant uploads. Multipart upload for files >100MB (required >5GB). AWS DataSync for large datasets with validation. Snow Family for petabyte-scale. Direct Connect for consistent bandwidth. S3 batch operations for many files. Snowball for initial bulk load. CloudFront signed URLs for distributed uploads. Optimize network configuration and use parallel transfers.",
+    category: "Data Ingestion & Collection",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-10",
+    question: "What strategies handle late-arriving data in streaming pipelines?",
+    answer: "Configure watermarks in Kinesis Data Analytics/Flink with allowed lateness window. Buffer late data with extended retention in Kinesis Streams. Use event time (not processing time) for windows. Send late data to separate stream for reprocessing. Implement late data handling logic in consumers. Monitor late arrival metrics. Balance between completeness and latency. Design idempotent downstream systems.",
+    category: "Data Ingestion & Collection",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-11",
+    question: "What are the differences between Glue ETL, EMR, and Lambda for data processing?",
+    answer: "Glue ETL: Serverless Spark, managed infrastructure, Data Catalog integration, good for standard ETL. EMR: Full control, multiple frameworks (Spark, Hive, Presto), cost-effective for large workloads, requires cluster management. Lambda: Event-driven, sub-15 minute tasks, simple transformations, pay per invocation. Choose based on complexity, scale, duration, and operational preferences.",
+    category: "Data Transformation & Processing",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-12",
+    question: "How do you implement data quality checks?",
+    answer: "Glue Data Quality rules for validation. Lambda functions for custom checks. Deequ framework on Spark. Great Expectations integration. Implement checks at ingestion, transformation, and consumption layers. Monitor completeness, accuracy, consistency, timeliness, validity. Log quality metrics to CloudWatch. Alert on violations via SNS. Quarantine bad data. Document quality rules and SLAs.",
+    category: "Data Transformation & Processing",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-13",
+    question: "What is data partitioning and why is it important?",
+    answer: "Dividing datasets into segments based on column values (typically date, region). Improves query performance by scanning only relevant partitions. Reduces costs in Athena (data scanned), Redshift (pruning), S3 (operations). Enables parallel processing in Spark/Glue. Use Hive-style partitioning (key=value/). Balance granularity vs number of partitions. Essential for large-scale analytics.",
+    category: "Data Transformation & Processing",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-14",
+    question: "How do you handle slowly changing dimensions (SCD)?",
+    answer: "Type 0: No changes allowed. Type 1: Overwrite (no history). Type 2: Add new row with effective/end dates and current flag (full history). Type 3: Add columns for previous values (limited history). Type 4: Separate history table. Implement in Glue using merge logic, EMR with Spark, or Redshift with staging tables. Data lake formats like Hudi/Delta support native SCD.",
+    category: "Data Transformation & Processing",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-15",
+    question: "What are the best file formats for data lakes?",
+    answer: "Parquet: Columnar, excellent compression, predicate pushdown, industry standard. ORC: Similar to Parquet, better for Hive. Avro: Row-based, schema evolution, good for streaming. JSON: Human-readable, flexible schema, less efficient. CSV: Simple, widely supported, no compression/types. Prefer Parquet for analytics. Use compression (Snappy, GZIP). Consider query patterns and tool compatibility.",
+    category: "Data Transformation & Processing",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-16",
+    question: "How do you implement incremental data processing?",
+    answer: "Track watermarks or timestamps of last processed data. Use Glue job bookmarks for S3 sources. Partition by date and process only new partitions. DMS CDC for database changes. Kinesis for streaming incremental updates. Store state in DynamoDB or S3. Process delta files only. Use lake formats (Hudi, Delta, Iceberg) with incremental queries. Monitor lag between ingestion and processing.",
+    category: "Data Transformation & Processing",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-17",
+    question: "What is data deduplication and how do you implement it?",
+    answer: "Removing duplicate records based on business keys. Glue: dropDuplicates transformation on DynamicFrames. Spark: dropDuplicates() or window functions with row_number(). SQL: GROUP BY with MIN/MAX aggregate. Consider which duplicate to keep (first, last, most complete). Use deterministic keys. Handle duplicates at ingestion or transformation. Monitor duplicate rates. Implement in batch or streaming contexts.",
+    category: "Data Transformation & Processing",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-18",
+    question: "How do you optimize Spark jobs on Glue/EMR?",
+    answer: "Appropriate instance types and counts, optimize partitioning (repartition/coalesce), use broadcast joins for small tables, cache frequently accessed data, tune spark.sql.shuffle.partitions, enable adaptive query execution, use columnar formats, pushdown predicates, avoid UDFs where possible, minimize data shuffling, use Kryo serialization, and enable dynamic allocation. Monitor Spark UI for bottlenecks.",
+    category: "Data Transformation & Processing",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-19",
+    question: "What is data lineage and how do you track it?",
+    answer: "Documentation of data flow from source to consumption showing transformations. AWS Lake Formation tracks lineage. Glue Data Catalog maintains relationships. Custom metadata in catalog descriptions. Third-party tools (Collibra, Alation) integrate with AWS. Document in code comments and wikis. Use tags for categorization. Important for compliance, debugging, impact analysis, and understanding data provenance.",
+    category: "Data Transformation & Processing",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-20",
+    question: "How do you handle PII and sensitive data?",
+    answer: "Identify PII using Macie or Glue sensitive data detection. Encrypt at rest (KMS) and in transit (TLS). Mask/tokenize PII in non-production. Use Lake Formation for column-level security. Redact PII in logs. Access controls via IAM and bucket policies. Data classification tags. Audit access with CloudTrail. Implement data retention policies. Comply with GDPR, CCPA, HIPAA requirements.",
+    category: "Data Transformation & Processing",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-21",
+    question: "How do you design a data lake architecture on AWS?",
+    answer: "Three-tier structure: Raw zone (original data in S3), Processed/Curated zone (cleaned, transformed), Consumption zone (analytics-ready). Use prefixes for organization. Glue Data Catalog for metadata. Lake Formation for governance and access control. Lifecycle policies for cost optimization. Separate zones by security requirements. Use appropriate storage classes. Implement data quality gates. Document schemas and data flows.",
+    category: "Data Storage & Management",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-22",
+    question: "What is AWS Lake Formation?",
+    answer: "Centralized governance service for data lakes. Simplifies data lake setup, security, and governance. Fine-grained access control (table, column, row-level). Centralizes permissions replacing IAM and S3 policies. Data catalog integration. Cross-account sharing. Audit logging. Blueprints for common ingestion patterns. Integrates with Athena, Redshift Spectrum, EMR, Glue. Essential for governed data lakes.",
+    category: "Data Storage & Management",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-23",
+    question: "How do you implement data retention and archival policies?",
+    answer: "S3 lifecycle policies transition data to cheaper storage classes (IA, Glacier) after periods. Glue workflows delete old data. Redshift WLM manages retention. DynamoDB TTL expires items. Tag data with retention periods. Automate with Lambda and EventBridge. Consider compliance requirements (GDPR right to delete, HIPAA retention). Balance cost, access needs, and regulatory requirements. Document policies.",
+    category: "Data Storage & Management",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-24",
+    question: "What is the medallion architecture in data lakes?",
+    answer: "Bronze layer: Raw ingested data (no transformations). Silver layer: Cleaned, validated, deduplicated data. Gold layer: Business-level aggregates and features for analytics. Progressive data quality improvement. Clear separation of concerns. Easy debugging and reprocessing. Commonly implemented with Delta Lake, Hudi, or S3 zones. Aligns with raw/processed/curated organization pattern.",
+    category: "Data Storage & Management",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-25",
+    question: "How do you choose between Redshift, Athena, and EMR for analytics?",
+    answer: "Redshift: Regular complex queries, dashboards, consistent performance, provisioned resources. Athena: Ad-hoc queries, serverless, pay-per-query, infrequent analysis. EMR: Complex processing, multiple frameworks, custom code, cost control. Consider query frequency, complexity, data volume, latency requirements, operational overhead, and costs. Can combine: Athena for exploration, Redshift for production dashboards.",
+    category: "Data Storage & Management",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-26",
+    question: "What is data catalog and why is it important?",
+    answer: "Centralized metadata repository storing table definitions, schemas, locations, statistics. Glue Data Catalog is AWS managed service. Shared across Athena, Redshift Spectrum, EMR, Glue. Enables data discovery, governance, and schema management. Includes partition information. Supports versioning. Crawler auto-discovery. Essential for self-service analytics and data governance. Alternative to Hive metastore.",
+    category: "Data Storage & Management",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-27",
+    question: "How do you implement data versioning?",
+    answer: "S3 versioning for object-level history. Data lake formats (Delta Lake, Iceberg, Hudi) provide table-level versioning with time travel. Git for code and schema definitions. Glue Data Catalog versions schemas. Partition by date creating implicit versions. Store metadata about versions. Enable rollback and auditing. Important for reproducibility and compliance. Balance storage costs vs audit needs.",
+    category: "Data Storage & Management",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-28",
+    question: "What are the strategies for handling data skew?",
+    answer: "Identify skewed keys via monitoring. Salt keys by adding random prefix. Repartition with more partitions. Use broadcast joins for skewed joins. Filter extreme values separately. Adaptive query execution in Spark. Sample data for testing. Isolate hot keys. Consider data distribution during design. Monitor partition sizes and task execution times for detection.",
+    category: "Data Storage & Management",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-29",
+    question: "How do you implement cross-region data replication?",
+    answer: "S3 Cross-Region Replication (CRR) for automatic object replication. DynamoDB Global Tables for multi-region databases. Redshift cross-region snapshots for disaster recovery. Custom solutions with Kinesis, Glue, Lambda. Consider compliance, latency, disaster recovery needs. Monitor replication lag. Cost of data transfer and duplicate storage. Test failover procedures. Implement for business continuity.",
+    category: "Data Storage & Management",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-30",
+    question: "What is data catalog tagging and governance?",
+    answer: "Tags are key-value pairs for organizing and governing data assets. Use for classification (PII, confidential, public), cost allocation, access control, data quality indicators, ownership, and domain. Lake Formation uses tags for access control (TBAC). Automate tagging with Lambda or Glue. Enforce tagging policies. Document taxonomy. Tags enable scalable governance in large environments.",
+    category: "Data Storage & Management",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-31",
+    question: "How do you optimize Athena query performance?",
+    answer: "Use Parquet/ORC formats, partition data, compress files, optimize file sizes (128MB-1GB), use partition projection, select only needed columns, filter early in queries, use CTAS for intermediate results, enable query result reuse, leverage column statistics with ANALYZE TABLE. Monitor data scanned metrics. Avoid SELECT *. Use appropriate data types. Bucketing for frequent joins.",
+    category: "Data Consumption & Analytics",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-32",
+    question: "What is data modeling for analytics?",
+    answer: "Designing schema for analytical queries. Star schema: fact table surrounded by dimension tables. Snowflake schema: normalized dimensions. Denormalization for query performance. Consider query patterns, join performance, storage costs. Redshift uses distribution and sort keys. Define grain (level of detail). Implement slowly changing dimensions. Balance normalization vs performance. Document relationships and business definitions.",
+    category: "Data Consumption & Analytics",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-33",
+    question: "How do you implement real-time analytics dashboards?",
+    answer: "Kinesis Data Analytics processes streams. Store aggregates in DynamoDB or ElastiCache. QuickSight queries Athena, Redshift, or SPICE. Lambda updates metrics. API Gateway exposes data. WebSocket APIs for live updates. Redshift materialized views for fresh data. Consider latency requirements. Cache frequently accessed data. Use appropriate refresh intervals. Monitor dashboard performance.",
+    category: "Data Consumption & Analytics",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-34",
+    question: "What is SPICE in Amazon QuickSight?",
+    answer: "Super-fast, Parallel, In-memory, Calculation Engine. Imports data into columnar in-memory storage. Significantly faster than direct query. Automatic data refresh on schedules. Included capacity with QuickSight subscription. Additional capacity available. Recommended for dashboards with frequent access. Alternative: direct query mode for always-current data. Choose based on data freshness vs performance requirements.",
+    category: "Data Consumption & Analytics",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-35",
+    question: "How do you implement data marts?",
+    answer: "Subset of data warehouse focused on specific business area. Create with Redshift schemas, separate databases, or Athena views. Aggregate data from central warehouse. Apply business-specific transformations. Simplify for department users. Implement security per mart. Use materialized views for performance. Glue ETL builds marts from data lake. Balance duplication vs accessibility.",
+    category: "Data Consumption & Analytics",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-36",
+    question: "What are aggregation strategies for large datasets?",
+    answer: "Pre-aggregate in ETL pipelines reducing query-time computation. Redshift materialized views auto-refresh. Rollup tables with different granularities (hourly, daily, monthly). Athena CTAS creates pre-aggregated tables. Streaming aggregations with Kinesis Data Analytics. Use approximate algorithms for massive scale (HyperLogLog). Trade accuracy for performance where acceptable. Cube/rollup operators in SQL.",
+    category: "Data Consumption & Analytics",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-37",
+    question: "How do you handle semi-structured data (JSON, XML)?",
+    answer: "Store in S3 with JSON/Parquet formats. Glue handles nested structures. Athena queries JSON with dot notation or complex types. Redshift SUPER data type for JSON. Flatten with Glue transformations. Use SerDe in Hive/Athena. Maintain flexibility vs query performance. Consider schema enforcement level. JSON in Parquet provides good balance. DynamoDB native JSON storage.",
+    category: "Data Consumption & Analytics",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-38",
+    question: "What is federated query and when to use it?",
+    answer: "Querying data across multiple sources without moving it. Athena Federated Query accesses RDS, Redshift, DynamoDB via Lambda connectors. Redshift Federated Query accesses RDS/Aurora PostgreSQL. Use for operational reporting combining transactional and analytical data. Avoid for frequent queries (performance/cost). Consider data freshness requirements. Network latency impacts performance. Alternative to ETL for specific use cases.",
+    category: "Data Consumption & Analytics",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-39",
+    question: "How do you implement access control for analytics?",
+    answer: "IAM for API-level permissions. S3 bucket policies for data access. Lake Formation for fine-grained control (table, column, row-level). Redshift user/groups with grants. Athena workgroups for cost control and isolation. QuickSight row-level security. Tags for attribute-based access. Audit with CloudTrail. Principle of least privilege. Document access policies and review regularly.",
+    category: "Data Consumption & Analytics",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-40",
+    question: "What are best practices for query optimization?",
+    answer: "Understand query execution plans. Use appropriate indexes and sort keys. Partition pruning with WHERE clauses. Join optimization (order, type). Avoid correlated subqueries. Use EXPLAIN for analysis. Materialize intermediate results. Cache frequent queries. Aggregate early. Limit result sets. Use columnar storage and compression. Monitor query performance metrics. Profile slow queries.",
+    category: "Data Consumption & Analytics",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-41",
+    question: "How do you implement encryption in data pipelines?",
+    answer: "At rest: S3-SSE (S3/KMS/Customer keys), EBS encryption, RDS encryption, Redshift encryption, DynamoDB encryption. In transit: TLS/SSL for all connections, VPC endpoints for private connectivity. Client-side encryption before upload. KMS for key management and rotation. Certificate Manager for SSL certificates. Enforce encryption with bucket policies and SCPs. Monitor with Config rules.",
+    category: "Data Security & Compliance",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-42",
+    question: "What is AWS KMS and how is it used in data engineering?",
+    answer: "Key Management Service creates and controls encryption keys. Customer-managed keys (CMK) for granular control. Automatic key rotation. Audit key usage with CloudTrail. Integrate with S3, RDS, Redshift, Glue, DynamoDB. Cross-account key access. Envelope encryption for large data. Cost per API call. Essential for encrypted data lakes and compliance requirements.",
+    category: "Data Security & Compliance",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-43",
+    question: "How do you audit data access and changes?",
+    answer: "CloudTrail logs all API calls (who, what, when). S3 server access logs for object-level operations. Lake Formation tracks data access. Redshift audit logging for queries. Glue job logs in CloudWatch. VPC Flow Logs for network traffic. Enable across all regions. Centralize logs in security account. Use Athena to query logs. Set retention policies. Alert on suspicious activity.",
+    category: "Data Security & Compliance",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-44",
+    question: "What is data classification and how do you implement it?",
+    answer: "Categorizing data by sensitivity (public, internal, confidential, restricted). Amazon Macie automatically discovers and classifies PII/sensitive data in S3. Tags for manual classification. Lake Formation tag-based access control (TBAC). Glue classifiers detect data types. Document classification schema. Apply appropriate security controls per class. Regular reviews. Compliance requirement for most regulations.",
+    category: "Data Security & Compliance",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-45",
+    question: "How do you implement disaster recovery for data infrastructure?",
+    answer: "S3 cross-region replication for data durability. Redshift cross-region snapshots. RDS automated backups and read replicas. DynamoDB point-in-time recovery and global tables. Backup code and configurations in version control. Document recovery procedures. Test recovery regularly. Define RPO/RTO requirements. Use multiple AZs. CloudFormation for infrastructure as code. Monitor backup completion.",
+    category: "Data Security & Compliance",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-46",
+    question: "What is GDPR compliance in AWS data engineering?",
+    answer: "Data residency: store EU data in EU regions. Encryption for data protection. Access controls and audit logs. Right to erasure: delete capabilities. Data portability: export functionality. Consent management. Anonymization and pseudonymization. Data processing agreements with AWS. DPA available. Lake Formation for access governance. Macie for data discovery. Document processing activities.",
+    category: "Data Security & Compliance",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-47",
+    question: "How do you implement data masking?",
+    answer: "Dynamic masking in Redshift for query results. Glue transformations apply masking rules. Lambda functions mask data in streams. Use hashing for irreversible masking. Tokenization for reversible masking with vault. Format-preserving encryption maintains data format. Apply different masking for prod vs non-prod. Lake Formation column-level security. Document masking rules per data classification.",
+    category: "Data Security & Compliance",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-48",
+    question: "What are VPC considerations for data engineering?",
+    answer: "Place databases in private subnets. Use VPC endpoints for S3, Glue, Redshift (no internet gateway needed). Security groups restrict traffic. Network ACLs for subnet-level control. NAT Gateway for outbound internet. VPC peering or Transit Gateway for multi-VPC. Direct Connect for on-premises. Monitor with VPC Flow Logs. Cost of data transfer and endpoints.",
+    category: "Data Security & Compliance",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-49",
+    question: "How do you implement cost optimization in data engineering?",
+    answer: "Use appropriate storage classes and lifecycle policies. Right-size compute resources. Spot instances for EMR task nodes. Reserved instances for steady workloads. Glue Flex for non-urgent jobs. Compress data. Partition for efficient querying. Monitor with Cost Explorer and budgets. Tag resources for allocation. Auto-scaling where available. Delete unused resources. Athena query optimization. S3 Intelligent-Tiering.",
+    category: "Data Security & Compliance",
+    skill: "AWS Certified Data Engineer"
+  },
+  {
+    id: "aws-de-50",
+    question: "What are data engineering best practices on AWS?",
+    answer: "Infrastructure as code (CloudFormation/Terraform). Automate everything. Monitor and alert on failures. Implement data quality checks. Document architectures and data flows. Version control for code and schemas. Test in non-prod environments. Implement least privilege access. Encrypt everything. Partition data appropriately. Use managed services where possible. Cost optimization. Regular reviews and optimization. Train team on AWS services.",
+    category: "Data Security & Compliance",
+    skill: "AWS Certified Data Engineer"
+  }
+];
+
 // Combine all questions
 sqlQuestions.push(...lambdaQuestions);
 sqlQuestions.push(...stepFunctionsQuestions);
+sqlQuestions.push(...awsCertifiedDataEngineerQuestions);

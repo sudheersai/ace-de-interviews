@@ -4124,5 +4124,359 @@ const lambdaQuestions: Question[] = [
   }
 ];
 
+const stepFunctionsQuestions: Question[] = [
+  {
+    id: "step-functions-1",
+    question: "What is AWS Step Functions?",
+    answer: "AWS Step Functions is a serverless orchestration service for coordinating distributed applications and microservices using visual workflows. Define workflows as state machines in JSON using Amazon States Language (ASL). Integrates with 200+ AWS services. Handles error handling, retries, and parallel execution. Provides execution history and visual monitoring. Pay per state transition.",
+    category: "Basic Concepts",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-2",
+    question: "What is a state machine in Step Functions?",
+    answer: "State machine is a workflow defined by states and transitions. Each state performs specific task, makes decisions, or waits. States connected by transitions forming execution flow. Two types: Standard (long-running, exactly-once execution) and Express (high-volume, at-least-once). Defined using Amazon States Language JSON. Can be versioned and aliased for lifecycle management.",
+    category: "Basic Concepts",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-3",
+    question: "What are the types of states in Step Functions?",
+    answer: "Task (perform work), Choice (conditional branching), Parallel (parallel branches), Wait (delay), Succeed (successful termination), Fail (failure termination), Pass (pass input to output/transform), and Map (iterate over array). Each state type serves specific workflow needs. Combine states to build complex orchestrations. States define InputPath, OutputPath, and ResultPath for data flow.",
+    category: "Basic Concepts",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-4",
+    question: "What is Amazon States Language (ASL)?",
+    answer: "JSON-based declarative language for defining state machines. Specifies states, transitions, input/output processing, error handling, and retries. Includes fields like Type, Next, End, InputPath, OutputPath, ResultPath. Supports intrinsic functions for data manipulation. ASL is AWS-specific standard. Can be authored manually or via Workflow Studio visual editor.",
+    category: "Basic Concepts",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-5",
+    question: "What is the difference between Standard and Express workflows?",
+    answer: "Standard workflows support long-running (up to 1 year), exactly-once execution, full execution history, automatic retries, and detailed logging. Charged per state transition. Express workflows support high-volume (up to 5 minutes), at-least-once or at-most-once execution, limited history, and CloudWatch Logs integration. Charged by execution duration and memory. Choose based on duration and throughput requirements.",
+    category: "Basic Concepts",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-6",
+    question: "What is a Task state?",
+    answer: "Task state performs single unit of work by invoking AWS service, Lambda function, Activity, or API Gateway. Supports synchronous or asynchronous execution. Can include retry and catch configurations. Resource field specifies service to invoke. Parameters field passes input. TimeoutSeconds prevents hanging. Most commonly used state type in workflows.",
+    category: "Basic Concepts",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-7",
+    question: "What are Step Functions integrations?",
+    answer: "Integrates with Lambda, ECS/Fargate, Batch, DynamoDB, SNS, SQS, Glue, SageMaker, EMR, EventBridge, API Gateway, and 200+ services. Three integration patterns: Request-Response (default), Run a Job (.sync), Wait for Callback (.waitForTaskToken). Optimized integrations reduce cost and complexity. Direct SDK integrations available for most services.",
+    category: "Basic Concepts",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-8",
+    question: "What is Step Functions Workflow Studio?",
+    answer: "Visual low-code interface for designing workflows via drag-and-drop. Generates ASL JSON automatically. Provides design and code views. Validates workflows in real-time. Includes pre-built patterns and templates. Simplifies development for users unfamiliar with JSON. Supports importing existing definitions. Integrates with console for testing and execution.",
+    category: "Basic Concepts",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-9",
+    question: "What is Step Functions pricing?",
+    answer: "Standard workflows charged per state transition ($0.025 per 1,000 transitions). Express workflows charged by execution duration and memory (per GB-second). Free tier includes 4,000 state transitions/month for Standard. Additional charges for AWS service calls (Lambda, etc.). Monitor costs via Cost Explorer. Optimize by minimizing state transitions and using Express for high-volume short workflows.",
+    category: "Basic Concepts",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-10",
+    question: "What are Step Functions use cases?",
+    answer: "ETL orchestration, microservices coordination, data processing pipelines, order processing, batch job scheduling, machine learning workflows, approval workflows, long-running processes, human approval tasks, error handling and retry logic, distributed transactions, and multi-step application workflows. Any scenario requiring coordination of distributed components with reliability and visibility.",
+    category: "Basic Concepts",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-11",
+    question: "How do you handle errors in Step Functions?",
+    answer: "Use Retry and Catch fields in state definitions. Retry automatically retries failed tasks with configurable intervals (exponential backoff), max attempts, and backoff rates. Catch handles errors transitioning to fallback states. Specify error types (States.ALL, States.Timeout, service-specific). Combine Retry and Catch for comprehensive error handling. Include fallback logic and alerting mechanisms.",
+    category: "Workflow Design",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-12",
+    question: "What is a Choice state?",
+    answer: "Choice state adds conditional branching logic to workflows. Evaluates input data against rules and transitions to different states based on conditions. Supports comparison operators (StringEquals, NumericGreaterThan, BooleanEquals), logical operators (And, Or, Not), and existence checks. No End or Next field; uses Choices array with Next. Default field handles unmatched conditions.",
+    category: "Workflow Design",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-13",
+    question: "What is a Parallel state?",
+    answer: "Parallel state executes multiple branches simultaneously. Each branch is independent state machine. Completes when all branches finish or one fails (unless error handling configured). Results combined into array. Use for independent concurrent tasks. Improves workflow execution time. Can have different error handling per branch. Maximum 40 parallel branches.",
+    category: "Workflow Design",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-14",
+    question: "What is a Map state?",
+    answer: "Map state iterates over array processing each item through same set of states. Supports concurrent iteration with MaxConcurrency parameter. ItemsPath specifies array location. Iterator defines processing logic. Results collected in array maintaining order. Useful for bulk operations, batch processing, or parallel data transformation. Distributed Map for large-scale processing (millions of items).",
+    category: "Workflow Design",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-15",
+    question: "How do you pass data between states?",
+    answer: "Use InputPath (filter input), ResultPath (where to place result), and OutputPath (filter output). Parameters field creates custom input. ResultSelector transforms service results. Input/output processing uses JSONPath syntax. States receive previous state's output as input. Context object provides execution metadata. Design data flow carefully to minimize state size and complexity.",
+    category: "Workflow Design",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-16",
+    question: "What is InputPath, OutputPath, and ResultPath?",
+    answer: "InputPath filters which part of input passed to state (default $). ResultPath determines where task result placed in input (default $, replaces entire input). OutputPath filters state output (default $). Use to control data flow and transformation. Set to null to discard. Combine for flexible data management without Lambda transformations.",
+    category: "Workflow Design",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-17",
+    question: "How do you implement wait conditions?",
+    answer: "Wait state pauses execution for specified duration or until timestamp. Specify wait time using Seconds, Timestamp, SecondsPath (dynamic from input), or TimestampPath. Use for polling intervals, rate limiting, scheduled delays, or waiting for external conditions. More cost-effective than Lambda polling loops. Maximum wait time is 1 year for Standard workflows.",
+    category: "Workflow Design",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-18",
+    question: "What are Step Functions parameters?",
+    answer: "Parameters field in Task states constructs input sent to service. Supports static values, JSONPath references ($.input), context object values ($$), and intrinsic functions. Rename fields, add constants, or transform data structure. Reduces need for Lambda transformations. Combine with ResultSelector for complete data transformation without code.",
+    category: "Workflow Design",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-19",
+    question: "How do you handle timeouts in Step Functions?",
+    answer: "Set TimeoutSeconds at state or workflow level. State timeout terminates stuck tasks. HeartbeatSeconds for Activities ensures workers send progress updates. Timeout generates States.Timeout error catchable via Catch. Use appropriate timeouts to prevent indefinite execution. Consider service-specific limits. Combine with retries for transient issues.",
+    category: "Workflow Design",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-20",
+    question: "What is ResultSelector?",
+    answer: "ResultSelector transforms service task results before placing them according to ResultPath. Use JSONPath and intrinsic functions to reshape, filter, or extract data. Applied before ResultPath. Useful for standardizing outputs from different services, extracting specific fields, or simplifying complex responses. Reduces need for Lambda transformation functions.",
+    category: "Workflow Design",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-21",
+    question: "What are Step Functions Activities?",
+    answer: "Activities enable workers running anywhere (EC2, on-premises, containers) to perform tasks in workflows. Worker polls for tasks using GetActivityTask, processes work, sends success/failure via SendTaskSuccess/SendTaskFailure. Useful for custom processing, legacy system integration, or human approval. Worker must send heartbeats for long tasks. Activity ARN references worker in state machine.",
+    category: "Advanced Features",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-22",
+    question: "What is callback pattern in Step Functions?",
+    answer: "Callback pattern (.waitForTaskToken) pauses workflow until external process sends callback with task token. Useful for human approvals, external system integration, or asynchronous processing. Task token uniquely identifies paused execution. External system calls SendTaskSuccess/SendTaskFailure with token. Include token in message sent to external system (SQS, SNS). Timeout prevents indefinite waiting.",
+    category: "Advanced Features",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-23",
+    question: "What are Step Functions intrinsic functions?",
+    answer: "Built-in functions for data manipulation without Lambda: States.Format (string formatting), States.StringToJson/JsonToString (conversions), States.Array (create array), States.ArrayPartition, States.ArrayContains, States.ArrayRange, States.ArrayGetItem, States.ArrayLength, States.ArrayUnique, States.Base64Encode/Decode, States.Hash, States.MathRandom, States.MathAdd, States.UUID. Use in Parameters, ResultSelector, or conditions.",
+    category: "Advanced Features",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-24",
+    question: "What is Distributed Map state?",
+    answer: "Distributed Map processes large-scale parallel workloads (millions of items) from S3 or existing state. Uses child workflows for each batch enabling higher concurrency than standard Map. Supports CSV, JSON, or JSON Lines input. Configure MaxConcurrency, ItemBatchSize, and ToleratedFailurePercentage. Results written to S3. Ideal for ETL, batch inference, or data transformation at scale.",
+    category: "Advanced Features",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-25",
+    question: "How do you implement human approval workflows?",
+    answer: "Use callback pattern with task token sent to human reviewer (via SNS, email, SQS, or custom UI). Workflow pauses waiting for approval/rejection. Reviewer uses API or custom interface to send decision with task token. Include timeout for response deadline. Can integrate with approval systems. Combine with EventBridge for notifications. Log decisions for audit trail.",
+    category: "Advanced Features",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-26",
+    question: "What are Step Functions service integrations?",
+    answer: "Three patterns: Request-Response (fire-and-forget), Run a Job (.sync waits for completion), Wait for Callback (.waitForTaskToken for async callback). Optimized integrations reduce charges and simplify code. SDK integrations support all AWS APIs. Choose pattern based on task duration and workflow needs. Sync pattern automatic for supported services like Batch, Glue, SageMaker.",
+    category: "Advanced Features",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-27",
+    question: "How do you version Step Functions state machines?",
+    answer: "Create versions (immutable snapshots) using PublishStateMachineVersion. Reference versions by ARN. Aliases point to versions enabling blue-green deployments. Update alias to switch traffic. Versions enable rollback and testing. Use versions in production; draft for development. Combine with CI/CD for automated deployment. Tag versions for organization. Execution history maintained per version.",
+    category: "Advanced Features",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-28",
+    question: "What is Step Functions Express Synchronous mode?",
+    answer: "Express Synchronous workflows return response directly to caller (API Gateway, Lambda). At-most-once execution. Maximum 5-minute duration. Response includes execution output. Ideal for orchestrating APIs, microservices, or high-throughput request processing. Lower latency than Standard. Limited execution history (CloudWatch Logs only). Cost-effective for short synchronous orchestrations.",
+    category: "Advanced Features",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-29",
+    question: "How do you optimize Step Functions costs?",
+    answer: "Use Express workflows for high-volume short tasks, minimize state transitions (combine logic in single Lambda), use Parameters/ResultSelector instead of transformation Lambdas, batch operations with Map state, appropriate timeouts to avoid wasteful waiting, direct service integrations reducing Lambda calls, and monitor execution patterns. Choose Standard vs Express based on actual requirements.",
+    category: "Advanced Features",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-30",
+    question: "What are Step Functions execution limits?",
+    answer: "Standard: 1 year max duration, 25,000 events per execution, 256KB state data limit. Express: 5 minutes max duration, 256KB payload. 1 million open executions per account. 1,000 activity workers. 100 versions per state machine. 100 aliases. Plan workflows within limits. Use S3 for large data. Distributed Map for large-scale processing.",
+    category: "Advanced Features",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-31",
+    question: "How do you integrate Step Functions with Lambda?",
+    answer: "Task state with Lambda ARN as Resource. Supports Request-Response pattern. Pass input via Parameters. Transform output with ResultSelector. Handle errors with Retry/Catch. Use Payload field for input. Lambda timeout must be less than state timeout. Monitor concurrent Lambda executions. Consider Lambda limits. Efficient alternative to chaining Lambdas manually.",
+    category: "Integration & Orchestration",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-32",
+    question: "How do you integrate Step Functions with ECS/Fargate?",
+    answer: "Use ECS Task integration with .sync pattern to wait for completion. Specify cluster, task definition, launch type, network configuration. Step Functions monitors task and returns result upon completion. Use for long-running containers, batch processing, or containerized workloads. Handles task failures and retries. Access task logs via CloudWatch. More cost-effective than keeping Lambda running.",
+    category: "Integration & Orchestration",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-33",
+    question: "How do you integrate Step Functions with SageMaker?",
+    answer: "Direct integrations for training jobs, transform jobs, endpoints. Use .sync to wait for job completion. Orchestrate ML workflows: data prep, training, model creation, deployment. Pass hyperparameters, input data locations. Handle training failures. Create reusable ML pipelines. Integrate with Glue for data preparation. Results include model artifacts. Ideal for MLOps workflows.",
+    category: "Integration & Orchestration",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-34",
+    question: "How do you integrate Step Functions with DynamoDB?",
+    answer: "Direct SDK integration for PutItem, GetItem, UpdateItem, DeleteItem, Query, Scan. No Lambda required for CRUD operations. Use Parameters for item attributes. Conditional operations supported. Handle throttling with retries. Combine with Parallel for batch operations. Useful for workflow state persistence, metadata storage, or simple database operations within orchestration.",
+    category: "Integration & Orchestration",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-35",
+    question: "How do you trigger Step Functions executions?",
+    answer: "Start via console, SDK/CLI, Lambda, EventBridge scheduled rules, EventBridge event patterns, API Gateway, IoT Rules, S3 notifications (via EventBridge), Step Functions StartExecution API, CloudFormation, or CI/CD pipelines. Pass input JSON. Use unique execution names for idempotency. Monitor via CloudWatch. Multiple trigger sources enable event-driven architectures.",
+    category: "Integration & Orchestration",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-36",
+    question: "How do you implement ETL workflows with Step Functions?",
+    answer: "Orchestrate Glue crawlers, Glue jobs, Athena queries, EMR clusters, Lambda transformations. Use .sync for Glue jobs to wait for completion. Parallel state for independent extractions. Choice state for conditional logic. Error handling with retries and SNS notifications. Store intermediate results in S3. Monitor via CloudWatch. Cost-effective compared to third-party orchestrators.",
+    category: "Integration & Orchestration",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-37",
+    question: "How do you handle batch processing with Step Functions?",
+    answer: "Integrate with AWS Batch using .sync pattern. Submit batch jobs with parameters. Wait for job completion automatically. Handle job failures with retries. Map state for multiple batch jobs. Distributed Map for large-scale processing. Monitor job queues. Access logs via CloudWatch. Alternative to manual job scheduling and monitoring.",
+    category: "Integration & Orchestration",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-38",
+    question: "How do you implement saga pattern with Step Functions?",
+    answer: "Design compensating transactions for rollback on failures. Use Catch blocks to trigger compensation states. Maintain execution context for cleanup. Each forward transaction has corresponding compensation. Choice state determines rollback path. Store transaction state in DynamoDB. Ensure idempotency. Useful for distributed transactions across microservices maintaining eventual consistency.",
+    category: "Integration & Orchestration",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-39",
+    question: "How do you integrate Step Functions with EventBridge?",
+    answer: "EventBridge triggers executions based on events (scheduled, AWS service events, custom events). Step Functions sends events to EventBridge using PutEvents task. Use for event-driven workflows, scheduled orchestration, cross-account integrations. EventBridge archives provide event replay. Input transformers format event data. Combines event routing with workflow orchestration.",
+    category: "Integration & Orchestration",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-40",
+    question: "How do you implement approval workflows?",
+    answer: "Use callback pattern with task token. Send approval request via SNS/SES with token embedded. Create approval UI (web app, API Gateway) accepting token and decision. Call SendTaskSuccess (approve) or SendTaskFailure (reject) with token. Set timeout for response deadline. Log decisions for audit. Notify requester of decision. Integrates with ServiceNow, JIRA, or custom systems.",
+    category: "Integration & Orchestration",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-41",
+    question: "How do you monitor Step Functions executions?",
+    answer: "Execution history in console shows state transitions, inputs/outputs, timestamps. CloudWatch metrics (ExecutionsStarted, ExecutionsSucceeded, ExecutionsFailed, ExecutionTime). CloudWatch Logs for Express workflows. X-Ray integration for distributed tracing. EventBridge for execution state changes. Set alarms for failures or performance degradation. Tags for cost allocation. Visual workflow tracking in console.",
+    category: "Monitoring & Operations",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-42",
+    question: "What Step Functions metrics are available?",
+    answer: "CloudWatch metrics include ExecutionsStarted, ExecutionsSucceeded, ExecutionsFailed, ExecutionsAborted, ExecutionsTimedOut, ExecutionTime, ExecutionThrottled. Dimensions by StateMachineArn, ActivityArn. Express workflows: ExecutionsFailed, ExecutionsStarted, 2xx/4xx responses. Create custom dashboards. Set alarms for anomalies. Monitor service integration metrics separately (Lambda, DynamoDB, etc.). Track costs via cost allocation tags.",
+    category: "Monitoring & Operations",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-43",
+    question: "How do you debug Step Functions workflows?",
+    answer: "Review execution history showing each state transition with inputs/outputs. Enable CloudWatch Logs for Express workflows. Use X-Ray for service integration tracing. Local testing with Step Functions Local. Console visual execution view. Review error messages in Catch blocks. Test with simplified data. Validate ASL syntax. Use Pass states for debugging data flow. Inspect JSONPath expressions.",
+    category: "Monitoring & Operations",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-44",
+    question: "What is Step Functions X-Ray integration?",
+    answer: "X-Ray provides distributed tracing across Step Functions and integrated services. Enable tracing at state machine level. Visualize execution flow, latencies, errors. Trace Lambda, API Gateway, DynamoDB calls. Identify bottlenecks. Debug complex workflows. View service map. Analyze traces with filters. Additional charges for X-Ray. Essential for troubleshooting distributed applications.",
+    category: "Monitoring & Operations",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-45",
+    question: "How do you handle failures in Step Functions?",
+    answer: "Implement Retry with exponential backoff for transient errors. Catch specific errors transitioning to recovery states. SNS notifications on failures. CloudWatch alarms for failure metrics. Dead letter queues for unrecoverable failures. Log errors to CloudWatch. Design idempotent operations. Test failure scenarios. Include rollback logic for distributed transactions. Monitor failure rates.",
+    category: "Monitoring & Operations",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-46",
+    question: "What are Step Functions best practices?",
+    answer: "Keep state data under 256KB (use S3 for large data), handle errors with Retry/Catch, use appropriate workflow type (Standard vs Express), minimize state transitions, implement timeouts, design idempotent operations, use Parameters/ResultSelector to avoid Lambda transformations, version state machines, tag for organization, monitor executions, implement least privilege IAM, document workflows, test thoroughly.",
+    category: "Monitoring & Operations",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-47",
+    question: "How do you test Step Functions workflows?",
+    answer: "Local testing with Step Functions Local Docker image. Unit test Lambda functions separately. Integration testing with test state machines. Mock external services. Test error handling paths. Validate with different input scenarios. Use CloudFormation for reproducible test environments. Test rollback/compensation logic. Dry-run with Pass states. Validate ASL syntax. Automated testing in CI/CD pipelines.",
+    category: "Monitoring & Operations",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-48",
+    question: "How do you implement idempotency in Step Functions?",
+    answer: "Use unique execution names (includes date/ID) to prevent duplicate executions. Design state operations to be idempotent (safe to retry). Use DynamoDB conditional writes with execution ID. Check for existing results before processing. Generate idempotency tokens. Store execution state externally. Essential for reliable workflows with retries. Prevents duplicate charges or data corruption.",
+    category: "Monitoring & Operations",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-49",
+    question: "How do you secure Step Functions workflows?",
+    answer: "IAM roles and policies for execution. Resource-based policies for cross-account access. Encrypt data at rest and in transit. VPC endpoints for private access. CloudTrail for audit logging. Least privilege principle. Secure integrated services. Rotate credentials. Tag-based access control. Monitor with CloudWatch and GuardDuty. Validate inputs. Avoid exposing sensitive data in execution history.",
+    category: "Monitoring & Operations",
+    skill: "AWS Step Functions"
+  },
+  {
+    id: "step-functions-50",
+    question: "What are Step Functions anti-patterns?",
+    answer: "Avoid: passing large data between states (use S3 references), excessive Lambda transformations (use Parameters/intrinsic functions), polling loops (use Wait states or EventBridge), very short Express workflows (Lambda may be cheaper), synchronous waiting in Lambda (use Step Functions), deep nesting (flatten workflows), ignoring error handling, unbounded retries, no timeouts, and mixing business logic in orchestration (keep in services).",
+    category: "Monitoring & Operations",
+    skill: "AWS Step Functions"
+  }
+];
+
 // Combine all questions
 sqlQuestions.push(...lambdaQuestions);
+sqlQuestions.push(...stepFunctionsQuestions);

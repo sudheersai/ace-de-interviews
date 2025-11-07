@@ -4830,7 +4830,362 @@ const awsCertifiedDataEngineerQuestions: Question[] = [
   }
 ];
 
+// Hadoop Questions
+const hadoopQuestions: Question[] = [
+  {
+    id: "hadoop-1",
+    question: "What is Hadoop?",
+    answer: "Hadoop is an open-source framework for distributed storage and processing of large datasets across clusters of computers. Core components include HDFS (storage) and MapReduce (processing). Designed for commodity hardware with built-in fault tolerance. Supports petabyte-scale data. Ecosystem includes Hive, Pig, HBase, Spark. Enables horizontal scaling by adding nodes. Batch processing oriented framework.",
+    category: "Basic Concepts",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-2",
+    question: "What are the core components of Hadoop?",
+    answer: "HDFS (Hadoop Distributed File System) for distributed storage, YARN (Yet Another Resource Negotiator) for resource management and job scheduling, MapReduce for parallel data processing, and Hadoop Common (utilities and libraries). HDFS handles storage across nodes, YARN manages cluster resources, MapReduce provides programming model. These form Hadoop's foundation with ecosystem tools built on top.",
+    category: "Basic Concepts",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-3",
+    question: "What is HDFS architecture?",
+    answer: "HDFS uses master-slave architecture. NameNode is master managing metadata and namespace. DataNodes are slaves storing actual data blocks. Secondary NameNode creates checkpoints of metadata. Files split into blocks (default 128MB) replicated across nodes (default 3 replicas). NameNode maintains block locations. Clients contact NameNode for metadata, then directly access DataNodes for data.",
+    category: "Basic Concepts",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-4",
+    question: "What is a NameNode?",
+    answer: "NameNode is HDFS master daemon managing file system namespace and metadata. Stores file-to-block mapping, block locations, permissions, and directory structure. Maintains edit logs and fsimage. Single point of failure (addressed by High Availability setup). Runs on powerful machine with high memory. Does not store actual data. Critical for HDFS operations.",
+    category: "Basic Concepts",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-5",
+    question: "What is a DataNode?",
+    answer: "DataNode is slave daemon storing actual data blocks on local disks. Sends heartbeats to NameNode every 3 seconds confirming availability. Reports block information via block reports. Serves read/write requests from clients. Performs block creation, deletion, and replication based on NameNode instructions. Multiple DataNodes form storage cluster. Commodity hardware acceptable.",
+    category: "Basic Concepts",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-6",
+    question: "What is MapReduce?",
+    answer: "MapReduce is programming model for processing large datasets in parallel. Two phases: Map (filters/transforms data into key-value pairs) and Reduce (aggregates/summarizes mapped data). Framework handles parallelization, fault tolerance, data distribution. Input splits distributed to mappers. Shuffle phase sorts and transfers data to reducers. Output written to HDFS. Suitable for batch processing.",
+    category: "Basic Concepts",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-7",
+    question: "What is YARN?",
+    answer: "YARN (Yet Another Resource Negotiator) is resource management layer separating resource management from processing. Components: ResourceManager (master managing cluster resources), NodeManager (per-node agent managing containers), ApplicationMaster (per-application coordinator), and Container (resource allocation unit). Enables multiple processing engines (MapReduce, Spark, Tez) on same cluster. Improves cluster utilization and scalability.",
+    category: "Basic Concepts",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-8",
+    question: "What is the difference between Hadoop 1.x and 2.x?",
+    answer: "Hadoop 1.x: JobTracker/TaskTracker for resource management, only MapReduce processing, scalability limits (~4000 nodes), single point of failure. Hadoop 2.x: YARN for resource management, multiple processing engines, NameNode HA, improved scalability (10,000+ nodes), better resource utilization, federation support. Version 2.x addressed major 1.x limitations with architectural improvements.",
+    category: "Basic Concepts",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-9",
+    question: "What is block size in HDFS and why is it large?",
+    answer: "Default block size is 128MB (64MB in older versions). Large blocks reduce NameNode memory usage (less metadata), minimize seek time relative to transfer time, reduce number of map tasks, and optimize sequential reads. Configurable via dfs.blocksize. Small files waste block space. Large blocks suited for big data workloads with sequential access patterns.",
+    category: "Basic Concepts",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-10",
+    question: "What is replication in HDFS?",
+    answer: "HDFS replicates blocks across multiple DataNodes for fault tolerance and availability. Default replication factor is 3. Placement strategy: first replica on local node, second on different rack, third on same rack as second. Balances reliability, write performance, and network bandwidth. NameNode manages replication. Failed nodes trigger re-replication. Configurable per file.",
+    category: "Basic Concepts",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-11",
+    question: "How does HDFS handle file reads?",
+    answer: "Client contacts NameNode for block locations. NameNode returns DataNode addresses with blocks sorted by proximity. Client directly reads from nearest DataNode. If DataNode fails, client tries next replica. Checksums verified during read. Parallel reads from multiple blocks possible. NameNode not involved in data transfer minimizing bottleneck. Network topology considered for performance.",
+    category: "HDFS Operations",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-12",
+    question: "How does HDFS handle file writes?",
+    answer: "Client contacts NameNode for block allocation. NameNode returns DataNode pipeline for replica placement. Client writes to first DataNode, which pipelines to second, then third. Acknowledgments flow back through pipeline. On failure, pipeline reconfigured and write continues. Block committed when all replicas written. NameNode updates metadata. Write-once model simplifies consistency.",
+    category: "HDFS Operations",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-13",
+    question: "What is HDFS Federation?",
+    answer: "Federation allows multiple independent NameNodes sharing DataNodes in single cluster. Each NameNode manages separate namespace volume. Improves scalability by distributing namespace across NameNodes. Isolates failures to single namespace. Better resource utilization. Enables namespace partitioning by department or application. DataNodes register with all NameNodes. Addresses single NameNode scalability limitation.",
+    category: "HDFS Operations",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-14",
+    question: "What is HDFS High Availability?",
+    answer: "HA eliminates NameNode single point of failure using active-standby configuration. Active NameNode handles operations, standby maintains synchronized state. Shared storage (QJM or NFS) for edit logs. ZooKeeper coordinates failover. Automatic or manual failover supported. Standby becomes active on failure. Fence previous active to prevent split-brain. Zero downtime during failover.",
+    category: "HDFS Operations",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-15",
+    question: "What is rack awareness in Hadoop?",
+    answer: "Rack awareness optimizes data placement considering network topology. Hadoop knows which rack each node belongs to. Replica placement considers rack diversity: first local, second different rack, third same rack as second. Reduces inter-rack traffic during MapReduce. Improves fault tolerance (rack failure tolerance). Configured via topology script. Important for performance and reliability.",
+    category: "HDFS Operations",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-16",
+    question: "What are HDFS file permissions?",
+    answer: "HDFS implements POSIX-style permissions with owner, group, and others having read, write, execute permissions. Enforced at NameNode during operations. Superuser bypasses checks. ACLs available for fine-grained control. Sticky bit for directories prevents deletion by non-owners. Umask sets default permissions. Important for multi-tenant clusters. Integrates with Kerberos for authentication.",
+    category: "HDFS Operations",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-17",
+    question: "What is HDFS snapshots?",
+    answer: "Snapshots are read-only point-in-time copies of file system subtree. Enable backup and disaster recovery. Created instantly without copying data (copy-on-write). Protect against user errors or data corruption. Limited modifications allowed on snapshottable directories. Snapshots managed per directory. Can be deleted when no longer needed. Storage efficient as only changes consume space.",
+    category: "HDFS Operations",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-18",
+    question: "What is safe mode in HDFS?",
+    answer: "Safe mode is read-only state during NameNode startup. NameNode loads fsimage and edit logs, receives block reports from DataNodes, and verifies minimum replication. No modifications allowed. Automatically exits when sufficient blocks replicated. Manual entry/exit possible. Protects data during startup. Threshold configurable. Used for maintenance operations. Status checked with hdfs dfsadmin -safemode command.",
+    category: "HDFS Operations",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-19",
+    question: "How do you handle small files problem in HDFS?",
+    answer: "Small files waste NameNode memory (each file consumes ~150 bytes regardless of size) and reduce MapReduce efficiency. Solutions: combine files using HAR (Hadoop Archives), SequenceFiles, or CombineFileInputFormat. Merge files before loading. Use HBase for small object storage. Avoid storing many small files. Sequence files bundle multiple files. Archive tools like S3DistCp for consolidation.",
+    category: "HDFS Operations",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-20",
+    question: "What is HDFS balancer?",
+    answer: "Balancer redistributes blocks across DataNodes to achieve even disk utilization. Runs as administrative tool without stopping cluster. Configurable threshold for balance. Moves blocks from over-utilized to under-utilized nodes. Respects rack awareness and replication policies. Bandwidth throttled to avoid impacting cluster. Run periodically or after node additions. Improves performance by preventing hotspots.",
+    category: "HDFS Operations",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-21",
+    question: "Explain MapReduce execution flow.",
+    answer: "Input splits created from HDFS files. Map tasks process splits producing key-value pairs. Combiner optionally aggregates map output locally. Shuffle phase sorts and partitions data by key. Reducer pulls data from mappers. Reduce phase aggregates values per key. Output written to HDFS. Job execution coordinated by ResourceManager and ApplicationMaster. Framework handles failures and retries.",
+    category: "MapReduce Framework",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-22",
+    question: "What is an InputFormat?",
+    answer: "InputFormat defines how input files split and read. Methods: getSplits() divides input into splits, createRecordReader() creates reader for split. Common implementations: TextInputFormat (text files), KeyValueTextInputFormat, SequenceFileInputFormat. Custom InputFormats for specialized formats. Determines number of map tasks. Important for controlling parallelism and data locality.",
+    category: "MapReduce Framework",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-23",
+    question: "What is an OutputFormat?",
+    answer: "OutputFormat determines how output written to storage. Methods: getRecordWriter() creates writer, checkOutputSpecs() validates output location. Common implementations: TextOutputFormat, SequenceFileOutputFormat, NullOutputFormat. Handles file creation, compression, and formatting. Custom OutputFormats for specialized needs. Multiple outputs possible with MultipleOutputs class. Defines output directory structure.",
+    category: "MapReduce Framework",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-24",
+    question: "What are Mapper and Reducer?",
+    answer: "Mapper processes input records producing intermediate key-value pairs. Setup() method for initialization, map() method processes each record, cleanup() for finalization. Reducer aggregates values by key producing final output. Similar lifecycle methods. Identity Mapper/Reducer available for passthrough. Custom logic in map/reduce methods. Partitioner determines which reducer receives which keys.",
+    category: "MapReduce Framework",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-25",
+    question: "What is a Combiner?",
+    answer: "Combiner is optional mini-reducer running locally on map output before shuffle. Reduces data transferred across network. Same interface as Reducer. Not guaranteed to execute (optimization). Must be commutative and associative. Example: summing values can use combiner. Improves performance by reducing shuffle data. Not suitable for operations like average without careful implementation.",
+    category: "MapReduce Framework",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-26",
+    question: "What is shuffling in MapReduce?",
+    answer: "Shuffle transfers map outputs to reducers. Process: map outputs written to local disk, sorted by partition and key, reducers pull data over network, merge-sort combines inputs. Most expensive phase. Framework handles automatically. Configurable buffers and compression. Network-intensive operation. Optimization critical for performance. Spill to disk when memory buffers full.",
+    category: "MapReduce Framework",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-27",
+    question: "What is partitioning in MapReduce?",
+    answer: "Partitioner determines which reducer receives which keys. Default HashPartitioner uses key hashcode modulo number of reducers. Custom Partitioners for specific distribution needs. All values for key go to same reducer. Affects load balancing across reducers. Number of output files equals reducers. Poor partitioning causes data skew and performance issues.",
+    category: "MapReduce Framework",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-28",
+    question: "What is speculation execution?",
+    answer: "Speculative execution launches duplicate tasks for stragglers (slow tasks). Whichever completes first is used, others killed. Improves job completion time. Identifies stragglers by comparing task progress. Configurable enable/disable. Can waste resources on duplicate work. Useful for heterogeneous clusters. Mitigates impact of slow nodes. Balance between performance and resource usage.",
+    category: "MapReduce Framework",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-29",
+    question: "How does MapReduce handle failures?",
+    answer: "Task failure: automatic retry up to configured attempts. Node failure: reschedule tasks on other nodes. ApplicationMaster failure: ResourceManager restarts with checkpoint. Framework tracks task attempts. Failed tasks logged. Speculative execution for slow tasks. Data locality lost on retry. Multiple failures mark task as failed. Job history preserved. Fault tolerance built into framework design.",
+    category: "MapReduce Framework",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-30",
+    question: "What is the difference between map-side join and reduce-side join?",
+    answer: "Map-side join: performed in mapper using distributed cache for small table, no shuffle required, faster but limited to small datasets. Reduce-side join: performed in reducer after shuffle, handles large datasets, network-intensive, more flexible. Map-side requires preprocessing. Reduce-side suitable for any size. Choose based on data sizes and performance requirements.",
+    category: "MapReduce Framework",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-31",
+    question: "What is Apache Hive?",
+    answer: "Hive is data warehouse system providing SQL-like interface (HiveQL) for Hadoop. Converts SQL to MapReduce/Tez/Spark jobs. Schema-on-read model. Metastore stores metadata (schemas, locations). Supports partitioning and bucketing. UDFs for custom logic. Suitable for batch analytics, not real-time. Integrates with BI tools via JDBC/ODBC. Lowers barrier for SQL users.",
+    category: "Hadoop Ecosystem",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-32",
+    question: "What is Apache Pig?",
+    answer: "Pig is high-level platform for data analysis using Pig Latin scripting language. More procedural than SQL. Compiles to MapReduce jobs. Handles complex nested data structures. Built-in functions and UDFs. Good for ETL workflows. Less abstraction than Hive. Better for data flow programming. Supports multi-query optimization. Easier than writing raw MapReduce for developers.",
+    category: "Hadoop Ecosystem",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-33",
+    question: "What is Apache HBase?",
+    answer: "HBase is distributed, scalable, NoSQL database built on HDFS. Provides random real-time read/write access. Column-family oriented. Based on Google Bigtable design. Supports billions of rows and millions of columns. ACID guarantees for row-level operations. Integrated with Hadoop ecosystem. Use for time-series data, messaging, real-time analytics. Not suitable for complex queries or joins.",
+    category: "Hadoop Ecosystem",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-34",
+    question: "What is Apache Sqoop?",
+    answer: "Sqoop imports/exports data between Hadoop and relational databases. Parallel transfers using MapReduce. Supports incremental imports. Direct mode for MySQL/PostgreSQL faster than JDBC. Export from HDFS to databases. Handles data type conversions. Schedule with Oozie. Important for integrating Hadoop with existing databases. Connector-based architecture supports multiple databases.",
+    category: "Hadoop Ecosystem",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-35",
+    question: "What is Apache Flume?",
+    answer: "Flume is distributed service for collecting, aggregating, and moving log data to HDFS. Agent-based architecture with sources, channels, and sinks. Reliable delivery guarantees. Handles streaming data. Buffers in channels for reliability. Interceptors transform data. Multiple agents form data flow pipelines. Suitable for log aggregation, event collection. Integrates with Kafka, HBase, HDFS.",
+    category: "Hadoop Ecosystem",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-36",
+    question: "What is Apache Oozie?",
+    answer: "Oozie is workflow scheduler for Hadoop jobs. Coordinates MapReduce, Pig, Hive, Sqoop jobs. XML-based workflow definition. Supports control flow (sequential, parallel, conditional) and coordinator jobs (time/data-based triggers). Bundle jobs group coordinators. Web console for monitoring. SLA monitoring and notifications. Essential for production workflow orchestration. Handles job dependencies and retries.",
+    category: "Hadoop Ecosystem",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-37",
+    question: "What is Apache ZooKeeper?",
+    answer: "ZooKeeper is centralized coordination service for distributed applications. Provides naming, configuration management, synchronization, and group services. Used by HBase, Kafka, YARN HA, HDFS HA. Maintains configuration information. Implements distributed locks. Leader election service. High availability through ensemble (3-5 nodes). Simple hierarchical namespace. Critical infrastructure component for Hadoop ecosystem.",
+    category: "Hadoop Ecosystem",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-38",
+    question: "What is Apache Spark vs MapReduce?",
+    answer: "Spark: in-memory processing (10-100x faster), DAG execution, supports batch and streaming, easier APIs (Scala, Python, Java), built-in libraries (SQL, ML, GraphX). MapReduce: disk-based, two-stage execution, batch only, verbose code, mature and stable. Spark better for iterative algorithms and interactive queries. MapReduce for simple batch jobs. Spark increasingly preferred for new development.",
+    category: "Hadoop Ecosystem",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-39",
+    question: "What is Apache Kafka integration with Hadoop?",
+    answer: "Kafka is messaging system for real-time data feeds. Integrates with Hadoop via: Kafka Connect for moving data to HDFS, Flume Kafka source/sink, Spark Streaming/Flink for stream processing, Kafka as buffer before batch processing. Kafka provides reliable data ingestion, buffering, and replay capabilities. Common architecture: Kafka for streaming collection, Hadoop for batch processing and storage.",
+    category: "Hadoop Ecosystem",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-40",
+    question: "What is Hue in Hadoop?",
+    answer: "Hue (Hadoop User Experience) is web-based interface for Hadoop ecosystem. Provides editors for Hive, Pig, Oozie. File browser for HDFS. Job browser for tracking. SQL editor with auto-complete. Dashboard for metrics. User-friendly alternative to command line. Supports multiple users with authentication. Simplifies Hadoop interaction for analysts and developers. Customizable and extensible.",
+    category: "Hadoop Ecosystem",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-41",
+    question: "How do you optimize MapReduce job performance?",
+    answer: "Use combiners to reduce shuffle data, compress map output, tune split size, configure memory settings, use appropriate data types, minimize object creation, avoid unnecessary data copies, enable speculation, optimize shuffle parameters, use counters for monitoring, choose right number of reducers, leverage data locality, and profile with job history. Test with representative data.",
+    category: "Performance & Optimization",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-42",
+    question: "What is data locality in Hadoop?",
+    answer: "Data locality means processing data where it resides, avoiding network transfer. Three levels: node-local (same node), rack-local (same rack), off-rack (different rack). Scheduler tries node-local first. Improves performance significantly. HDFS replication enables locality. Configurable wait times before lowering locality requirement. Critical for MapReduce performance. Monitor locality metrics in job counters.",
+    category: "Performance & Optimization",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-43",
+    question: "How do you handle data skew in MapReduce?",
+    answer: "Skew causes uneven load distribution. Solutions: custom partitioner for better distribution, salting keys with random prefix, separate processing for skewed keys, use combiners, increase reducers, sampling to identify skew, bucketing in Hive, two-phase aggregation. Monitor task execution times. Skewed join optimization in Hive. Test with production-like data distributions.",
+    category: "Performance & Optimization",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-44",
+    question: "What are Hadoop counters?",
+    answer: "Counters track statistics during job execution. Built-in counters (bytes read/written, records processed, tasks launched) and custom counters. Accessible via job client API and web UI. Useful for debugging and monitoring. Low overhead. Grouped by category. Increment in map/reduce code. View in job history. Essential for understanding job behavior and troubleshooting.",
+    category: "Performance & Optimization",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-45",
+    question: "How do you tune HDFS performance?",
+    answer: "Increase block size for large files, adjust replication factor, use appropriate hardware (fast disks, network), configure DataNode handlers, tune NameNode heap size, enable short-circuit reads, use memory-mapped I/O, balance cluster regularly, monitor disk usage, use appropriate rack awareness, optimize network topology, and compress data. Monitor HDFS metrics with Ambari/Cloudera Manager.",
+    category: "Performance & Optimization",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-46",
+    question: "What is MapReduce memory tuning?",
+    answer: "Configure mapreduce.map.memory.mb and mapreduce.reduce.memory.mb for container sizes. Set mapreduce.map.java.opts and mapreduce.reduce.java.opts for JVM heap (typically 80% of container). Tune io.sort.mb for map sort buffer. Configure shuffle memory fraction. Monitor memory usage. OutOfMemory errors indicate insufficient allocation. Balance between parallelism and memory per task.",
+    category: "Performance & Optimization",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-47",
+    question: "How do you monitor Hadoop cluster?",
+    answer: "Use ResourceManager UI for YARN jobs, NameNode UI for HDFS health, job history server for completed jobs. Ambari or Cloudera Manager for comprehensive monitoring. CloudWatch for AWS EMR. Monitor metrics: CPU, memory, disk, network, HDFS capacity, DataNode health, job success rates. Set alerts for failures and resource thresholds. Log aggregation for troubleshooting.",
+    category: "Performance & Optimization",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-48",
+    question: "What are Hadoop benchmarks?",
+    answer: "TeraSort: sorts 1TB data, tests overall performance. TestDFSIO: tests HDFS I/O. NNBench: tests NameNode metadata operations. MRBench: tests MapReduce framework. SWIM: realistic workload mix. Use for capacity planning, performance testing, comparing configurations. Run regularly to detect degradation. Important for hardware selection and cluster sizing.",
+    category: "Performance & Optimization",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-49",
+    question: "How do you secure Hadoop clusters?",
+    answer: "Enable Kerberos authentication, use HDFS permissions and ACLs, encrypt data at rest (HDFS encryption zones) and in transit (SSL/TLS), implement network segmentation, configure firewall rules, use Apache Ranger/Sentry for authorization, enable audit logging, secure ZooKeeper, regular patching, token-based delegation, separate service accounts. Multi-layered security approach required.",
+    category: "Performance & Optimization",
+    skill: "Hadoop"
+  },
+  {
+    id: "hadoop-50",
+    question: "What are Hadoop best practices?",
+    answer: "Use appropriate file formats (Parquet, ORC), compress data, partition tables, monitor cluster health, implement capacity planning, regular backups, version control for scripts, test in dev before production, document configurations, use resource pools, implement quota management, regular cluster maintenance, security hardening, disaster recovery planning, training for team, and stay updated with ecosystem developments.",
+    category: "Performance & Optimization",
+    skill: "Hadoop"
+  }
+];
+
 // Combine all questions
 sqlQuestions.push(...lambdaQuestions);
 sqlQuestions.push(...stepFunctionsQuestions);
 sqlQuestions.push(...awsCertifiedDataEngineerQuestions);
+sqlQuestions.push(...hadoopQuestions);

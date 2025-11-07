@@ -23,6 +23,7 @@ const skills = [
   "AWS Lambda",
   "AWS Step Functions",
   "AWS Certified Data Engineer",
+  "Hadoop",
 ];
 
 const HeroSection = ({ selectedSkill, onSkillChange }: HeroSectionProps) => {

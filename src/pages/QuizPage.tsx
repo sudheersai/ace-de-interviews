@@ -126,19 +126,21 @@ const QuizPage = () => {
       <div className="max-w-7xl mx-auto px-4">
         <Header />
         
-        <div className="py-8">
-          <div className="flex items-center justify-between mb-8">
+        <div className="py-4 sm:py-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 sm:mb-8">
             <Button
               variant="ghost"
+              size="sm"
               onClick={() => navigate("/")}
+              className="self-start"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back
             </Button>
             
-            <div className="text-center">
-              <h1 className="text-2xl font-bold">{skill} Quiz</h1>
-              <p className="text-sm text-muted-foreground">
+            <div className="text-center flex-1">
+              <h1 className="text-xl sm:text-2xl font-bold">{skill} Quiz</h1>
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 Level {currentLevel} of 3 
                 {currentLevel === 1 && " - Easy"}
                 {currentLevel === 2 && " - Medium"}
@@ -146,7 +148,7 @@ const QuizPage = () => {
               </p>
             </div>
             
-            <div className="w-24"></div>
+            <div className="hidden sm:block w-24"></div>
           </div>
 
           {!showResults ? (

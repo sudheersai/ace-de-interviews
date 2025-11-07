@@ -24,13 +24,13 @@ const QuizQuestion = ({
   isAnswered
 }: QuizQuestionProps) => {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between">
-        <div className="text-sm text-muted-foreground">
+        <div className="text-xs sm:text-sm text-muted-foreground">
           Question {questionNumber} of {totalQuestions}
         </div>
-        <div className="flex items-center gap-2 text-sm font-medium">
-          <Clock className="w-4 h-4" />
+        <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium">
+          <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           <span className={timeRemaining <= 10 ? "text-destructive" : "text-foreground"}>
             {timeRemaining}s
           </span>
@@ -39,20 +39,20 @@ const QuizQuestion = ({
 
       <Progress value={(questionNumber / totalQuestions) * 100} className="h-2" />
 
-      <Card className="p-6">
-        <h3 className="text-lg font-semibold mb-6">{question.question}</h3>
+      <Card className="p-4 sm:p-6">
+        <h3 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 leading-snug">{question.question}</h3>
 
-        <div className="space-y-3">
+        <div className="space-y-2 sm:space-y-3">
           {question.options.map((option, index) => (
             <Button
               key={index}
               variant={selectedAnswer === index ? "default" : "outline"}
-              className="w-full justify-start text-left h-auto py-4 px-4"
+              className="w-full justify-start text-left h-auto py-3 sm:py-4 px-3 sm:px-4 text-sm"
               onClick={() => !isAnswered && onAnswerSelect(index)}
               disabled={isAnswered}
             >
-              <span className="font-semibold mr-3">{String.fromCharCode(65 + index)}.</span>
-              <span className="flex-1">{option}</span>
+              <span className="font-semibold mr-2 sm:mr-3 flex-shrink-0">{String.fromCharCode(65 + index)}.</span>
+              <span className="flex-1 break-words">{option}</span>
             </Button>
           ))}
         </div>

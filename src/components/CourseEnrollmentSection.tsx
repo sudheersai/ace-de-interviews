@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import courseImage from "@/assets/ace-interviews.png";
+import courseImage from "@/assets/ace-interviews-woman.png";
 import { GraduationCap, CheckCircle } from "lucide-react";
 
 const CourseEnrollmentSection = () => {

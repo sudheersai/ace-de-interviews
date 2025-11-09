@@ -47,12 +47,12 @@ const QuizQuestion = ({
             <Button
               key={index}
               variant={selectedAnswer === index ? "default" : "outline"}
-              className="w-full justify-start text-left h-auto py-3 sm:py-4 px-3 sm:px-4 text-sm"
+              className="w-full justify-start text-left h-auto py-2.5 sm:py-3 md:py-4 px-2.5 sm:px-3 md:px-4 text-xs sm:text-sm leading-relaxed whitespace-normal"
               onClick={() => !isAnswered && onAnswerSelect(index)}
               disabled={isAnswered}
             >
-              <span className="font-semibold mr-2 sm:mr-3 flex-shrink-0">{String.fromCharCode(65 + index)}.</span>
-              <span className="flex-1 break-words">{option}</span>
+              <span className="font-semibold mr-1.5 sm:mr-2 md:mr-3 flex-shrink-0 text-xs sm:text-sm">{String.fromCharCode(65 + index)}.</span>
+              <span className="flex-1 break-words text-left">{option}</span>
             </Button>
           ))}
         </div>

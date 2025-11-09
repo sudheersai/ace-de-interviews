@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import courseImage from "@/assets/ace-interviews-woman.png";
 import { GraduationCap, CheckCircle } from "lucide-react";
 
 const CourseEnrollmentSection = () => {
@@ -14,10 +13,10 @@ const CourseEnrollmentSection = () => {
   return (
     <section id="course" className="py-12 sm:py-16 lg:py-20 animate-fade-in scroll-mt-20">
       <div className="bg-gradient-to-br from-primary/5 via-background to-secondary/5 rounded-2xl overflow-hidden border border-primary/10">
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 p-6 sm:p-8 lg:p-12">
-          {/* Left side - Content */}
-          <div className="flex flex-col justify-center space-y-4 sm:space-y-6 animate-slide-right">
-            <div className="inline-flex items-center gap-2 w-fit px-3 py-1.5 bg-primary/10 rounded-full">
+        <div className="p-6 sm:p-8 lg:p-12">
+          {/* Content */}
+          <div className="flex flex-col justify-center space-y-4 sm:space-y-6 animate-slide-right max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 w-fit px-3 py-1.5 bg-primary/10 rounded-full mx-auto">
               <GraduationCap className="w-4 h-4 text-primary" />
               <span className="text-xs sm:text-sm font-semibold text-primary">Premium Course</span>
             </div>
@@ -31,7 +30,7 @@ const CourseEnrollmentSection = () => {
               Learn from industry experts and master the skills that top companies are looking for.
             </p>
 
-            <ul className="space-y-3">
+            <ul className="space-y-3 text-left max-w-xl mx-auto">
               {benefits.map((benefit, index) => (
                 <li 
                   key={index} 
@@ -54,17 +53,6 @@ const CourseEnrollmentSection = () => {
                 Enroll Now
               </Button>
             </div>
-          </div>
-
-          {/* Right side - Image */}
-          <div className="relative h-64 sm:h-80 md:h-full min-h-[300px] animate-slide-left">
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-xl" />
-            <img
-              src={courseImage}
-              alt="Data Engineering Course - Learn SQL, database design, and data analytics"
-              className="w-full h-full object-cover rounded-xl shadow-2xl"
-              loading="lazy"
-            />
           </div>
         </div>
       </div>

@@ -4,11 +4,11 @@ import { GraduationCap, CheckCircle } from "lucide-react";
 
 const CourseEnrollmentSection = () => {
   const benefits = [
-    "Master SQL and data engineering fundamentals",
-    "Real-world projects and hands-on practice",
-    "Expert-led video tutorials",
-    "Lifetime access to course materials",
-    "Certificate of completion"
+    "500+ real interview questions from top tech companies",
+    "Comprehensive answers with detailed explanations",
+    "Practice coding challenges and scenarios",
+    "Interview tips and strategies from industry experts",
+    "Lifetime access to all materials and updates"
   ];
 
   return (
@@ -30,16 +30,16 @@ const CourseEnrollmentSection = () => {
           <div className="flex flex-col justify-center space-y-4 sm:space-y-6 p-6 sm:p-8 lg:p-12 animate-slide-left">
             <div className="inline-flex items-center gap-2 w-fit px-3 py-1.5 bg-primary/10 rounded-full">
               <GraduationCap className="w-4 h-4 text-primary" />
-              <span className="text-xs sm:text-sm font-semibold text-primary">Premium Course</span>
+              <span className="text-xs sm:text-sm font-semibold text-primary">Interview Prep Kit</span>
             </div>
             
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-tight">
-              Enroll in Our Complete Data Engineering Course
+              Get Our Complete Data Engineer Interview Preparation Kit
             </h2>
             
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              Take your career to the next level with our comprehensive data engineering course. 
-              Learn from industry experts and master the skills that top companies are looking for.
+              Ace your next data engineering interview with our comprehensive preparation kit. 
+              Get access to real interview questions, expert solutions, and proven strategies used by successful candidates at top tech companies.
             </p>
 
             <ul className="space-y-3">
@@ -62,7 +62,7 @@ const CourseEnrollmentSection = () => {
                 onClick={() => window.open('https://superprofile.bio/vp/become-an-aws-data-engineer-in-record-time', '_blank')}
               >
                 <GraduationCap className="w-5 h-5 mr-2" />
-                Enroll Now
+                Get the Prep Kit
               </Button>
             </div>
           </div>

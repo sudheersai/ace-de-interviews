@@ -54,7 +54,22 @@ export const generateQuizQuestions = (skill: string): QuizQuestion[] => {
   
   return skillQuestions.map((q, index) => {
     const wrongAnswers = generateWrongAnswers(q.question, q.answer, q.category);
-    const correctAnswerText = q.answer.split(/[.•\n]/)[0].trim() + ".";
+    
+    // Extract the first meaningful sentence from the answer
+    // Remove bullet points and newlines first, then get the first sentence
+    let correctAnswerText = q.answer
+      .replace(/^[•\-\*\s]+/gm, '') // Remove bullet points at start of lines
+      .replace(/\n+/g, ' ') // Replace newlines with spaces
+      .trim();
+    
+    // Get the first sentence (up to first period, question mark, or colon)
+    const sentenceMatch = correctAnswerText.match(/^[^.?:]+[.?:]/);
+    if (sentenceMatch) {
+      correctAnswerText = sentenceMatch[0].trim();
+    } else {
+      // If no sentence ending found, take first 150 chars and add period
+      correctAnswerText = correctAnswerText.substring(0, 150).trim() + ".";
+    }
     
     // Randomly position the correct answer
     const correctIndex = Math.floor(Math.random() * 4);

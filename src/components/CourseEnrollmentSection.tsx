@@ -59,7 +59,7 @@ const CourseEnrollmentSection = () => {
               <Button
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-sm sm:text-base px-6 sm:px-8 py-5 sm:py-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto"
-                onClick={() => window.open('https://www.udemy.com/share/104TLq3@g8p1_J1r0QjF1ltNAfRCwnv0YAAwD4ZP9OT1sEPVV0ZhaInNFLCqru7p8vfJoOEH/', '_blank')}
+                onClick={() => window.open('https://superprofile.bio/vp/become-an-aws-data-engineer-in-record-time', '_blank')}
               >
                 <GraduationCap className="w-5 h-5 mr-2" />
                 Enroll Now

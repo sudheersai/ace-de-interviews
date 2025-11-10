@@ -28,7 +28,11 @@ const AIAssistantSection = () => {
               </li>
             ))}
           </ul>
-          <Button className="mt-6 sm:mt-8 md:mt-10 bg-gradient-primary hover:opacity-90 text-white font-semibold w-full sm:w-auto shadow-primary transition-all duration-300 hover:shadow-glow hover:scale-105 text-sm sm:text-base" size="lg">
+          <Button 
+            className="mt-6 sm:mt-8 md:mt-10 bg-gradient-primary hover:opacity-90 text-white font-semibold w-full sm:w-auto shadow-primary transition-all duration-300 hover:shadow-glow hover:scale-105 text-sm sm:text-base" 
+            size="lg"
+            onClick={() => window.open('https://superprofile.bio/bookings/dataengineerplus', '_blank')}
+          >
             Book a Consultation
           </Button>
         </div>

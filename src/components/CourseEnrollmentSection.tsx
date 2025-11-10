@@ -16,7 +16,7 @@ const CourseEnrollmentSection = () => {
       <div className="bg-gradient-to-br from-primary/5 via-background to-secondary/5 rounded-2xl overflow-hidden border border-primary/10 shadow-lg">
         <div className="grid lg:grid-cols-2 gap-0">
           {/* Left side - Image */}
-          <div className="relative h-64 sm:h-80 lg:h-full min-h-[400px] overflow-hidden">
+          <div className="relative aspect-video lg:aspect-auto lg:h-full lg:min-h-[400px] overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background/20 z-10" />
             <img
               src={courseImage}

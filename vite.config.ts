@@ -16,3 +16,9 @@ export default defineConfig(({ mode }) => ({
     },
   },
 }));
+
+export default defineConfig({
+  base: '/ace-de-interviews/', // Add this line
+  plugins: [react()],
+  // ... rest of your config
+})

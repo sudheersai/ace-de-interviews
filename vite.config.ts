@@ -31,3 +31,10 @@ export default defineConfig({
   plugins: [react()],
   base: '/ace-de-interviews/', // THIS IS THE CRITICAL LINE
 })
+
+
+export default defineConfig({
+  base: "/ace-de-interviews/", // Use your exact repo name here
+  plugins: [react()],
+  // ... rest of config
+});

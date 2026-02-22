@@ -7,3 +7,7 @@ createRoot(document.getElementById("root")!).render(<App />);
 <BrowserRouter basename="/ace-de-interviews">
   <App />
 </BrowserRouter>
+
+<BrowserRouter basename="/ace-de-interviews">
+  {/* your routes */}
+</BrowserRouter>

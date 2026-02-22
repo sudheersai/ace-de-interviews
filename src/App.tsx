@@ -30,3 +30,20 @@ const App = () => (
 
 export default App;
 
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      {/* Update the BrowserRouter line below */}
+      <BrowserRouter basename="/ace-de-interviews">
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/question/:id" element={<QuestionDetailPage />} />
+          <Route path="/quiz" element={<QuizPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);

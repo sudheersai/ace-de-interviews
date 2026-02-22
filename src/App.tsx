@@ -30,6 +30,3 @@ const App = () => (
 
 export default App;
 
-<BrowserRouter basename="/ace-de-interviews">
-  {/* your routes */}
-</BrowserRouter>
